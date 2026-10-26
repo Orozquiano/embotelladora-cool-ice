@@ -1,0 +1,56 @@
+<header class="encabezado">
+  <div class="encabezado__barra">
+    <a
+      class="encabezado__marca"
+      routerLink="/"
+      fragment="inicio"
+      aria-label="Cool Ice, ir al inicio"
+      (click)="cerrarMenu()"
+    >
+      <img
+        class="encabezado__logo"
+        [ngSrc]="logo.ruta"
+        [width]="logo.ancho"
+        [height]="logo.alto"
+        alt=""
+        priority
+      />
+    </a>
+
+    <button
+      #botonMenu
+      type="button"
+      class="encabezado__abrir"
+      [attr.aria-expanded]="menuAbierto()"
+      aria-controls="menu-principal"
+      (click)="alternarMenu()"
+    >
+      <span class="solo-lectores">{{ menuAbierto() ? 'Cerrar menú' : 'Abrir menú' }}</span>
+      <span class="hamburguesa" [class.hamburguesa--abierta]="menuAbierto()" aria-hidden="true">
+        <span></span>
+      </span>
+    </button>
+
+    <nav id="menu-principal" class="menu" [class.menu--abierto]="menuAbierto()" aria-label="Secciones">
+      <ul class="menu__lista">
+        @for (seccion of secciones; track seccion.id) {
+          <li>
+            <a
+              class="menu__enlace"
+              routerLink="/"
+              [fragment]="seccion.id"
+              [attr.aria-current]="seccionActiva() === seccion.id ? 'location' : null"
+              (click)="cerrarMenu()"
+            >
+              {{ seccion.etiqueta }}
+            </a>
+          </li>
+        }
+      </ul>
+      <a class="boton boton--primario" [href]="whatsapp" target="_blank" rel="noopener noreferrer">
+        WhatsApp
+        <span class="solo-lectores">de pedidos, se abre en una pestaña nueva</span>
+      </a>
+    </nav>
+  </div>
+</header>

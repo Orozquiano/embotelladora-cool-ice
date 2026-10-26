@@ -1,0 +1,87 @@
+<section id="contacto" class="seccion" aria-labelledby="titulo-contacto" tabindex="-1">
+  <div class="contenido">
+    <header class="seccion__cabecera">
+      <h2 id="titulo-contacto">Contacto</h2>
+      <p class="prosa">
+        Escríbenos por WhatsApp, llama o envía un correo. El mensaje sale directo a la empresa:
+        esta página no guarda ni confirma envíos.
+      </p>
+    </header>
+
+    <ul class="canales">
+      @for (linea of lineas; track linea.id) {
+        <li>
+          <h3>{{ linea.etiqueta }}</h3>
+          <p>{{ linea.detalle }}</p>
+          <p class="canales__numero">{{ linea.visible }}</p>
+          <div class="acciones">
+            <a
+              class="boton"
+              [class.boton--primario]="linea.principal"
+              [class.boton--secundario]="!linea.principal"
+              [href]="linea.whatsapp"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              WhatsApp
+              <span class="solo-lectores">al {{ linea.visible }}, se abre en una pestaña nueva</span>
+            </a>
+            <a class="boton boton--secundario" [href]="linea.telefono">
+              Llamar
+              <span class="solo-lectores">al {{ linea.visible }}</span>
+            </a>
+          </div>
+        </li>
+      }
+    </ul>
+
+    <dl class="datos">
+      <div>
+        <dt>Correo</dt>
+        <dd>
+          <a class="enlace" [href]="correo.href">{{ correo.visible }}</a>
+        </dd>
+      </div>
+      <div>
+        <dt>Lugar</dt>
+        <dd>
+          {{ lugar }}
+          @if (direccion) {
+            <span>. {{ direccion }}</span>
+          }
+        </dd>
+      </div>
+      @if (horario) {
+        <div>
+          <dt>Horario</dt>
+          <dd>{{ horario }}</dd>
+        </div>
+      }
+      @if (cobertura) {
+        <div>
+          <dt>Cobertura</dt>
+          <dd>{{ cobertura }}</dd>
+        </div>
+      }
+    </dl>
+
+    @if (!direccion) {
+      <p class="nota-pendiente">
+        <span class="nota-pendiente__etiqueta">Pendiente:</span>
+        Falta la dirección exacta en Miranda, Cauca.
+      </p>
+    }
+    @if (!horario) {
+      <p class="nota-pendiente">
+        <span class="nota-pendiente__etiqueta">Pendiente:</span>
+        Falta el horario de atención.
+      </p>
+    }
+    @if (!cobertura) {
+      <p class="nota-pendiente">
+        <span class="nota-pendiente__etiqueta">Pendiente:</span>
+        Falta la zona de cobertura del domicilio.
+      </p>
+    }
+  </div>
+</section>

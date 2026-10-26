@@ -1,0 +1,49 @@
+<section id="nosotros" class="seccion seccion--suave" aria-labelledby="titulo-nosotros" tabindex="-1">
+  <div class="contenido nosotros__grid">
+    <div>
+      <header class="seccion__cabecera">
+        <h2 id="titulo-nosotros">Nosotros</h2>
+        <p class="prosa">
+          Somos {{ empresa }}. Envasamos agua potable tratada en {{ lugar }} y ofrecemos servicio a
+          domicilio.
+        </p>
+      </header>
+
+      @if (historia) {
+        <p class="prosa">{{ historia }}</p>
+      } @else {
+        <p class="nota-pendiente">
+          <span class="nota-pendiente__etiqueta">Pendiente:</span>
+          Falta la historia de la embotelladora.
+        </p>
+      }
+
+      @if (valores) {
+        <p class="prosa">{{ valores }}</p>
+      } @else {
+        <p class="nota-pendiente">
+          <span class="nota-pendiente__etiqueta">Pendiente:</span>
+          Faltan los valores de la empresa.
+        </p>
+      }
+
+      @if (nit) {
+        <p class="prosa">NIT {{ nit }}</p>
+      } @else {
+        <p class="nota-pendiente">
+          <span class="nota-pendiente__etiqueta">Pendiente:</span>
+          Falta el NIT.
+        </p>
+      }
+    </div>
+
+    <figure class="nosotros__figura">
+      <img
+        [ngSrc]="imagen.ruta"
+        [width]="imagen.ancho"
+        [height]="imagen.alto"
+        [alt]="imagen.textoAlternativo"
+      />
+    </figure>
+  </div>
+</section>

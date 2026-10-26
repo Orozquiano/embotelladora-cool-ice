@@ -1,0 +1,36 @@
+<section id="calidad" class="seccion" aria-labelledby="titulo-calidad" tabindex="-1">
+  <div class="contenido">
+    <header class="seccion__cabecera">
+      <h2 id="titulo-calidad">Calidad</h2>
+      <p class="prosa">
+        El agua Cool Ice se declara como potable, tratada y purificada. Estos son los datos y los
+        cuidados que aparecen en las etiquetas.
+      </p>
+    </header>
+
+    <dl class="datos">
+      @for (dato of datos; track dato.titulo) {
+        <div>
+          <dt>{{ dato.titulo }}</dt>
+          <dd>{{ dato.texto }}</dd>
+        </div>
+      }
+    </dl>
+
+    <h3 class="subtitulo">Conservación</h3>
+    <ul class="presentacion__detalles">
+      <li><strong>Botellón de 18,9 L.</strong> {{ conservacionBotellon }}</li>
+      <li><strong>Botella de 5.000 ml.</strong> {{ conservacionBotella }}</li>
+    </ul>
+
+    @if (etapas) {
+      <h3 class="subtitulo">Tratamiento</h3>
+      <p class="prosa">{{ etapas }}</p>
+    } @else {
+      <p class="nota-pendiente">
+        <span class="nota-pendiente__etiqueta">Pendiente:</span>
+        Falta publicar las etapas del tratamiento del agua.
+      </p>
+    }
+  </div>
+</section>

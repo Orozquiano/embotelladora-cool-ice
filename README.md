@@ -1,59 +1,72 @@
-# EmbotelladoraCoolIce
+# Embotelladora Cool Ice
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.2.
+Sitio informativo de Embotelladora Cool Ice SAS. Presenta la empresa, las presentaciones de agua y los canales de contacto. No tiene carrito, pagos, cuentas ni backend.
 
-## Development server
+La aplicación usa Angular 22, componentes standalone, TypeScript estricto, detección de cambios sin Zone.js, SCSS y pruebas con Vitest.
 
-To start a local development server, run:
+## Comandos
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Desde la carpeta `embotelladora-cool-ice`:
 
 ```bash
-ng generate component component-name
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Abre el servidor de desarrollo en `http://localhost:4200/`. La configuración por defecto es `development` y usa `proxy.conf.json`. Ese proxy está vacío mientras no exista un servicio real.
 
 ```bash
-ng generate --help
+npm run build
 ```
 
-## Building
-
-To build the project run:
+Compila con la configuración `production` y deja el resultado en `dist/`.
 
 ```bash
-ng build
+npm test
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Ejecuta las pruebas unitarias con Vitest.
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Otras compilaciones:
 
 ```bash
-ng test
+npx ng build --configuration=github-pages
+npx ng build --configuration=demo
+npx ng build --configuration=dev
+npx ng build --configuration=test
+npx ng build --configuration=preprod
 ```
 
-## Running end-to-end tests
+`github-pages` publica el sitio bajo `/embotelladora-cool-ice/`. Los perfiles sustituyen `src/environments/environment.ts` por el archivo que les corresponde. El sitio actual no consulta esos archivos porque no hay un servicio que consumir.
 
-For end-to-end (e2e) testing, run:
+## Qué puedes editar
 
-```bash
-ng e2e
-```
+| Qué cambiar | Dónde |
+| --- | --- |
+| Teléfonos, correo, lugar, registro INVIMA y textos por completar | `src/app/contenido/sitio.ts` |
+| Presentaciones, descripciones y fotos de producto | `src/app/contenido/productos.ts` |
+| Tipos de esos datos | `src/app/contenido/modelos.ts` |
+| Colores, tipografía, espacios y radios | `src/styles/_tokens.scss` |
+| Estilos de la página | `src/styles/_base.scss` y `src/styles/_sitio.scss` |
+| Título, descripción y datos para redes | `src/index.html` |
+| Imágenes de la página | `src/assets/imagenes/` |
+| Ícono y imagen social | `public/` |
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Los campos de `camposPorCompletar` aceptan texto. Si los dejas vacíos, la página muestra la marca **Pendiente**. Cuando escribes el dato, esa marca desaparece.
 
-## Additional Resources
+## Datos que faltan
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+No están en las etiquetas ni en las piezas revisadas, así que no se inventaron:
+
+- Dirección exacta en Miranda, Cauca.
+- Horario de atención.
+- Municipios o zona de cobertura del domicilio.
+- Etapas reales del tratamiento del agua.
+- Historia y valores redactados por la empresa.
+- NIT.
+- Dominio público, para convertir la imagen de Open Graph y la URL canónica en direcciones absolutas.
+- Fotografía del producto de 5 L. Hoy se usa la etiqueta.
+- Confirmación de que el número `313 635 1406`, tomado de la publicidad de dispensadores, sigue vigente junto al `321 682 0822` de las etiquetas.
+
+En los archivos de diseño también aparece la marca Agua Baikal (Cali, teléfono `312 778 2448`, correo `aguabaikal1221@gmail.com`). No se publicó en este sitio para no mezclarla con Cool Ice. Hay que decidir si debe tener una sección propia.
+
+No se publican precios, certificaciones distintas del registro INVIMA impreso en la etiqueta, testimonios ni afirmaciones de salud.

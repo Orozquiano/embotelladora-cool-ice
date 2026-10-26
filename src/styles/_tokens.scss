@@ -1,0 +1,34 @@
+$color-fondo: #ffffff;
+$color-fondo-suave: #f4f7f9;
+$color-hielo: #e7f3fa;
+$color-linea: #e1e8ee;
+$color-texto: #172033;
+$color-texto-suave: #3e4d5e;
+$color-marca: #0d4e9c;
+$color-marca-profundo: #0a3478;
+$color-marca-activo: #072858;
+$color-foco: #0b5cab;
+$fuente: -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, 'Helvetica Neue', arial, sans-serif;
+$ancho: 70rem;
+$radio: 1.25rem;
+$transicion: 180ms ease;
+$alto-encabezado: 4.5rem;
+
+:root {
+  --color-fondo: #{$color-fondo};
+  --color-fondo-suave: #{$color-fondo-suave};
+  --color-hielo: #{$color-hielo};
+  --color-linea: #{$color-linea};
+  --color-texto: #{$color-texto};
+  --color-texto-suave: #{$color-texto-suave};
+  --color-marca: #{$color-marca};
+  --color-marca-profundo: #{$color-marca-profundo};
+  --color-marca-activo: #{$color-marca-activo};
+  --color-foco: #{$color-foco};
+  --fuente: #{$fuente};
+  --ancho: #{$ancho};
+  --radio: #{$radio};
+  --transicion: #{$transicion};
+  --alto-encabezado: #{$alto-encabezado};
+  --espacio-seccion: clamp(4.5rem, 8vw, 7.25rem);
+}

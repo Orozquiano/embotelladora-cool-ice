@@ -1,0 +1,39 @@
+<section id="productos" class="seccion seccion--suave" aria-labelledby="titulo-productos" tabindex="-1">
+  <div class="contenido">
+    <header class="seccion__cabecera">
+      <h2 id="titulo-productos">Productos</h2>
+      <p class="prosa">
+        El botellón, la botella y el dispensador de agua fría y caliente. El precio se confirma al
+        hacer el pedido.
+      </p>
+    </header>
+
+    @for (producto of productos; track producto.id; let impar = $odd) {
+      <article
+        class="presentacion"
+        [class.presentacion--horizontal]="producto.orientacion === 'horizontal'"
+        [class.presentacion--vertical]="producto.orientacion === 'vertical'"
+        [class.presentacion--invertida]="producto.orientacion === 'vertical' && impar"
+      >
+        <figure class="presentacion__figura">
+          <img
+            [ngSrc]="producto.imagen.ruta"
+            [width]="producto.imagen.ancho"
+            [height]="producto.imagen.alto"
+            [alt]="producto.imagen.textoAlternativo"
+          />
+        </figure>
+        <div>
+          <p class="presentacion__formato">{{ producto.presentacion }}</p>
+          <h3 class="presentacion__titulo">{{ producto.nombre }}</h3>
+          <p class="prosa">{{ producto.descripcion }}</p>
+          <ul class="presentacion__detalles">
+            @for (detalle of producto.detalles; track detalle) {
+              <li>{{ detalle }}</li>
+            }
+          </ul>
+        </div>
+      </article>
+    }
+  </div>
+</section>

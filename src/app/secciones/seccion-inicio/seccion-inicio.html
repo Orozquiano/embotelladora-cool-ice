@@ -1,0 +1,28 @@
+<section id="inicio" class="seccion" aria-labelledby="titulo-inicio" tabindex="-1">
+  <div class="contenido hero">
+    <div>
+      <h1 id="titulo-inicio">Agua potable tratada para tu día a día</h1>
+      <p class="prosa">
+        {{ empresa }} envasa botellones de 18,9 litros y botellas de 5 litros. Pide por WhatsApp y
+        coordina el domicilio.
+      </p>
+      <div class="acciones">
+        <a class="boton boton--primario" [href]="whatsapp" target="_blank" rel="noopener noreferrer">
+          Escribir por WhatsApp
+          <span class="solo-lectores">, se abre en una pestaña nueva</span>
+        </a>
+        <a class="boton boton--secundario" routerLink="/" fragment="productos">Ver presentaciones</a>
+      </div>
+    </div>
+
+    <figure class="hero__figura">
+      <img
+        [ngSrc]="imagen.ruta"
+        [width]="imagen.ancho"
+        [height]="imagen.alto"
+        [alt]="imagen.textoAlternativo"
+        priority
+      />
+    </figure>
+  </div>
+</section>

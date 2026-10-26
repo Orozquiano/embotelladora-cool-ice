@@ -1,0 +1,44 @@
+<footer class="pie">
+  <div class="pie__contenido">
+    <div class="pie__marca">
+      <div class="pie__logo-marco">
+        <img
+          class="pie__logo"
+          [ngSrc]="logo.ruta"
+          [width]="logo.ancho"
+          [height]="logo.alto"
+          alt=""
+        />
+      </div>
+      <p>{{ empresa }}</p>
+      <p>{{ lugar }}</p>
+    </div>
+
+    <nav aria-label="Secciones en el pie">
+      <p>Recorrido</p>
+      <ul class="pie__lista">
+        @for (seccion of secciones; track seccion.id) {
+          <li>
+            <a routerLink="/" [fragment]="seccion.id">{{ seccion.etiqueta }}</a>
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <div>
+      <p>Contacto</p>
+      <ul class="pie__lista">
+        @for (linea of lineas; track linea.id) {
+          <li>
+            <a [href]="linea.telefono">{{ linea.visible }}</a>
+          </li>
+        }
+        <li>
+          <a [href]="correo.href">{{ correo.visible }}</a>
+        </li>
+      </ul>
+    </div>
+
+    <p class="pie__legal">© {{ anio }} {{ empresa }}. Agua potable tratada.</p>
+  </div>
+</footer>
