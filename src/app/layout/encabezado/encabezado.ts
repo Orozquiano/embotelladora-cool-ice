@@ -102,7 +102,9 @@ export class Encabezado {
 
   constructor() {
     effect(() => {
-      this.documento.body.style.overflow = this.menuAbierto() ? 'hidden' : '';
+      const abierto = this.menuAbierto();
+      this.documento.body.style.overflow = abierto ? 'hidden' : '';
+      this.documento.body.classList.toggle('menu-movil-abierto', abierto);
     });
 
     this.enrutador.events
@@ -127,6 +129,7 @@ export class Encabezado {
         clearTimeout(this.temporizadorSincronizacion);
       }
       this.documento.body.style.overflow = '';
+      this.documento.body.classList.remove('menu-movil-abierto');
     });
   }
 
@@ -352,7 +355,7 @@ export class Encabezado {
     const raiz = this.anfitrion.nativeElement as HTMLElement;
     return [
       ...(raiz.querySelectorAll(
-        '.encabezado__abrir, .menu a[href], .menu button:not([disabled])',
+        '.encabezado__abrir, .menu--abierto a[href], .menu--abierto button:not([disabled])',
       ) as NodeListOf<HTMLElement>),
     ].filter((elemento) => {
       if (elemento.getAttribute('aria-hidden') === 'true') {
