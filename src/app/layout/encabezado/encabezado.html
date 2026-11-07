@@ -32,9 +32,12 @@
         <span></span>
       </span>
     </button>
+  </div>
 
-    <nav id="menu-principal" class="menu" [class.menu--abierto]="menuAbierto()" aria-label="Secciones">
-      <ul class="menu__lista">
+  <nav id="menu-principal" class="menu" [class.menu--abierto]="menuAbierto()" aria-label="Secciones">
+    <div class="menu__panel">
+      <p class="menu__titulo" id="titulo-menu-movil">Secciones</p>
+      <ul class="menu__lista" aria-labelledby="titulo-menu-movil">
         @for (seccion of secciones; track seccion.id) {
           <li>
             <a
@@ -49,10 +52,12 @@
           </li>
         }
       </ul>
-      <a class="boton boton--whatsapp" [href]="whatsapp" target="_blank" rel="noopener noreferrer">
-        Pedir por WhatsApp
-        <span class="solo-lectores">de pedidos, se abre en una pestaña nueva</span>
-      </a>
-    </nav>
-  </div>
+      <div class="menu__acciones">
+        <a class="boton boton--whatsapp" [href]="whatsapp" target="_blank" rel="noopener noreferrer">
+          Pedir por WhatsApp
+          <span class="solo-lectores">de pedidos, se abre en una pestaña nueva</span>
+        </a>
+      </div>
+    </div>
+  </nav>
 </header>
