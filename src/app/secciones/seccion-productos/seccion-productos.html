@@ -18,13 +18,16 @@
         [class.presentacion--invertida]="producto.orientacion === 'vertical' && impar"
       >
         <figure class="presentacion__figura">
-          <img
-            [ngSrc]="producto.imagen.ruta"
-            [width]="producto.imagen.ancho"
-            [height]="producto.imagen.alto"
-            [alt]="producto.imagen.textoAlternativo"
-            [priority]="primero"
-          />
+          <div class="presentacion__marco">
+            <img
+              appImagenEsqueleto
+              [ngSrc]="producto.imagen.ruta"
+              [width]="producto.imagen.ancho"
+              [height]="producto.imagen.alto"
+              [alt]="producto.imagen.textoAlternativo"
+              [priority]="primero"
+            />
+          </div>
           @if (primero) {
             <p class="presentacion__chip">{{ producto.presentacion }}</p>
           }
