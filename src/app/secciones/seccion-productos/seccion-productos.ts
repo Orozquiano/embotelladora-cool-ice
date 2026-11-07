@@ -1,7 +1,7 @@
-import { NgOptimizedImage } from '@angular/common';
+import { LowerCasePipe, NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
-import { productos } from '../../contenido/productos';
-import { lineaPedidos } from '../../contenido/sitio';
+import { Producto } from '../../contenido/modelos';
+import { enlaceWhatsappProducto, productos } from '../../contenido/productos';
 
 /**
  * @class SeccionProductos
@@ -9,7 +9,7 @@ import { lineaPedidos } from '../../contenido/sitio';
  */
 @Component({
   selector: 'app-seccion-productos',
-  imports: [NgOptimizedImage],
+  imports: [NgOptimizedImage, LowerCasePipe],
   templateUrl: './seccion-productos.html',
 })
 export class SeccionProductos {
@@ -19,7 +19,12 @@ export class SeccionProductos {
   protected readonly productos = productos;
 
   /**
-   * @description WhatsApp de pedidos para el producto destacado.
+   * @function whatsappDe
+   * @description Enlace de WhatsApp con mensaje propio de cada presentación.
+   * @param producto Presentación consultada.
+   * @returns URL de wa.me.
    */
-  protected readonly whatsapp = lineaPedidos.whatsapp;
+  protected whatsappDe(producto: Producto): string {
+    return enlaceWhatsappProducto(producto);
+  }
 }

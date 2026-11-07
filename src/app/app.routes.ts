@@ -1,9 +1,10 @@
 import { Routes } from '@angular/router';
+import { Inicio } from './paginas/inicio/inicio';
 
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./paginas/inicio/inicio').then((modulo) => modulo.Inicio),
+    component: Inicio,
     title: 'Embotelladora Cool Ice | Agua potable tratada',
   },
   {

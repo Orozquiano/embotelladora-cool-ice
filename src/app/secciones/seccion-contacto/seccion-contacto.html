@@ -49,6 +49,8 @@
           {{ lugar }}
           @if (direccion) {
             <span>. {{ direccion }}</span>
+          } @else {
+            <span>. La dirección exacta se confirma al coordinar el pedido.</span>
           }
         </dd>
       </div>
@@ -57,32 +59,23 @@
           <dt>Horario</dt>
           <dd>{{ horario }}</dd>
         </div>
+      } @else {
+        <div>
+          <dt>Horario</dt>
+          <dd>Consulta disponibilidad por WhatsApp o teléfono.</dd>
+        </div>
       }
       @if (cobertura) {
         <div>
           <dt>Cobertura</dt>
           <dd>{{ cobertura }}</dd>
         </div>
+      } @else {
+        <div>
+          <dt>Cobertura</dt>
+          <dd>Pregunta por tu zona al escribir o llamar.</dd>
+        </div>
       }
     </dl>
-
-    @if (!direccion) {
-      <p class="nota-pendiente">
-        <span class="nota-pendiente__etiqueta">Pendiente:</span>
-        Falta la dirección exacta en Miranda, Cauca.
-      </p>
-    }
-    @if (!horario) {
-      <p class="nota-pendiente">
-        <span class="nota-pendiente__etiqueta">Pendiente:</span>
-        Falta el horario de atención.
-      </p>
-    }
-    @if (!cobertura) {
-      <p class="nota-pendiente">
-        <span class="nota-pendiente__etiqueta">Pendiente:</span>
-        Falta la zona de cobertura del domicilio.
-      </p>
-    }
   </div>
 </section>

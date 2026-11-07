@@ -1,5 +1,5 @@
 import { Producto } from './modelos';
-import { conservacionBotella, conservacionBotellon, nombreEmpresa } from './sitio';
+import { conservacionBotella, conservacionBotellon, enlaceWhatsapp, nombreEmpresa } from './sitio';
 
 /**
  * @description Presentaciones que se pueden mostrar con el material actual.
@@ -8,11 +8,11 @@ export const productos: readonly Producto[] = [
   {
     id: 'botellon',
     nombre: 'Botellón',
-    presentacion: '18,9 L (3 gal)',
+    presentacion: '18,9 L',
     descripcion:
       'Agua potable tratada para dispensador. En la etiqueta, el ingrediente declarado es agua potable tratada y purificada.',
     detalles: [
-      'Contenido de 18,9 litros, equivalente a 3 galones.',
+      'Contenido de 18,9 litros.',
       conservacionBotellon,
       `Envasado por ${nombreEmpresa}.`,
     ],
@@ -23,6 +23,7 @@ export const productos: readonly Producto[] = [
       textoAlternativo: 'Botellón de 18,9 litros de Cool Ice sobre el dispensador.',
     },
     orientacion: 'vertical',
+    mensajeWhatsapp: 'Hola, quiero información sobre el botellón de 18,9 L Cool Ice.',
   },
   {
     id: 'botella',
@@ -39,9 +40,11 @@ export const productos: readonly Producto[] = [
       ruta: 'assets/imagenes/presentacion-5l.webp',
       ancho: 1200,
       alto: 901,
-      textoAlternativo: 'Etiqueta de la botella Cool Ice de 5.000 ml, con el oso de la marca y el contenido neto.',
+      textoAlternativo:
+        'Etiqueta de la botella Cool Ice de 5.000 ml, con el oso de la marca y el contenido neto.',
     },
     orientacion: 'horizontal',
+    mensajeWhatsapp: 'Hola, quiero información sobre la botella de 5.000 ml Cool Ice.',
   },
   {
     id: 'dispensador',
@@ -60,5 +63,16 @@ export const productos: readonly Producto[] = [
       textoAlternativo: 'Dispensador con el gabinete abierto y las llaves de agua caliente y fría.',
     },
     orientacion: 'vertical',
+    mensajeWhatsapp: 'Hola, quiero información sobre el dispensador Cool Ice.',
   },
 ];
+
+/**
+ * @function enlaceWhatsappProducto
+ * @description Arma el enlace de WhatsApp para consultar una presentación concreta.
+ * @param producto Presentación a consultar.
+ * @returns URL de wa.me con mensaje específico.
+ */
+export function enlaceWhatsappProducto(producto: Producto): string {
+  return enlaceWhatsapp('3216820822', producto.mensajeWhatsapp);
+}

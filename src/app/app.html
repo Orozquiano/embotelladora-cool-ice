@@ -1,14 +1,25 @@
-<a class="saltar" href="#contenido">Saltar al contenido</a>
+<a
+  class="saltar"
+  href="#contenido"
+  [attr.tabindex]="menuAbierto() ? -1 : null"
+  [attr.aria-hidden]="menuAbierto() ? 'true' : null"
+>
+  Saltar al contenido
+</a>
 <app-encabezado />
-<main id="contenido" tabindex="-1">
+<main id="contenido" tabindex="-1" [inert]="menuAbierto()">
   <router-outlet />
 </main>
-<app-pie />
+<app-pie [inert]="menuAbierto()" />
 <a
   class="cta-flotante boton boton--whatsapp"
+  [class.cta-flotante--oculto]="!ctaFlotanteVisible()"
   [href]="whatsapp"
   target="_blank"
   rel="noopener noreferrer"
+  [attr.aria-hidden]="ctaFlotanteVisible() ? null : 'true'"
+  [attr.tabindex]="ctaFlotanteVisible() ? null : -1"
+  [inert]="!ctaFlotanteVisible()"
 >
   Pedir por WhatsApp
   <span class="solo-lectores">, se abre en una pestaña nueva</span>

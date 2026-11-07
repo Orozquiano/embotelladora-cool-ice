@@ -63,6 +63,11 @@ export interface Producto {
    * @description Orientación de la imagen para acomodar el texto.
    */
   orientacion: 'vertical' | 'horizontal';
+
+  /**
+   * @description Mensaje inicial de WhatsApp para consultar esta presentación.
+   */
+  mensajeWhatsapp: string;
 }
 
 /**

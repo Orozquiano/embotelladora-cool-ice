@@ -5,6 +5,8 @@
       routerLink="/"
       fragment="inicio"
       aria-label="Cool Ice, ir al inicio"
+      [attr.tabindex]="menuAbierto() ? -1 : null"
+      [attr.aria-hidden]="menuAbierto() ? 'true' : null"
       (click)="cerrarMenu()"
     >
       <img

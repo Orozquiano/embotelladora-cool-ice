@@ -51,22 +51,23 @@ npx ng build --configuration=preprod
 | Imágenes de la página | `src/assets/imagenes/` |
 | Ícono y imagen social | `public/` |
 
-Los campos de `camposPorCompletar` aceptan texto. Si los dejas vacíos, la página muestra la marca **Pendiente**. Cuando escribes el dato, esa marca desaparece.
+Los campos de `camposPorCompletar` aceptan texto. Si están vacíos, la interfaz omite el dato o sugiere contactar por WhatsApp o teléfono. El detalle de lo pendiente vive solo en esta documentación.
 
-## Datos que faltan
+## Datos y recursos pendientes del propietario
 
-No están en las etiquetas ni en las piezas revisadas, así que no se inventaron:
+No están confirmados en las etiquetas ni en las piezas revisadas, así que no se inventaron en la web:
 
 - Dirección exacta en Miranda, Cauca.
 - Horario de atención.
 - Municipios o zona de cobertura del domicilio.
-- Etapas reales del tratamiento del agua.
+- Etapas reales del tratamiento del agua (la propuesta de Figma sugiere cuatro pasos; no se publican hasta confirmarlos).
 - Historia y valores redactados por la empresa.
 - NIT.
 - Dominio público, para convertir la imagen de Open Graph y la URL canónica en direcciones absolutas.
-- Fotografía del producto de 5 L. Hoy se usa la etiqueta.
+- Fotografías de producto con mejor definición y fondo coherente (sin rectángulo blanco). Hoy el hero y el botellón usan `botellon-dispensador.webp` (~341×983); la botella de 5 L usa la etiqueta; el dispensador usa un recorte estrecho.
+- Confirmación de la equivalencia en galones del botellón (en la web solo se muestra **18,9 L**).
 - Confirmación de que el número `313 635 1406`, tomado de la publicidad de dispensadores, sigue vigente junto al `321 682 0822` de las etiquetas.
 
-En los archivos de diseño también aparece la marca Agua Baikal (Cali, teléfono `312 778 2448`, correo `aguabaikal1221@gmail.com`). No se publicó en este sitio para no mezclarla con Cool Ice. Hay que decidir si debe tener una sección propia.
+En los archivos de diseño también aparece la marca Agua Baikal (Cali, teléfono `312 778 2448`, correo `aguabaikal1221@gmail.com`). No se publicó en este sitio para no mezclarla con Cool Ice.
 
 No se publican precios, certificaciones distintas del registro INVIMA impreso en la etiqueta, testimonios ni afirmaciones de salud.

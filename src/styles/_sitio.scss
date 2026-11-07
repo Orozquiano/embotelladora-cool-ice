@@ -81,8 +81,17 @@ main:focus-visible {
 }
 
 .hero .prosa {
-  max-width: 28rem;
-  font-size: clamp(1.125rem, 1.6vw, 1.3125rem);
+  max-width: 34ch;
+  font-size: clamp(1.0625rem, 1.4vw, 1.1875rem);
+}
+
+.hero__texto {
+  max-width: 36rem;
+}
+
+.hero__texto h1 {
+  max-width: 14ch;
+  font-size: clamp(2.35rem, 5.4vw, 4.35rem);
 }
 
 .acciones {
@@ -142,15 +151,19 @@ main:focus-visible {
 }
 
 .boton--whatsapp:active {
-  background: #147a40;
+  background: var(--color-whatsapp-activo);
+}
+
+.boton--whatsapp:focus-visible {
+  outline-color: var(--color-whatsapp);
+  outline-offset: 3px;
 }
 
 .tarjeta {
-  padding: 1.35rem 1.4rem;
+  padding: 1.15rem 1.2rem;
   border: 1px solid var(--color-linea);
   border-radius: var(--radio-tarjeta);
   background: #fff;
-  box-shadow: var(--sombra-suave);
 }
 
 .tarjeta p {
@@ -237,42 +250,39 @@ main:focus-visible {
 .hamburguesa::after,
 .hamburguesa span {
   position: absolute;
+  top: 50%;
   left: 0;
   width: 100%;
   height: 2px;
   border-radius: 1px;
   background: currentColor;
   content: '';
-  transition: transform var(--transicion), top var(--transicion), opacity var(--transicion);
+  transition: transform var(--transicion), opacity var(--transicion);
 }
 
 .hamburguesa::before {
-  top: 0;
+  transform: translateY(-0.36rem);
 }
 
 .hamburguesa span {
-  top: 0.36rem;
+  transform: translateY(-50%);
 }
 
 .hamburguesa::after {
-  top: 0.72rem;
-}
-
-.hamburguesa--abierta::before,
-.hamburguesa--abierta::after {
-  top: 0.36rem;
+  transform: translateY(0.36rem);
 }
 
 .hamburguesa--abierta::before {
-  transform: rotate(45deg);
+  transform: translateY(-50%) rotate(45deg);
 }
 
 .hamburguesa--abierta::after {
-  transform: rotate(-45deg);
+  transform: translateY(-50%) rotate(-45deg);
 }
 
 .hamburguesa--abierta span {
   opacity: 0;
+  transform: translateY(-50%) scaleX(0);
 }
 
 .menu {
@@ -334,18 +344,42 @@ main:focus-visible {
 .hero__marco {
   display: grid;
   place-items: center;
-  width: min(100%, 22rem);
-  padding: 1.5rem 1.25rem 1.75rem;
+  width: min(100%, 20rem);
+  aspect-ratio: 341 / 900;
+  min-height: 18rem;
+  padding: 1rem;
   border-radius: var(--radio-tarjeta);
-  background: linear-gradient(180deg, #d9ecf9 0%, #eff7fd 100%);
-  box-shadow: var(--sombra-suave);
+  background: linear-gradient(180deg, #d7ebf8 0%, #eaf4fb 55%, #f4f9fd 100%);
 }
 
 .hero__figura img {
-  width: auto;
-  max-width: min(100%, 15rem);
-  max-height: 58vh;
+  width: min(100%, 14rem);
+  height: auto;
+  max-height: min(52vh, 28rem);
+  aspect-ratio: 341 / 983;
   object-fit: contain;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__texto {
+    animation: aparecer-hero 420ms ease both;
+  }
+
+  .hero__marco {
+    animation: aparecer-hero 480ms ease 70ms both;
+  }
+}
+
+@keyframes aparecer-hero {
+  from {
+    opacity: 0;
+    transform: translateY(0.55rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .presentacion {
@@ -424,15 +458,30 @@ main:focus-visible {
   font-weight: 700;
 }
 
+.presentacion--vertical .presentacion__figura {
+  aspect-ratio: 349 / 900;
+  min-height: 14rem;
+}
+
 .presentacion--vertical img {
   width: auto;
   max-width: 100%;
+  height: auto;
   max-height: 26rem;
+  aspect-ratio: 349 / 982;
+  object-fit: contain;
+}
+
+.presentacion--horizontal .presentacion__figura {
+  aspect-ratio: 1200 / 901;
+  min-height: 10rem;
 }
 
 .presentacion--horizontal img {
   width: 100%;
   height: auto;
+  aspect-ratio: 1200 / 901;
+  object-fit: contain;
   border-radius: 0.75rem;
 }
 
@@ -625,6 +674,10 @@ main:focus-visible {
   font-size: 0.875rem;
 }
 
+.cta-flotante {
+  display: none;
+}
+
 @media (max-width: 59.99rem) {
   .seccion--apertura {
     min-height: auto;
@@ -636,13 +689,26 @@ main:focus-visible {
   }
 
   .cta-flotante {
+    display: inline-flex;
     position: fixed;
     z-index: 35;
-    right: 1rem;
-    bottom: 1rem;
-    left: 1rem;
+    right: max(1rem, env(safe-area-inset-right));
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    left: max(1rem, env(safe-area-inset-left));
     min-height: 3rem;
-    box-shadow: 0 10px 28px rgb(31 173 91 / 35%);
+    box-shadow: 0 10px 28px rgb(10 107 56 / 28%);
+    transition: opacity var(--transicion), transform var(--transicion), visibility 0s;
+  }
+
+  .cta-flotante--oculto {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(0.5rem);
+    transition:
+      opacity var(--transicion),
+      transform var(--transicion),
+      visibility 0s linear var(--transicion);
   }
 
   .menu {

@@ -40,8 +40,8 @@ export const descripcionSitio =
   'Agua potable tratada de Embotelladora Cool Ice SAS. Botellón de 18,9 L, botella de 5 L y contacto por WhatsApp. Miranda, Cauca.';
 
 /**
- * @description Textos que puedes completar sin modificar las plantillas.
- * Una cadena vacía muestra la marca «Pendiente» en la página.
+ * @description Textos comerciales pendientes de confirmación del propietario.
+ * Una cadena vacía se omite en la interfaz; el detalle vive en el README.
  */
 export const camposPorCompletar = {
   /**

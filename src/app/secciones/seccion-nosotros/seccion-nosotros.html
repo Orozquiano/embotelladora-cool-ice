@@ -43,36 +43,19 @@
             @if (cobertura) {
               {{ cobertura }}
             } @else {
-              Consulta la zona de cobertura por WhatsApp.
+              Consulta la zona disponible por WhatsApp o teléfono.
             }
           </li>
         </ul>
 
         @if (historia) {
           <p class="prosa">{{ historia }}</p>
-        } @else {
-          <p class="nota-pendiente">
-            <span class="nota-pendiente__etiqueta">Pendiente:</span>
-            Falta la historia de la embotelladora.
-          </p>
         }
-
         @if (valores) {
           <p class="prosa">{{ valores }}</p>
-        } @else {
-          <p class="nota-pendiente">
-            <span class="nota-pendiente__etiqueta">Pendiente:</span>
-            Faltan los valores de la empresa.
-          </p>
         }
-
         @if (nit) {
           <p class="prosa">NIT {{ nit }}</p>
-        } @else {
-          <p class="nota-pendiente">
-            <span class="nota-pendiente__etiqueta">Pendiente:</span>
-            Falta el NIT.
-          </p>
         }
       </article>
     </div>

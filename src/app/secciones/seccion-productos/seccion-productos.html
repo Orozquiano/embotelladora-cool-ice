@@ -1,11 +1,11 @@
 <section id="productos" class="seccion seccion--suave" aria-labelledby="titulo-productos" tabindex="-1">
   <div class="contenido">
     <header class="seccion__cabecera seccion__cabecera--centrada">
-      <p class="seccion__marca">Nuestro producto estrella</p>
-      <h2 id="titulo-productos">Bidón familiar de 18,9 litros</h2>
+      <p class="seccion__marca">Presentaciones</p>
+      <h2 id="titulo-productos">Botellón, botella y dispensador</h2>
       <p class="prosa">
-        El botellón, la botella y el dispensador de agua fría y caliente. El precio se confirma al
-        hacer el pedido.
+        Tres opciones para casa, oficina o negocio. El precio y las condiciones se confirman al
+        hacer el pedido por WhatsApp.
       </p>
     </header>
 
@@ -23,6 +23,7 @@
             [width]="producto.imagen.ancho"
             [height]="producto.imagen.alto"
             [alt]="producto.imagen.textoAlternativo"
+            [priority]="primero"
           />
           @if (primero) {
             <p class="presentacion__chip">{{ producto.presentacion }}</p>
@@ -37,19 +38,19 @@
               <li>{{ detalle }}</li>
             }
           </ul>
-          @if (primero) {
-            <div class="acciones">
-              <a
-                class="boton boton--primario"
-                [href]="whatsapp"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Solicitar domicilio
-                <span class="solo-lectores">por WhatsApp, se abre en una pestaña nueva</span>
-              </a>
-            </div>
-          }
+          <div class="acciones">
+            <a
+              class="boton"
+              [class.boton--whatsapp]="primero"
+              [class.boton--primario]="!primero"
+              [href]="whatsappDe(producto)"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Consultar {{ producto.nombre | lowercase }}
+              <span class="solo-lectores">por WhatsApp, se abre en una pestaña nueva</span>
+            </a>
+          </div>
         </div>
       </article>
     }
