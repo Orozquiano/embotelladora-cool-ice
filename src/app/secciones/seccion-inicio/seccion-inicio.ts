@@ -2,6 +2,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { beneficios, imagenHero, lineaPedidos, nombreEmpresa } from '../../contenido/sitio';
+import { ImagenEsqueleto } from '../../directivas/imagen-esqueleto';
 
 /**
  * @class SeccionInicio
@@ -9,7 +10,7 @@ import { beneficios, imagenHero, lineaPedidos, nombreEmpresa } from '../../conte
  */
 @Component({
   selector: 'app-seccion-inicio',
-  imports: [RouterLink, NgOptimizedImage],
+  imports: [RouterLink, NgOptimizedImage, ImagenEsqueleto],
   templateUrl: './seccion-inicio.html',
 })
 export class SeccionInicio {

@@ -329,9 +329,12 @@ main:focus-visible {
 .hero__figura,
 .presentacion__figura,
 .nosotros__figura {
+  position: relative;
   display: grid;
-  justify-items: center;
+  place-items: center;
   margin: 0;
+  overflow: hidden;
+  isolation: isolate;
 }
 
 .seccion--suave .presentacion__figura,
@@ -341,22 +344,82 @@ main:focus-visible {
   background: #fff;
 }
 
+.hero__marco,
+.presentacion__figura,
+.nosotros__figura {
+  &::before {
+    position: absolute;
+    inset: 0.85rem;
+    z-index: 0;
+    border-radius: inherit;
+    background:
+      linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 55%) 48%, transparent 66%),
+      linear-gradient(180deg, #d9ebf8 0%, #eaf4fb 55%, #f3f8fc 100%);
+    background-size: 220% 100%, 100% 100%;
+    content: '';
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 280ms ease;
+  }
+
+  &:has(.imagen-esqueleto--lista)::before {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__marco::before,
+  .presentacion__figura::before,
+  .nosotros__figura::before {
+    animation: esqueleto-brillo 1.35s ease-in-out infinite;
+  }
+
+  .hero__marco:has(.imagen-esqueleto--lista)::before,
+  .presentacion__figura:has(.imagen-esqueleto--lista)::before,
+  .nosotros__figura:has(.imagen-esqueleto--lista)::before {
+    animation: none;
+  }
+}
+
+@keyframes esqueleto-brillo {
+  from {
+    background-position: 120% 0, 0 0;
+  }
+
+  to {
+    background-position: -40% 0, 0 0;
+  }
+}
+
+.imagen-esqueleto {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 280ms ease;
+}
+
+.imagen-esqueleto--lista {
+  opacity: 1;
+}
+
 .hero__marco {
   display: grid;
   place-items: center;
   width: min(100%, 20rem);
   aspect-ratio: 341 / 900;
+  max-height: min(52vh, 28rem);
   min-height: 18rem;
   padding: 1rem;
+  overflow: hidden;
   border-radius: var(--radio-tarjeta);
   background: linear-gradient(180deg, #d7ebf8 0%, #eaf4fb 55%, #f4f9fd 100%);
 }
 
 .hero__figura img {
-  width: min(100%, 14rem);
+  width: auto;
   height: auto;
-  max-height: min(52vh, 28rem);
-  aspect-ratio: 341 / 983;
+  max-width: min(100%, 14rem);
+  max-height: 100%;
   object-fit: contain;
 }
 
@@ -459,28 +522,32 @@ main:focus-visible {
 }
 
 .presentacion--vertical .presentacion__figura {
-  aspect-ratio: 349 / 900;
+  aspect-ratio: 3 / 4;
+  width: 100%;
+  max-height: min(26rem, 70vh);
   min-height: 14rem;
 }
 
 .presentacion--vertical img {
   width: auto;
-  max-width: 100%;
   height: auto;
-  max-height: 26rem;
-  aspect-ratio: 349 / 982;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
 }
 
 .presentacion--horizontal .presentacion__figura {
   aspect-ratio: 1200 / 901;
+  width: 100%;
+  max-height: min(22rem, 60vh);
   min-height: 10rem;
 }
 
 .presentacion--horizontal img {
-  width: 100%;
+  width: auto;
   height: auto;
-  aspect-ratio: 1200 / 901;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
   border-radius: 0.75rem;
 }
@@ -596,9 +663,17 @@ main:focus-visible {
   align-items: center;
 }
 
+.nosotros__figura {
+  width: 100%;
+  max-height: min(28rem, 70vh);
+}
+
 .nosotros__figura img {
-  width: min(100%, 22rem);
+  width: auto;
   height: auto;
+  max-width: min(100%, 22rem);
+  max-height: 100%;
+  object-fit: contain;
 }
 
 .no-encontrada {
@@ -868,11 +943,11 @@ main:focus-visible {
 
   .hero__marco {
     width: min(100%, 24rem);
+    max-height: min(70vh, 36rem);
   }
 
   .hero__figura img {
     max-width: min(100%, 18rem);
-    max-height: min(70vh, 36rem);
   }
 
   .presentacion--vertical,

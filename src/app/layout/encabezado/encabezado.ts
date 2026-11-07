@@ -90,6 +90,16 @@ export class Encabezado {
    */
   private observador: IntersectionObserver | null = null;
 
+  /**
+   * @description Evita que el observador pise el enlace activo durante el desplazamiento suave.
+   */
+  private sincronizacionPausada = false;
+
+  /**
+   * @description Temporizador que reanuda la sincronización al terminar el scroll programado.
+   */
+  private temporizadorSincronizacion: ReturnType<typeof setTimeout> | null = null;
+
   constructor() {
     effect(() => {
       this.documento.body.style.overflow = this.menuAbierto() ? 'hidden' : '';
@@ -113,6 +123,9 @@ export class Encabezado {
 
     this.destruir.onDestroy(() => {
       this.observador?.disconnect();
+      if (this.temporizadorSincronizacion) {
+        clearTimeout(this.temporizadorSincronizacion);
+      }
       this.documento.body.style.overflow = '';
     });
   }
@@ -196,7 +209,23 @@ export class Encabezado {
     const fragmento = this.enrutador.parseUrl(this.enrutador.url).fragment;
     if (fragmento && this.secciones.some((seccion) => seccion.id === fragmento)) {
       this.seccionActiva.set(fragmento);
+      this.pausarSincronizacionDuranteDesplazamiento();
     }
+  }
+
+  /**
+   * @function pausarSincronizacionDuranteDesplazamiento
+   * @description Congela el enlace activo mientras dura el scroll suave hacia un fragmento.
+   */
+  private pausarSincronizacionDuranteDesplazamiento(): void {
+    this.sincronizacionPausada = true;
+    if (this.temporizadorSincronizacion) {
+      clearTimeout(this.temporizadorSincronizacion);
+    }
+    this.temporizadorSincronizacion = setTimeout(() => {
+      this.sincronizacionPausada = false;
+      this.temporizadorSincronizacion = null;
+    }, 900);
   }
 
   /**
@@ -209,7 +238,7 @@ export class Encabezado {
 
   /**
    * @function observarSecciones
-   * @description Actualiza el enlace activo según la sección que ocupa el centro de la ventana.
+   * @description Actualiza el enlace activo según la sección más cercana al encabezado.
    */
   private observarSecciones(): void {
     this.observador?.disconnect();
@@ -217,29 +246,77 @@ export class Encabezado {
       return;
     }
 
-    const seccionesVisibles = this.documento.querySelectorAll<HTMLElement>('main section[id]');
+    const seccionesVisibles = [
+      ...this.documento.querySelectorAll<HTMLElement>('main section[id]'),
+    ];
     if (seccionesVisibles.length === 0) {
       return;
     }
 
+    const ratios = new Map<string, number>();
+
     try {
       this.observador = new IntersectionObserver(
         (entradas) => {
-          const visible = entradas
-            .filter((entrada) => entrada.isIntersecting)
-            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-          const id = visible?.target.id;
-          if (id) {
-            this.seccionActiva.set(id);
+          for (const entrada of entradas) {
+            ratios.set(
+              (entrada.target as HTMLElement).id,
+              entrada.isIntersecting ? entrada.intersectionRatio : 0,
+            );
+          }
+
+          if (this.sincronizacionPausada) {
+            return;
+          }
+
+          const activa = this.elegirSeccionActiva(seccionesVisibles, ratios);
+          if (activa) {
+            this.seccionActiva.set(activa);
           }
         },
-        { rootMargin: '-40% 0px -45% 0px', threshold: [0.1, 0.4, 0.7] },
+        {
+          rootMargin: '-18% 0px -62% 0px',
+          threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
+        },
       );
     } catch {
       return;
     }
 
     seccionesVisibles.forEach((seccion) => this.observador?.observe(seccion));
+  }
+
+  /**
+   * @function elegirSeccionActiva
+   * @description Elige la sección visible cuya parte superior queda más cerca del encabezado.
+   * @param secciones Secciones con identificador en el documento.
+   * @param ratios Proporción visible reportada por el observador.
+   * @returns Identificador de la sección activa, o null si ninguna aplica.
+   */
+  private elegirSeccionActiva(
+    secciones: readonly HTMLElement[],
+    ratios: ReadonlyMap<string, number>,
+  ): string | null {
+    const desplazamientoEncabezado = 72;
+    let mejor: { id: string; distancia: number } | null = null;
+
+    for (const seccion of secciones) {
+      if ((ratios.get(seccion.id) ?? 0) <= 0) {
+        continue;
+      }
+
+      const rect = seccion.getBoundingClientRect();
+      if (rect.bottom <= desplazamientoEncabezado) {
+        continue;
+      }
+
+      const distancia = Math.abs(rect.top - desplazamientoEncabezado);
+      if (!mejor || distancia < mejor.distancia) {
+        mejor = { id: seccion.id, distancia };
+      }
+    }
+
+    return mejor?.id ?? null;
   }
 
   /**

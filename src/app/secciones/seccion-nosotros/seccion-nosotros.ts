@@ -9,6 +9,7 @@ import {
   nombreEmpresa,
   textoPublicado,
 } from '../../contenido/sitio';
+import { ImagenEsqueleto } from '../../directivas/imagen-esqueleto';
 
 /**
  * @class SeccionNosotros
@@ -16,7 +17,7 @@ import {
  */
 @Component({
   selector: 'app-seccion-nosotros',
-  imports: [NgOptimizedImage],
+  imports: [NgOptimizedImage, ImagenEsqueleto],
   templateUrl: './seccion-nosotros.html',
 })
 export class SeccionNosotros {
