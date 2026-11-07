@@ -36,7 +36,13 @@
 
   <nav id="menu-principal" class="menu" [class.menu--abierto]="menuAbierto()" aria-label="Secciones">
     <div class="menu__panel">
-      <p class="menu__titulo" id="titulo-menu-movil">Secciones</p>
+      <div class="menu__cabecera" id="titulo-menu-movil">
+        <p class="menu__titulo">Secciones</p>
+        <p class="menu__ubicacion">
+          Ahora en
+          <strong>{{ etiquetaActiva() }}</strong>
+        </p>
+      </div>
       <ul class="menu__lista" aria-labelledby="titulo-menu-movil">
         @for (seccion of secciones; track seccion.id) {
           <li>
@@ -47,7 +53,10 @@
               [attr.aria-current]="seccionActiva() === seccion.id ? 'location' : null"
               (click)="cerrarMenu()"
             >
-              {{ seccion.etiqueta }}
+              <span>{{ seccion.etiqueta }}</span>
+              @if (seccionActiva() === seccion.id) {
+                <span class="menu__estado">Aquí</span>
+              }
             </a>
           </li>
         }
