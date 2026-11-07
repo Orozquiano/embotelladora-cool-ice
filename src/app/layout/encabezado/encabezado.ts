@@ -239,8 +239,9 @@ export class Encabezado {
   /**
    * @function observarSecciones
    * @description Actualiza el enlace activo según la sección más cercana al encabezado.
+   * @param intento Número de reintento mientras el DOM de la home aún no está listo.
    */
-  private observarSecciones(): void {
+  private observarSecciones(intento = 0): void {
     this.observador?.disconnect();
     if (typeof IntersectionObserver !== 'function') {
       return;
@@ -250,6 +251,9 @@ export class Encabezado {
       ...this.documento.querySelectorAll<HTMLElement>('main section[id]'),
     ];
     if (seccionesVisibles.length === 0) {
+      if (intento < 20) {
+        requestAnimationFrame(() => this.observarSecciones(intento + 1));
+      }
       return;
     }
 

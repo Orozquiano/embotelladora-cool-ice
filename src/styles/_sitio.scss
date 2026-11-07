@@ -333,7 +333,6 @@ main:focus-visible {
   display: grid;
   place-items: center;
   margin: 0;
-  overflow: hidden;
   isolation: isolate;
 }
 
@@ -345,8 +344,12 @@ main:focus-visible {
 }
 
 .hero__marco,
-.presentacion__figura,
+.presentacion__marco,
 .nosotros__figura {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
   &::before {
     position: absolute;
     inset: 0.85rem;
@@ -369,13 +372,13 @@ main:focus-visible {
 
 @media (prefers-reduced-motion: no-preference) {
   .hero__marco::before,
-  .presentacion__figura::before,
+  .presentacion__marco::before,
   .nosotros__figura::before {
     animation: esqueleto-brillo 1.35s ease-in-out infinite;
   }
 
   .hero__marco:has(.imagen-esqueleto--lista)::before,
-  .presentacion__figura:has(.imagen-esqueleto--lista)::before,
+  .presentacion__marco:has(.imagen-esqueleto--lista)::before,
   .nosotros__figura:has(.imagen-esqueleto--lista)::before {
     animation: none;
   }
@@ -406,11 +409,10 @@ main:focus-visible {
   display: grid;
   place-items: center;
   width: min(100%, 20rem);
-  aspect-ratio: 341 / 900;
+  aspect-ratio: 341 / 983;
   max-height: min(52vh, 28rem);
   min-height: 18rem;
   padding: 1rem;
-  overflow: hidden;
   border-radius: var(--radio-tarjeta);
   background: linear-gradient(180deg, #d7ebf8 0%, #eaf4fb 55%, #f4f9fd 100%);
 }
@@ -521,9 +523,14 @@ main:focus-visible {
   font-weight: 700;
 }
 
-.presentacion--vertical .presentacion__figura {
-  aspect-ratio: 3 / 4;
+.presentacion__marco {
+  display: grid;
+  place-items: center;
   width: 100%;
+}
+
+.presentacion--vertical .presentacion__marco {
+  aspect-ratio: 349 / 982;
   max-height: min(26rem, 70vh);
   min-height: 14rem;
 }
@@ -536,9 +543,8 @@ main:focus-visible {
   object-fit: contain;
 }
 
-.presentacion--horizontal .presentacion__figura {
+.presentacion--horizontal .presentacion__marco {
   aspect-ratio: 1200 / 901;
-  width: 100%;
   max-height: min(22rem, 60vh);
   min-height: 10rem;
 }
@@ -666,6 +672,7 @@ main:focus-visible {
 .nosotros__figura {
   width: 100%;
   max-height: min(28rem, 70vh);
+  overflow: hidden;
 }
 
 .nosotros__figura img {
