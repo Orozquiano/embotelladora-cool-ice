@@ -1,7 +1,7 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { imagenHero, lineaPedidos, nombreEmpresa } from '../../contenido/sitio';
+import { beneficios, imagenHero, lineaPedidos, nombreEmpresa } from '../../contenido/sitio';
 
 /**
  * @class SeccionInicio
@@ -27,4 +27,9 @@ export class SeccionInicio {
    * @description WhatsApp de pedidos.
    */
   protected readonly whatsapp = lineaPedidos.whatsapp;
+
+  /**
+   * @description Tres mensajes de valor de la propuesta visual.
+   */
+  protected readonly beneficios = beneficios;
 }

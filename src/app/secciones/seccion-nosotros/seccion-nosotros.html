@@ -1,43 +1,83 @@
 <section id="nosotros" class="seccion seccion--suave" aria-labelledby="titulo-nosotros" tabindex="-1">
-  <div class="contenido nosotros__grid">
-    <div>
-      <header class="seccion__cabecera">
-        <h2 id="titulo-nosotros">Nosotros</h2>
-        <p class="prosa">
+  <div class="contenido">
+    <header class="seccion__cabecera">
+      <p class="seccion__marca">Servicio y origen</p>
+      <h2 id="titulo-nosotros">Servicio a domicilio sin complicaciones</h2>
+    </header>
+
+    <div class="servicio">
+      <article class="servicio__panel servicio__panel--marca">
+        <h3>Pide y recibe Cool Ice</h3>
+        <p>
           Somos {{ empresa }}. Envasamos agua potable tratada en {{ lugar }} y ofrecemos servicio a
           domicilio.
         </p>
-      </header>
+        <ul class="servicio__lista">
+          <li>
+            <strong>WhatsApp</strong>
+            <span>{{ telefonoPedidos }}</span>
+          </li>
+          <li>
+            <strong>Dispensadores</strong>
+            <span>{{ telefonoDispensadores }}</span>
+          </li>
+          <li>
+            <strong>Botellón 18,9 L</strong>
+            <span>Listo para dispensador</span>
+          </li>
+          <li>
+            <strong>Reposición</strong>
+            <span>Agenda el próximo pedido</span>
+          </li>
+        </ul>
+      </article>
 
-      @if (historia) {
-        <p class="prosa">{{ historia }}</p>
-      } @else {
-        <p class="nota-pendiente">
-          <span class="nota-pendiente__etiqueta">Pendiente:</span>
-          Falta la historia de la embotelladora.
-        </p>
-      }
+      <article class="servicio__panel">
+        <h3>Cobertura y origen</h3>
+        <p>Producido en Miranda, Cauca, con industria colombiana.</p>
+        <ul class="presentacion__detalles">
+          <li><strong>Miranda, Cauca.</strong> Planta embotelladora publicada en la etiqueta.</li>
+          <li><strong>Industria colombiana.</strong> Declarada en el material de marca.</li>
+          <li>
+            <strong>Entrega local.</strong>
+            @if (cobertura) {
+              {{ cobertura }}
+            } @else {
+              Consulta la zona de cobertura por WhatsApp.
+            }
+          </li>
+        </ul>
 
-      @if (valores) {
-        <p class="prosa">{{ valores }}</p>
-      } @else {
-        <p class="nota-pendiente">
-          <span class="nota-pendiente__etiqueta">Pendiente:</span>
-          Faltan los valores de la empresa.
-        </p>
-      }
+        @if (historia) {
+          <p class="prosa">{{ historia }}</p>
+        } @else {
+          <p class="nota-pendiente">
+            <span class="nota-pendiente__etiqueta">Pendiente:</span>
+            Falta la historia de la embotelladora.
+          </p>
+        }
 
-      @if (nit) {
-        <p class="prosa">NIT {{ nit }}</p>
-      } @else {
-        <p class="nota-pendiente">
-          <span class="nota-pendiente__etiqueta">Pendiente:</span>
-          Falta el NIT.
-        </p>
-      }
+        @if (valores) {
+          <p class="prosa">{{ valores }}</p>
+        } @else {
+          <p class="nota-pendiente">
+            <span class="nota-pendiente__etiqueta">Pendiente:</span>
+            Faltan los valores de la empresa.
+          </p>
+        }
+
+        @if (nit) {
+          <p class="prosa">NIT {{ nit }}</p>
+        } @else {
+          <p class="nota-pendiente">
+            <span class="nota-pendiente__etiqueta">Pendiente:</span>
+            Falta el NIT.
+          </p>
+        }
+      </article>
     </div>
 
-    <figure class="nosotros__figura">
+    <figure class="nosotros__figura nosotros__figura--amplia">
       <img
         [ngSrc]="imagen.ruta"
         [width]="imagen.ancho"

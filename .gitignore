@@ -5,11 +5,13 @@
 /tmp
 /out-tsc
 /bazel-out
+*.tsbuildinfo
 
 # Node
 /node_modules
 npm-debug.log
 yarn-error.log
+package-lock.json.bak
 
 # IDEs and editors
 .idea/
@@ -20,7 +22,7 @@ yarn-error.log
 .settings/
 *.sublime-workspace
 
-# Visual Studio Code
+# Visual Studio Code / Cursor
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -28,9 +30,16 @@ yarn-error.log
 !.vscode/extensions.json
 !.vscode/mcp.json
 .history/*
+.cursor/*
+!.cursor/rules/
+!.cursor/rules/**
+!.cursor/mcp.json
 
-# Miscellaneous
-/.angular/cache
+# Graphify (grafo, caché y memoria generados)
+/graphify-out/
+
+# Angular / Vitest
+.angular/
 .sass-cache/
 /connect.lock
 /coverage
@@ -38,10 +47,12 @@ yarn-error.log
 testem.log
 /typings
 __screenshots__/
+.vite/
 
 # System files
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # Variables locales y secretos
 .env

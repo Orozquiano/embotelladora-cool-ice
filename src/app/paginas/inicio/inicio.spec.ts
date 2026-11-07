@@ -17,7 +17,7 @@ describe('Inicio', () => {
     const texto = compiled.textContent ?? '';
 
     expect(compiled.querySelectorAll('h1')).toHaveLength(1);
-    expect(compiled.querySelector('h1')?.textContent).toContain('Agua potable tratada');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Agua tratada, fresca y confiable');
     expect(texto).toContain('18,9 L');
     expect(texto).toContain('5.000 ml');
     expect(texto).toContain('Dispensador');

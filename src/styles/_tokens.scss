@@ -1,18 +1,21 @@
 $color-fondo: #ffffff;
-$color-fondo-suave: #f4f7f9;
-$color-hielo: #e7f3fa;
-$color-linea: #e1e8ee;
-$color-texto: #172033;
-$color-texto-suave: #3e4d5e;
+$color-fondo-suave: #eef6fc;
+$color-hielo: #e3f1fb;
+$color-linea: #d5e4ef;
+$color-texto: #12325a;
+$color-texto-suave: #4a6280;
 $color-marca: #0d4e9c;
 $color-marca-profundo: #0a3478;
 $color-marca-activo: #072858;
+$color-whatsapp: #1fad5b;
+$color-whatsapp-hover: #18964e;
 $color-foco: #0b5cab;
 $fuente: -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, 'Helvetica Neue', arial, sans-serif;
 $ancho: 70rem;
 $radio: 1.25rem;
+$radio-tarjeta: 1.5rem;
 $transicion: 180ms ease;
-$alto-encabezado: 4.5rem;
+$alto-encabezado: 3.5rem;
 
 :root {
   --color-fondo: #{$color-fondo};
@@ -24,11 +27,15 @@ $alto-encabezado: 4.5rem;
   --color-marca: #{$color-marca};
   --color-marca-profundo: #{$color-marca-profundo};
   --color-marca-activo: #{$color-marca-activo};
+  --color-whatsapp: #{$color-whatsapp};
+  --color-whatsapp-hover: #{$color-whatsapp-hover};
   --color-foco: #{$color-foco};
   --fuente: #{$fuente};
   --ancho: #{$ancho};
   --radio: #{$radio};
+  --radio-tarjeta: #{$radio-tarjeta};
   --transicion: #{$transicion};
   --alto-encabezado: #{$alto-encabezado};
-  --espacio-seccion: clamp(4.5rem, 8vw, 7.25rem);
+  --espacio-seccion: clamp(4.5rem, 9vw, 7.5rem);
+  --sombra-suave: 0 12px 40px rgb(10 52 120 / 8%);
 }

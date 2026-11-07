@@ -1,6 +1,7 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { productos } from '../../contenido/productos';
+import { lineaPedidos } from '../../contenido/sitio';
 
 /**
  * @class SeccionProductos
@@ -16,4 +17,9 @@ export class SeccionProductos {
    * @description Presentaciones publicadas en el archivo de contenido.
    */
   protected readonly productos = productos;
+
+  /**
+   * @description WhatsApp de pedidos para el producto destacado.
+   */
+  protected readonly whatsapp = lineaPedidos.whatsapp;
 }

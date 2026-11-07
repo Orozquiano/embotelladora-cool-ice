@@ -1,4 +1,10 @@
-import { DatoEtiqueta, ImagenPublica, LineaTelefonica, SeccionNavegacion } from './modelos';
+import {
+  Beneficio,
+  DatoEtiqueta,
+  ImagenPublica,
+  LineaTelefonica,
+  SeccionNavegacion,
+} from './modelos';
 
 /**
  * @description Nombre legal que figura en las etiquetas.
@@ -151,6 +157,27 @@ export const secciones: readonly SeccionNavegacion[] = [
   { id: 'calidad', etiqueta: 'Calidad' },
   { id: 'nosotros', etiqueta: 'Nosotros' },
   { id: 'contacto', etiqueta: 'Contacto' },
+];
+
+/**
+ * @description Tres mensajes de valor tomados de la propuesta Figma, sin inventar certificados.
+ */
+export const beneficios: readonly Beneficio[] = [
+  {
+    id: 'pureza',
+    titulo: 'Máxima pureza',
+    texto: 'Agua potable tratada y purificada, según lo declarado en las etiquetas Cool Ice.',
+  },
+  {
+    id: 'sabor',
+    titulo: 'Sabor fresco',
+    texto: 'Pensada para el consumo diario en casa, oficina o negocio.',
+  },
+  {
+    id: 'domicilio',
+    titulo: 'Llega a tu puerta',
+    texto: 'Pide por WhatsApp y coordina el servicio a domicilio con nosotros.',
+  },
 ];
 
 /**

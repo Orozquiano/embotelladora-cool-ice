@@ -1,23 +1,24 @@
 <section id="contacto" class="seccion" aria-labelledby="titulo-contacto" tabindex="-1">
   <div class="contenido">
-    <header class="seccion__cabecera">
-      <h2 id="titulo-contacto">Contacto</h2>
+    <header class="seccion__cabecera seccion__cabecera--centrada">
+      <p class="seccion__marca">Contacto comercial</p>
+      <h2 id="titulo-contacto">Estamos listos para atenderte</h2>
       <p class="prosa">
-        Escríbenos por WhatsApp, llama o envía un correo. El mensaje sale directo a la empresa:
-        esta página no guarda ni confirma envíos.
+        Escríbenos por WhatsApp, llama o envía un correo. El mensaje sale directo a la empresa: esta
+        página no guarda ni confirma envíos.
       </p>
     </header>
 
     <ul class="canales">
       @for (linea of lineas; track linea.id) {
-        <li>
+        <li class="tarjeta">
           <h3>{{ linea.etiqueta }}</h3>
           <p>{{ linea.detalle }}</p>
           <p class="canales__numero">{{ linea.visible }}</p>
           <div class="acciones">
             <a
               class="boton"
-              [class.boton--primario]="linea.principal"
+              [class.boton--whatsapp]="linea.principal"
               [class.boton--secundario]="!linea.principal"
               [href]="linea.whatsapp"
               target="_blank"

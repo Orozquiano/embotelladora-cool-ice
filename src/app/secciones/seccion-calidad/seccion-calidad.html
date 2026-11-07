@@ -1,16 +1,17 @@
 <section id="calidad" class="seccion" aria-labelledby="titulo-calidad" tabindex="-1">
   <div class="contenido">
-    <header class="seccion__cabecera">
-      <h2 id="titulo-calidad">Calidad</h2>
+    <header class="seccion__cabecera seccion__cabecera--centrada">
+      <p class="seccion__marca">Calidad respaldada</p>
+      <h2 id="titulo-calidad">Datos y cuidados de etiqueta</h2>
       <p class="prosa">
         El agua Cool Ice se declara como potable, tratada y purificada. Estos son los datos y los
         cuidados que aparecen en las etiquetas.
       </p>
     </header>
 
-    <dl class="datos">
+    <dl class="datos datos--tarjetas">
       @for (dato of datos; track dato.titulo) {
-        <div>
+        <div class="tarjeta">
           <dt>{{ dato.titulo }}</dt>
           <dd>{{ dato.texto }}</dd>
         </div>
@@ -29,7 +30,8 @@
     } @else {
       <p class="nota-pendiente">
         <span class="nota-pendiente__etiqueta">Pendiente:</span>
-        Falta publicar las etapas del tratamiento del agua.
+        Falta publicar las etapas reales del tratamiento del agua. La propuesta de Figma muestra un
+        proceso de cuatro pasos; no lo publicamos hasta confirmarlo con la empresa.
       </p>
     }
   </div>

@@ -1,16 +1,18 @@
 <section id="productos" class="seccion seccion--suave" aria-labelledby="titulo-productos" tabindex="-1">
   <div class="contenido">
-    <header class="seccion__cabecera">
-      <h2 id="titulo-productos">Productos</h2>
+    <header class="seccion__cabecera seccion__cabecera--centrada">
+      <p class="seccion__marca">Nuestro producto estrella</p>
+      <h2 id="titulo-productos">Bidón familiar de 18,9 litros</h2>
       <p class="prosa">
         El botellón, la botella y el dispensador de agua fría y caliente. El precio se confirma al
         hacer el pedido.
       </p>
     </header>
 
-    @for (producto of productos; track producto.id; let impar = $odd) {
+    @for (producto of productos; track producto.id; let impar = $odd; let primero = $first) {
       <article
         class="presentacion"
+        [class.presentacion--destacada]="primero"
         [class.presentacion--horizontal]="producto.orientacion === 'horizontal'"
         [class.presentacion--vertical]="producto.orientacion === 'vertical'"
         [class.presentacion--invertida]="producto.orientacion === 'vertical' && impar"
@@ -22,6 +24,9 @@
             [height]="producto.imagen.alto"
             [alt]="producto.imagen.textoAlternativo"
           />
+          @if (primero) {
+            <p class="presentacion__chip">{{ producto.presentacion }}</p>
+          }
         </figure>
         <div>
           <p class="presentacion__formato">{{ producto.presentacion }}</p>
@@ -32,6 +37,19 @@
               <li>{{ detalle }}</li>
             }
           </ul>
+          @if (primero) {
+            <div class="acciones">
+              <a
+                class="boton boton--primario"
+                [href]="whatsapp"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Solicitar domicilio
+                <span class="solo-lectores">por WhatsApp, se abre en una pestaña nueva</span>
+              </a>
+            </div>
+          }
         </div>
       </article>
     }

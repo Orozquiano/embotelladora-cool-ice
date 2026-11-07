@@ -1,28 +1,39 @@
-<section id="inicio" class="seccion" aria-labelledby="titulo-inicio" tabindex="-1">
+<section id="inicio" class="seccion seccion--apertura" aria-labelledby="titulo-inicio" tabindex="-1">
   <div class="contenido hero">
-    <div>
-      <h1 id="titulo-inicio">Agua potable tratada para tu día a día</h1>
+    <div class="hero__texto">
+      <h1 id="titulo-inicio">Agua tratada, fresca y confiable para tu familia</h1>
       <p class="prosa">
-        {{ empresa }} envasa botellones de 18,9 litros y botellas de 5 litros. Pide por WhatsApp y
-        coordina el domicilio.
+        {{ empresa }} envasa botellones de 18,9 litros y botellas de 5 litros en Miranda, Cauca. Pide
+        por WhatsApp y coordina el domicilio.
       </p>
       <div class="acciones">
-        <a class="boton boton--primario" [href]="whatsapp" target="_blank" rel="noopener noreferrer">
-          Escribir por WhatsApp
+        <a class="boton boton--whatsapp" [href]="whatsapp" target="_blank" rel="noopener noreferrer">
+          Pedir por WhatsApp
           <span class="solo-lectores">, se abre en una pestaña nueva</span>
         </a>
-        <a class="boton boton--secundario" routerLink="/" fragment="productos">Ver presentaciones</a>
+        <a class="boton boton--secundario" routerLink="/" fragment="productos">Ver botellón 18,9 L</a>
       </div>
     </div>
 
     <figure class="hero__figura">
-      <img
-        [ngSrc]="imagen.ruta"
-        [width]="imagen.ancho"
-        [height]="imagen.alto"
-        [alt]="imagen.textoAlternativo"
-        priority
-      />
+      <div class="hero__marco">
+        <img
+          [ngSrc]="imagen.ruta"
+          [width]="imagen.ancho"
+          [height]="imagen.alto"
+          [alt]="imagen.textoAlternativo"
+          priority
+        />
+      </div>
     </figure>
+  </div>
+
+  <div class="contenido beneficios">
+    @for (beneficio of beneficios; track beneficio.id) {
+      <article class="tarjeta">
+        <h2 class="tarjeta__titulo">{{ beneficio.titulo }}</h2>
+        <p>{{ beneficio.texto }}</p>
+      </article>
+    }
   </div>
 </section>

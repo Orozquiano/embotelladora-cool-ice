@@ -20,5 +20,6 @@ describe('App', () => {
     expect(compiled.querySelector('main#contenido')).toBeTruthy();
     expect(compiled.querySelector('app-pie')).toBeTruthy();
     expect(compiled.querySelector('.saltar')?.textContent).toContain('Saltar al contenido');
+    expect(compiled.querySelector('a.cta-flotante[href^="https://wa.me/573216820822"]')).toBeTruthy();
   });
 });

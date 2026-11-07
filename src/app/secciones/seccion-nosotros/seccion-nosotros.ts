@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import {
   camposPorCompletar,
   imagenReparto,
+  lineaDispensadores,
+  lineaPedidos,
   lugar,
   nombreEmpresa,
   textoPublicado,
@@ -32,6 +34,21 @@ export class SeccionNosotros {
    * @description Ilustración del reparto.
    */
   protected readonly imagen = imagenReparto;
+
+  /**
+   * @description Número de pedidos visible.
+   */
+  protected readonly telefonoPedidos = lineaPedidos.visible;
+
+  /**
+   * @description Número de dispensadores visible.
+   */
+  protected readonly telefonoDispensadores = lineaDispensadores.visible;
+
+  /**
+   * @description Cobertura, si ya fue redactada.
+   */
+  protected readonly cobertura = textoPublicado(camposPorCompletar.cobertura);
 
   /**
    * @description Historia redactada por la empresa, si ya existe.

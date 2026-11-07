@@ -137,3 +137,24 @@ export interface DatoEtiqueta {
    */
   texto: string;
 }
+
+/**
+ * @interface Beneficio
+ * @description Mensaje breve de valor, alineado con la propuesta visual.
+ */
+export interface Beneficio {
+  /**
+   * @description Identificador estable.
+   */
+  id: string;
+
+  /**
+   * @description Título corto del beneficio.
+   */
+  titulo: string;
+
+  /**
+   * @description Texto respaldado por el material disponible.
+   */
+  texto: string;
+}
