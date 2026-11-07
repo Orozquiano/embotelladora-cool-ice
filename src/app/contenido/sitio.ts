@@ -1,8 +1,11 @@
 import {
   Beneficio,
-  DatoEtiqueta,
+  DatoOrigen,
+  DatoServicio,
+  EtapaProceso,
   ImagenPublica,
   LineaTelefonica,
+  PilarConfianza,
   SeccionNavegacion,
 } from './modelos';
 
@@ -28,57 +31,10 @@ export const conservacionBotellon =
   'Consérvese en un lugar fresco después de abierto y consúmase en un tiempo no mayor a 15 días.';
 
 /**
- * @description Instrucción de conservación de la botella de 5.000 ml.
- */
-export const conservacionBotella =
-  'Una vez abierto, consumir en el menor tiempo posible. Conservar en un lugar fresco, limpio y protegido de la luz solar directa.';
-
-/**
  * @description Descripción usada en el título social y en el documento.
  */
 export const descripcionSitio =
-  'Agua potable tratada de Embotelladora Cool Ice SAS. Botellón de 18,9 L, botella de 5 L y contacto por WhatsApp. Miranda, Cauca.';
-
-/**
- * @description Textos comerciales pendientes de confirmación del propietario.
- * Una cadena vacía se omite en la interfaz; el detalle vive en el README.
- */
-export const camposPorCompletar = {
-  /**
-   * @description Calle, barrio o referencia. El municipio ya está publicado.
-   */
-  direccionExacta: '',
-
-  /**
-   * @description Horario de atención. No se encontró en el material.
-   */
-  horario: '',
-
-  /**
-   * @description Municipios o zona donde llega el domicilio.
-   */
-  cobertura: '',
-
-  /**
-   * @description Etapas reales del tratamiento. No las completes con un proceso supuesto.
-   */
-  etapasTratamiento: '',
-
-  /**
-   * @description Historia breve de la embotelladora.
-   */
-  historia: '',
-
-  /**
-   * @description Valores redactados por la empresa.
-   */
-  valores: '',
-
-  /**
-   * @description NIT de Embotelladora Cool Ice SAS.
-   */
-  nit: '',
-};
+  'Agua potable tratada de Embotelladora Cool Ice SAS. Bidón familiar de 18,9 L y contacto por WhatsApp. Miranda, Cauca.';
 
 /**
  * @function textoPublicado
@@ -149,89 +105,169 @@ export const correo = {
 };
 
 /**
- * @description Secciones de la página principal, en el orden de la navegación.
+ * @description Secciones de la página principal, en el orden de la navegación del Figma.
  */
 export const secciones: readonly SeccionNavegacion[] = [
-  { id: 'inicio', etiqueta: 'Inicio' },
-  { id: 'productos', etiqueta: 'Productos' },
-  { id: 'calidad', etiqueta: 'Calidad' },
-  { id: 'nosotros', etiqueta: 'Nosotros' },
+  { id: 'beneficios', etiqueta: 'Beneficios' },
+  { id: 'producto', etiqueta: 'Producto' },
+  { id: 'proceso', etiqueta: 'Proceso' },
+  { id: 'domicilio', etiqueta: 'Domicilio' },
+  { id: 'confianza', etiqueta: 'Confianza' },
   { id: 'contacto', etiqueta: 'Contacto' },
 ];
 
 /**
- * @description Tres mensajes de valor tomados de la propuesta Figma, sin inventar certificados.
+ * @description Tres mensajes de valor de la propuesta visual.
  */
 export const beneficios: readonly Beneficio[] = [
   {
     id: 'pureza',
+    marca: 'Agua',
     titulo: 'Máxima pureza',
-    texto: 'Agua potable tratada y purificada, según lo declarado en las etiquetas Cool Ice.',
+    texto:
+      'Agua potable tratada y purificada mediante un proceso estricto que garantiza calidad constante en cada bidón.',
   },
   {
     id: 'sabor',
+    marca: 'Fresco',
     titulo: 'Sabor fresco',
-    texto: 'Pensada para el consumo diario en casa, oficina o negocio.',
+    texto:
+      'Un perfil limpio y refrescante, ideal para beber, cocinar y acompañar el día a día de tu hogar o negocio.',
   },
   {
     id: 'domicilio',
+    marca: 'Envío',
     titulo: 'Llega a tu puerta',
-    texto: 'Pide por WhatsApp y coordina el servicio a domicilio con nosotros.',
+    texto:
+      'Servicio a domicilio ágil. Pides por WhatsApp y te llevamos el bidón de 18,9 L donde lo necesites.',
   },
 ];
 
 /**
- * @description Datos de etiqueta que sí están respaldados por las piezas de la marca.
+ * @description Detalles del producto estrella de 18,9 L.
  */
-export const datosDeEtiqueta: readonly DatoEtiqueta[] = [
+export const detallesProducto: readonly string[] = [
+  'Capacidad 18,9 L (5 Gal) — rinde para toda la familia',
+  'Agua potable tratada y purificada',
+  `Registro sanitario INVIMA ${registroInvima}`,
+  'Conservar en lugar fresco; consumir preferiblemente en 15 días tras abrir',
+  'Envase reciclable — cuida tu ciudad',
+];
+
+/**
+ * @description Etapas del proceso de purificación según la propuesta visual.
+ */
+export const etapasProceso: readonly EtapaProceso[] = [
   {
-    titulo: 'Producto',
-    texto: 'Agua potable tratada y purificada.',
+    numero: '1',
+    titulo: 'Captación',
+    texto: 'Seleccionamos agua de fuente apta y controlamos su calidad desde el origen.',
   },
   {
-    titulo: 'Ingrediente declarado',
-    texto: 'Agua potable tratada y purificada.',
+    numero: '2',
+    titulo: 'Filtración',
+    texto: 'Retenemos partículas e impurezas con filtración en múltiples etapas.',
   },
   {
-    titulo: 'Registro INVIMA',
-    texto: `En las etiquetas figura ${registroInvima}.`,
+    numero: '3',
+    titulo: 'Tratamiento',
+    texto: 'Aplicamos procesos de potabilización y purificación bajo parámetros estrictos.',
   },
   {
-    titulo: 'Envasado',
-    texto: `${nombreEmpresa}. Industria colombiana.`,
-  },
-  {
-    titulo: 'Domicilio',
-    texto: 'Las etiquetas anuncian servicio a domicilio.',
+    numero: '4',
+    titulo: 'Embotellado',
+    texto: 'Envasamos en condiciones higiénicas y sellamos cada bidón listo para entregar.',
   },
 ];
 
 /**
- * @description Logotipo horizontal con fondo transparente.
+ * @description Celdas del panel azul de servicio a domicilio.
+ */
+export const datosServicio: readonly DatoServicio[] = [
+  { titulo: 'WhatsApp', detalle: lineaPedidos.visible },
+  { titulo: 'Respuesta rápida', detalle: 'Atención directa' },
+  { titulo: 'Bidón 18,9 L', detalle: 'Listo para usar' },
+  { titulo: 'Reposición', detalle: 'Agenda tu próximo pedido' },
+];
+
+/**
+ * @description Filas de cobertura y origen.
+ */
+export const datosOrigen: readonly DatoOrigen[] = [
+  { marca: 'Sitio', titulo: 'Miranda, Cauca', detalle: 'Planta embotelladora' },
+  { marca: 'Origen', titulo: 'Industria colombiana', detalle: 'Hecho en Colombia' },
+  {
+    marca: 'Ruta',
+    titulo: 'Entrega local',
+    detalle: 'Consulta cobertura por WhatsApp',
+  },
+];
+
+/**
+ * @description Pilares de la sección de confianza.
+ */
+export const pilaresConfianza: readonly PilarConfianza[] = [
+  {
+    id: 'invima',
+    marca: 'RSA',
+    titulo: 'Registro INVIMA',
+    texto: `${registroInvima} — agua potable tratada bajo normativa sanitaria.`,
+  },
+  {
+    id: 'colombia',
+    marca: 'CO',
+    titulo: 'Industria colombiana',
+    texto: 'Producido en Miranda, Cauca, con orgullo local.',
+  },
+  {
+    id: 'familia',
+    marca: 'Hogar',
+    titulo: 'Para tu familia',
+    texto: 'Pensado para el consumo diario seguro en hogares y negocios.',
+  },
+  {
+    id: 'ambiente',
+    marca: 'Eco',
+    titulo: 'Cuidado ambiental',
+    texto: 'Envase reciclable. Mantén tu ciudad limpia.',
+  },
+];
+
+/**
+ * @description Logotipo horizontal usado en la barra.
  */
 export const logo: ImagenPublica = {
-  ruta: 'assets/imagenes/logo-cool-ice.webp',
-  ancho: 960,
-  alto: 412,
-  textoAlternativo: 'Cool Ice, ir al inicio',
+  ruta: 'assets/imagenes/logo-cool-ice-figma.jpg',
+  ancho: 440,
+  alto: 254,
+  textoAlternativo: 'Cool Ice',
 };
 
 /**
- * @description Fotografía del botellón sobre el dispensador. Es la imagen principal.
+ * @description Marca del hero según el diseño de Figma.
  */
 export const imagenHero: ImagenPublica = {
-  ruta: 'assets/imagenes/botellon-dispensador.webp',
-  ancho: 341,
-  alto: 983,
-  textoAlternativo: 'Botellón Cool Ice de agua tratada colocado sobre un dispensador blanco.',
+  ruta: 'assets/imagenes/marca-cool-ice-hero.jpg',
+  ancho: 440,
+  alto: 440,
+  textoAlternativo: 'Logo Cool Ice con el osito polar y el agua.',
 };
 
 /**
- * @description Ilustración del reparto. No es una fotografía de la operación.
+ * @description Etiqueta del producto estrella de 18,9 L.
  */
-export const imagenReparto: ImagenPublica = {
-  ruta: 'assets/imagenes/reparto.webp',
-  ancho: 720,
-  alto: 731,
-  textoAlternativo: 'Ilustración del oso de Cool Ice llevando un botellón de agua potable tratada.',
+export const imagenProducto: ImagenPublica = {
+  ruta: 'assets/imagenes/etiqueta-producto-18-9l.jpg',
+  ancho: 440,
+  alto: 147,
+  textoAlternativo: 'Etiqueta del bidón Cool Ice de 18,9 litros.',
 };
+
+/**
+ * @description Estadísticas del hero.
+ */
+export const estadisticasHero = [
+  { valor: '18,9 L', detalle: 'Bidón familiar (5 Gal)' },
+  { valor: 'INVIMA', detalle: registroInvima },
+  { valor: '24/7', detalle: 'Pedidos por WhatsApp' },
+] as const;

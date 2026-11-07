@@ -37,7 +37,7 @@ describe('Encabezado', () => {
       (enlace: HTMLAnchorElement) => enlace.getAttribute('href') ?? '',
     );
 
-    expect(enlaces.some((href) => href.includes('productos'))).toBe(true);
+    expect(enlaces.some((href) => href.includes('producto'))).toBe(true);
     expect(enlaces.some((href) => href.includes('contacto'))).toBe(true);
     expect(enlaces.some((href) => href.startsWith('https://wa.me/573216820822'))).toBe(true);
   });

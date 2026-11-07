@@ -1,31 +1,34 @@
-import { LowerCasePipe, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
-import { Producto } from '../../contenido/modelos';
-import { enlaceWhatsappProducto, productos } from '../../contenido/productos';
+import {
+  detallesProducto,
+  imagenProducto,
+  lineaPedidos,
+} from '../../contenido/sitio';
 import { ImagenEsqueleto } from '../../directivas/imagen-esqueleto';
 
 /**
  * @class SeccionProductos
- * @description Lista las presentaciones disponibles con su imagen y sus datos.
+ * @description Destaca el bidón familiar de 18,9 L según el Figma.
  */
 @Component({
   selector: 'app-seccion-productos',
-  imports: [NgOptimizedImage, LowerCasePipe, ImagenEsqueleto],
+  imports: [NgOptimizedImage, ImagenEsqueleto],
   templateUrl: './seccion-productos.html',
 })
 export class SeccionProductos {
   /**
-   * @description Presentaciones publicadas en el archivo de contenido.
+   * @description Imagen de la etiqueta del producto estrella.
    */
-  protected readonly productos = productos;
+  protected readonly imagen = imagenProducto;
 
   /**
-   * @function whatsappDe
-   * @description Enlace de WhatsApp con mensaje propio de cada presentación.
-   * @param producto Presentación consultada.
-   * @returns URL de wa.me.
+   * @description Lista de atributos del bidón.
    */
-  protected whatsappDe(producto: Producto): string {
-    return enlaceWhatsappProducto(producto);
-  }
+  protected readonly detalles = detallesProducto;
+
+  /**
+   * @description WhatsApp para solicitar domicilio.
+   */
+  protected readonly whatsapp = lineaPedidos.whatsapp;
 }

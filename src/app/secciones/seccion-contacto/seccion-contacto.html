@@ -1,81 +1,121 @@
-<section id="contacto" class="seccion" aria-labelledby="titulo-contacto" tabindex="-1">
-  <div class="contenido">
-    <header class="seccion__cabecera seccion__cabecera--centrada">
-      <p class="seccion__marca">Contacto comercial</p>
+<section id="contacto" class="seccion seccion--suave" aria-labelledby="titulo-contacto" tabindex="-1">
+  <div class="contenido contacto">
+    <div class="contacto__info">
+      <p class="seccion__marca">Pedidos y contacto</p>
       <h2 id="titulo-contacto">Estamos listos para atenderte</h2>
       <p class="prosa">
-        Escríbenos por WhatsApp, llama o envía un correo. El mensaje sale directo a la empresa: esta
-        página no guarda ni confirma envíos.
+        Escríbenos por WhatsApp o correo. Te confirmamos disponibilidad, cobertura y horario de
+        entrega.
       </p>
-    </header>
 
-    <ul class="canales">
-      @for (linea of lineas; track linea.id) {
-        <li class="tarjeta">
-          <h3>{{ linea.etiqueta }}</h3>
-          <p>{{ linea.detalle }}</p>
-          <p class="canales__numero">{{ linea.visible }}</p>
-          <div class="acciones">
-            <a
-              class="boton"
-              [class.boton--whatsapp]="linea.principal"
-              [class.boton--secundario]="!linea.principal"
-              [href]="linea.whatsapp"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              WhatsApp
-              <span class="solo-lectores">al {{ linea.visible }}, se abre en una pestaña nueva</span>
-            </a>
-            <a class="boton boton--secundario" [href]="linea.telefono">
-              Llamar
-              <span class="solo-lectores">al {{ linea.visible }}</span>
+      <ul class="canales">
+        <li class="canales__item">
+          <span class="canales__marca" aria-hidden="true">WA</span>
+          <div>
+            <strong>WhatsApp pedidos</strong>
+            <a [href]="whatsappBase.whatsapp" target="_blank" rel="noopener noreferrer">
+              {{ whatsappBase.visible }}
             </a>
           </div>
         </li>
-      }
-    </ul>
+        <li class="canales__item">
+          <span class="canales__marca" aria-hidden="true">@</span>
+          <div>
+            <strong>Correo</strong>
+            <a [href]="correo.href">{{ correo.visible }}</a>
+          </div>
+        </li>
+        <li class="canales__item">
+          <span class="canales__marca" aria-hidden="true">Mapa</span>
+          <div>
+            <strong>Ubicación</strong>
+            <p>{{ lugar }}</p>
+          </div>
+        </li>
+        <li class="canales__item">
+          <span class="canales__marca" aria-hidden="true">Cia</span>
+          <div>
+            <strong>Empresa</strong>
+            <p>{{ empresa }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
 
-    <dl class="datos">
-      <div>
-        <dt>Correo</dt>
-        <dd>
-          <a class="enlace" [href]="correo.href">{{ correo.visible }}</a>
-        </dd>
-      </div>
-      <div>
-        <dt>Lugar</dt>
-        <dd>
-          {{ lugar }}
-          @if (direccion) {
-            <span>. {{ direccion }}</span>
-          } @else {
-            <span>. La dirección exacta se confirma al coordinar el pedido.</span>
-          }
-        </dd>
-      </div>
-      @if (horario) {
-        <div>
-          <dt>Horario</dt>
-          <dd>{{ horario }}</dd>
-        </div>
-      } @else {
-        <div>
-          <dt>Horario</dt>
-          <dd>Consulta disponibilidad por WhatsApp o teléfono.</dd>
-        </div>
-      }
-      @if (cobertura) {
-        <div>
-          <dt>Cobertura</dt>
-          <dd>{{ cobertura }}</dd>
-        </div>
-      } @else {
-        <div>
-          <dt>Cobertura</dt>
-          <dd>Pregunta por tu zona al escribir o llamar.</dd>
-        </div>
-      }
-    </dl>
+    <form class="formulario" (submit)="$event.preventDefault()">
+      <h3>Solicita tu pedido</h3>
+      <p class="formulario__ayuda">
+        Completa los datos y envíalos por WhatsApp para confirmar tu pedido.
+      </p>
+
+      <label class="campo">
+        <span>Nombre completo</span>
+        <input
+          type="text"
+          name="nombre"
+          autocomplete="name"
+          placeholder="Ej. María Gómez"
+          [value]="nombre()"
+          (input)="nombre.set(($any($event.target).value))"
+        />
+      </label>
+
+      <label class="campo">
+        <span>WhatsApp / Teléfono</span>
+        <input
+          type="tel"
+          name="telefono"
+          autocomplete="tel"
+          placeholder="300 000 0000"
+          [value]="telefono()"
+          (input)="telefono.set(($any($event.target).value))"
+        />
+      </label>
+
+      <label class="campo">
+        <span>Dirección de entrega</span>
+        <input
+          type="text"
+          name="direccion"
+          autocomplete="street-address"
+          placeholder="Barrio, municipio…"
+          [value]="direccion()"
+          (input)="direccion.set(($any($event.target).value))"
+        />
+      </label>
+
+      <label class="campo">
+        <span>Cantidad de bidones</span>
+        <input
+          type="text"
+          name="cantidad"
+          inputmode="numeric"
+          placeholder="1 · 18,9 L"
+          [value]="cantidad()"
+          (input)="cantidad.set(($any($event.target).value))"
+        />
+      </label>
+
+      <label class="campo">
+        <span>Mensaje (opcional)</span>
+        <textarea
+          name="mensaje"
+          rows="3"
+          placeholder="Horario preferido, observaciones…"
+          [value]="mensaje()"
+          (input)="mensaje.set(($any($event.target).value))"
+        ></textarea>
+      </label>
+
+      <a
+        class="boton boton--whatsapp boton--bloque"
+        [href]="enlacePedido()"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Enviar pedido por WhatsApp
+        <span class="solo-lectores">, se abre en una pestaña nueva</span>
+      </a>
+    </form>
   </div>
 </section>

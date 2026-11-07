@@ -1,73 +1,35 @@
-<section id="nosotros" class="seccion seccion--suave" aria-labelledby="titulo-nosotros" tabindex="-1">
-  <div class="contenido">
-    <header class="seccion__cabecera">
-      <p class="seccion__marca">Servicio y origen</p>
-      <h2 id="titulo-nosotros">Servicio a domicilio sin complicaciones</h2>
-    </header>
-
-    <div class="servicio">
-      <article class="servicio__panel servicio__panel--marca">
-        <h3>Pide y recibe Cool Ice</h3>
-        <p>
-          Somos {{ empresa }}. Envasamos agua potable tratada en {{ lugar }} y ofrecemos servicio a
-          domicilio.
-        </p>
-        <ul class="servicio__lista">
-          <li>
-            <strong>WhatsApp</strong>
-            <span>{{ telefonoPedidos }}</span>
-          </li>
-          <li>
-            <strong>Dispensadores</strong>
-            <span>{{ telefonoDispensadores }}</span>
-          </li>
-          <li>
-            <strong>Botellón 18,9 L</strong>
-            <span>Listo para dispensador</span>
-          </li>
-          <li>
-            <strong>Reposición</strong>
-            <span>Agenda el próximo pedido</span>
-          </li>
-        </ul>
-      </article>
-
-      <article class="servicio__panel">
-        <h3>Cobertura y origen</h3>
-        <p>Producido en Miranda, Cauca, con industria colombiana.</p>
-        <ul class="presentacion__detalles">
-          <li><strong>Miranda, Cauca.</strong> Planta embotelladora publicada en la etiqueta.</li>
-          <li><strong>Industria colombiana.</strong> Declarada en el material de marca.</li>
-          <li>
-            <strong>Entrega local.</strong>
-            @if (cobertura) {
-              {{ cobertura }}
-            } @else {
-              Consulta la zona disponible por WhatsApp o teléfono.
-            }
-          </li>
-        </ul>
-
-        @if (historia) {
-          <p class="prosa">{{ historia }}</p>
+<section id="domicilio" class="seccion seccion--suave" aria-labelledby="titulo-domicilio" tabindex="-1">
+  <div class="contenido servicio">
+    <article class="servicio__panel servicio__panel--marca">
+      <h2 id="titulo-domicilio">Servicio a domicilio sin complicaciones</h2>
+      <p>
+        Pide por WhatsApp, confirma tu dirección y recibe tu Cool ICE en casa, oficina o local
+        comercial.
+      </p>
+      <div class="servicio__rejilla">
+        @for (dato of servicio; track dato.titulo) {
+          <div class="servicio__celda">
+            <strong>{{ dato.titulo }}</strong>
+            <span>{{ dato.detalle }}</span>
+          </div>
         }
-        @if (valores) {
-          <p class="prosa">{{ valores }}</p>
-        }
-        @if (nit) {
-          <p class="prosa">NIT {{ nit }}</p>
-        }
-      </article>
-    </div>
+      </div>
+    </article>
 
-    <figure class="nosotros__figura nosotros__figura--amplia">
-      <img
-        appImagenEsqueleto
-        [ngSrc]="imagen.ruta"
-        [width]="imagen.ancho"
-        [height]="imagen.alto"
-        [alt]="imagen.textoAlternativo"
-      />
-    </figure>
+    <article class="servicio__panel">
+      <h3>Cobertura y origen</h3>
+      <p class="prosa">Producimos en Miranda, Cauca, con orgullo de industria colombiana.</p>
+      <ul class="origen-lista">
+        @for (dato of origen; track dato.titulo) {
+          <li>
+            <span class="origen-lista__marca" aria-hidden="true">{{ dato.marca }}</span>
+            <span>
+              <strong>{{ dato.titulo }}</strong>
+              <small>{{ dato.detalle }}</small>
+            </span>
+          </li>
+        }
+      </ul>
+    </article>
   </div>
 </section>

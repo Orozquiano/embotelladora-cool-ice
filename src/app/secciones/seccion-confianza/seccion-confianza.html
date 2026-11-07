@@ -1,0 +1,30 @@
+<section id="confianza" class="seccion" aria-labelledby="titulo-confianza" tabindex="-1">
+  <div class="contenido">
+    <header class="seccion__cabecera seccion__cabecera--centrada">
+      <p class="seccion__marca">Confianza</p>
+      <h2 id="titulo-confianza">Respaldados por calidad e identidad local</h2>
+      <p class="prosa">
+        Transparencia en cada detalle: registro sanitario, origen nacional y un equipo cercano a tu
+        comunidad.
+      </p>
+    </header>
+
+    <div class="rejilla rejilla--cuatro">
+      @for (pilar of pilares; track pilar.id) {
+        <article class="tarjeta tarjeta--etapa">
+          <span class="tarjeta__marca" aria-hidden="true">{{ pilar.marca }}</span>
+          <h3 class="tarjeta__titulo">{{ pilar.titulo }}</h3>
+          <p>{{ pilar.texto }}</p>
+        </article>
+      }
+    </div>
+
+    <div class="banda-confianza">
+      <div>
+        <strong>{{ empresa }}</strong>
+        <p>Fabricante autorizado · Agua potable tratada y purificada</p>
+      </div>
+      <p class="banda-confianza__registro">INVIMA {{ registro }}</p>
+    </div>
+  </div>
+</section>

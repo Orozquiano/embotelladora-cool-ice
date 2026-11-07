@@ -1,61 +1,37 @@
-<section id="productos" class="seccion seccion--suave" aria-labelledby="titulo-productos" tabindex="-1">
-  <div class="contenido">
-    <header class="seccion__cabecera seccion__cabecera--centrada">
-      <p class="seccion__marca">Presentaciones</p>
-      <h2 id="titulo-productos">Botellón, botella y dispensador</h2>
-      <p class="prosa">
-        Tres opciones para casa, oficina o negocio. El precio y las condiciones se confirman al
-        hacer el pedido por WhatsApp.
-      </p>
-    </header>
+<section id="producto" class="seccion seccion--suave" aria-labelledby="titulo-producto" tabindex="-1">
+  <div class="contenido producto">
+    <div class="producto__visual">
+      <div class="producto__marco">
+        <img
+          appImagenEsqueleto
+          [ngSrc]="imagen.ruta"
+          [width]="imagen.ancho"
+          [height]="imagen.alto"
+          [alt]="imagen.textoAlternativo"
+          priority
+        />
+        <p class="producto__pill">18,9 L · 5 Galones</p>
+      </div>
+    </div>
 
-    @for (producto of productos; track producto.id; let impar = $odd; let primero = $first) {
-      <article
-        class="presentacion"
-        [class.presentacion--destacada]="primero"
-        [class.presentacion--horizontal]="producto.orientacion === 'horizontal'"
-        [class.presentacion--vertical]="producto.orientacion === 'vertical'"
-        [class.presentacion--invertida]="producto.orientacion === 'vertical' && impar"
-      >
-        <figure class="presentacion__figura">
-          <div class="presentacion__marco">
-            <img
-              appImagenEsqueleto
-              [ngSrc]="producto.imagen.ruta"
-              [width]="producto.imagen.ancho"
-              [height]="producto.imagen.alto"
-              [alt]="producto.imagen.textoAlternativo"
-              [priority]="primero"
-            />
-          </div>
-          @if (primero) {
-            <p class="presentacion__chip">{{ producto.presentacion }}</p>
-          }
-        </figure>
-        <div>
-          <p class="presentacion__formato">{{ producto.presentacion }}</p>
-          <h3 class="presentacion__titulo">{{ producto.nombre }}</h3>
-          <p class="prosa">{{ producto.descripcion }}</p>
-          <ul class="presentacion__detalles">
-            @for (detalle of producto.detalles; track detalle) {
-              <li>{{ detalle }}</li>
-            }
-          </ul>
-          <div class="acciones">
-            <a
-              class="boton"
-              [class.boton--whatsapp]="primero"
-              [class.boton--primario]="!primero"
-              [href]="whatsappDe(producto)"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Consultar {{ producto.nombre | lowercase }}
-              <span class="solo-lectores">por WhatsApp, se abre en una pestaña nueva</span>
-            </a>
-          </div>
-        </div>
-      </article>
-    }
+    <div class="producto__texto">
+      <p class="seccion__marca">Nuestro producto estrella</p>
+      <h2 id="titulo-producto">Bidón familiar de 18,9 litros</h2>
+      <p class="prosa">
+        El formato ideal para hogares, oficinas y comercios. Fácil de manipular, higiénico y pensado
+        para el consumo diario con reposición cómoda.
+      </p>
+      <ul class="lista-checks">
+        @for (detalle of detalles; track detalle) {
+          <li>{{ detalle }}</li>
+        }
+      </ul>
+      <div class="acciones">
+        <a class="boton boton--primario" [href]="whatsapp" target="_blank" rel="noopener noreferrer">
+          Solicitar domicilio
+          <span class="solo-lectores">por WhatsApp, se abre en una pestaña nueva</span>
+        </a>
+      </div>
+    </div>
   </div>
 </section>
