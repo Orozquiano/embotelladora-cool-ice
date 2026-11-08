@@ -526,13 +526,19 @@ main:focus-visible {
 }
 
 .tarjeta__numero {
+  flex: 0 0 auto;
+  box-sizing: border-box;
   width: 2.25rem;
+  height: 2.25rem;
   min-width: 2.25rem;
   min-height: 2.25rem;
-  border-radius: 1rem;
+  padding: 0;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
   background: var(--color-marca);
   color: #fff;
   font-size: 0.875rem;
+  line-height: 1;
 }
 
 .tarjeta__titulo {
