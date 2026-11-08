@@ -7,7 +7,7 @@
       aria-label="Cool Ice, ir al inicio"
       [attr.tabindex]="menuAbierto() ? -1 : null"
       [attr.aria-hidden]="menuAbierto() ? 'true' : null"
-      (click)="cerrarMenu()"
+      (click)="cerrarMenu(true)"
     >
       <img
         class="encabezado__logo"
@@ -62,7 +62,7 @@
               routerLink="/"
               [fragment]="seccion.id"
               [attr.aria-current]="seccionActiva() === seccion.id ? 'location' : null"
-              (click)="cerrarMenu()"
+              (click)="cerrarMenu(true)"
             >
               <span>{{ seccion.etiqueta }}</span>
               @if (seccionActiva() === seccion.id) {

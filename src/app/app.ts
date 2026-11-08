@@ -76,11 +76,16 @@ export class App {
     () => !this.menuAbierto() && this.heroCtaFuera() && !this.contactoVisible(),
   );
 
-  constructor() {
-    this.desplazamiento.setOffset([0, 68]);
+  /**
+   * @description Recalcula el offset de anclas al cambiar el tamaño de la ventana.
+   */
+  private readonly alRedimensionar = () => this.actualizarOffsetAnclas();
 
+  constructor() {
     afterNextRender(() => {
+      this.actualizarOffsetAnclas();
       this.programarObservacionCta();
+      window.addEventListener('resize', this.alRedimensionar, { passive: true });
     });
 
     this.enrutador.events
@@ -88,12 +93,38 @@ export class App {
         filter((evento): evento is NavigationEnd => evento instanceof NavigationEnd),
         takeUntilDestroyed(),
       )
-      .subscribe(() => this.programarObservacionCta());
+      .subscribe(() => {
+        this.actualizarOffsetAnclas();
+        this.programarObservacionCta();
+      });
 
     this.destruir.onDestroy(() => {
+      window.removeEventListener('resize', this.alRedimensionar);
       this.observadorHero?.disconnect();
       this.observadorContacto?.disconnect();
     });
+  }
+
+  /**
+   * @function actualizarOffsetAnclas
+   * @description Alinea el salto a secciones con el encabezado, descontando el padding de la sección.
+   */
+  private actualizarOffsetAnclas(): void {
+    if (typeof document === 'undefined' || typeof window === 'undefined') {
+      return;
+    }
+
+    const encabezado =
+      document.querySelector<HTMLElement>('app-encabezado') ??
+      document.querySelector<HTMLElement>('.encabezado');
+    const seccion = document.querySelector<HTMLElement>('main .seccion');
+    const altoEncabezado = encabezado?.getBoundingClientRect().height ?? 56;
+    const rellenoSuperior = seccion
+      ? Number.parseFloat(getComputedStyle(seccion).paddingTop) || 0
+      : 56;
+    const holgura = 16;
+
+    this.desplazamiento.setOffset([0, Math.round(altoEncabezado + holgura - rellenoSuperior)]);
   }
 
   /**

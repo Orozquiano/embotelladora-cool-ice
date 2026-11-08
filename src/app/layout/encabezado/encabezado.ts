@@ -122,6 +122,11 @@ export class Encabezado {
    */
   private fondoBloqueado = false;
 
+  /**
+   * @description Si es true, al cerrar el menú no se restaura el scroll previo (el router irá al ancla).
+   */
+  private omitirRestaurarScroll = false;
+
   constructor() {
     effect(() => {
       this.bloquearDesplazamientoFondo(this.menuAbierto());
@@ -166,9 +171,14 @@ export class Encabezado {
 
   /**
    * @function cerrarMenu
-   * @description Cierra el menú después de elegir una sección.
+   * @description Cierra el menú. Si se navega a una sección, no restaura el scroll previo.
+   * @param haciaAncla Indica que el clic irá a un fragmento de la página.
    */
-  protected cerrarMenu(): void {
+  protected cerrarMenu(haciaAncla = false): void {
+    if (haciaAncla && this.fondoBloqueado) {
+      this.omitirRestaurarScroll = true;
+      this.bloquearDesplazamientoFondo(false);
+    }
     this.menuMovil.cerrar();
   }
 
@@ -392,7 +402,12 @@ export class Encabezado {
     cuerpo.style.overflow = '';
     html.style.overflow = '';
     this.fondoBloqueado = false;
-    vista?.scrollTo({ top: this.desplazamientoBloqueado, behavior: 'instant' });
+
+    const restaurar = !this.omitirRestaurarScroll;
+    this.omitirRestaurarScroll = false;
+    if (restaurar) {
+      vista?.scrollTo({ top: this.desplazamientoBloqueado, behavior: 'instant' });
+    }
   }
 
   /**

@@ -45,8 +45,10 @@ body.menu-movil-abierto .encabezado,
 
 .seccion {
   padding-block: var(--espacio-seccion);
+  /* Compensa el padding-top para que el ancla deje el título bajo el header, no un hueco vacío. */
   scroll-margin-top: calc(
-    var(--alto-encabezado) + env(safe-area-inset-top, 0px) + 0.75rem
+    var(--alto-encabezado) + env(safe-area-inset-top, 0px) + 1rem -
+      var(--espacio-seccion)
   );
 }
 
