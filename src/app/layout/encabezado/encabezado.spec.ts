@@ -59,4 +59,27 @@ describe('Encabezado', () => {
     expect(menu.abierto()).toBe(false);
     expect(boton.getAttribute('aria-expanded')).toBe('false');
   });
+
+  it('cierra el menú con el botón Cerrar del panel', async () => {
+    const fixture = TestBed.createComponent(Encabezado);
+    await fixture.whenStable();
+    const botonAbrir = fixture.nativeElement.querySelector(
+      '.encabezado__abrir',
+    ) as HTMLButtonElement;
+    const menu = TestBed.inject(MenuMovil);
+
+    botonAbrir.click();
+    fixture.detectChanges();
+    expect(menu.abierto()).toBe(true);
+
+    const botonCerrar = fixture.nativeElement.querySelector(
+      '.menu__cerrar',
+    ) as HTMLButtonElement;
+    expect(botonCerrar).toBeTruthy();
+    expect(botonCerrar.textContent?.trim()).toBe('Cerrar');
+
+    botonCerrar.click();
+    fixture.detectChanges();
+    expect(menu.abierto()).toBe(false);
+  });
 });

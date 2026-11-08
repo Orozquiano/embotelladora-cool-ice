@@ -438,7 +438,7 @@ export class Encabezado {
     const raiz = this.anfitrion.nativeElement as HTMLElement;
     return [
       ...(raiz.querySelectorAll(
-        '.encabezado__abrir, .menu--abierto a[href], .menu--abierto button:not([disabled])',
+        '.encabezado__abrir, .menu--abierto .menu__cerrar, .menu--abierto a[href], .menu--abierto button:not([disabled])',
       ) as NodeListOf<HTMLElement>),
     ].filter((elemento) => {
       if (elemento.getAttribute('aria-hidden') === 'true') {

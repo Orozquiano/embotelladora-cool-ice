@@ -1,4 +1,4 @@
-<header class="encabezado">
+<header class="encabezado" [class.encabezado--menu-abierto]="menuAbierto()">
   <div class="encabezado__barra">
     <a
       class="encabezado__marca"
@@ -34,14 +34,25 @@
     </button>
   </div>
 
-  <nav id="menu-principal" class="menu" [class.menu--abierto]="menuAbierto()" aria-label="Secciones">
-    <div class="menu__panel">
+  <nav
+    id="menu-principal"
+    class="menu"
+    [class.menu--abierto]="menuAbierto()"
+    aria-label="Secciones"
+    (click)="cerrarMenu()"
+  >
+    <div class="menu__panel" (click)="$event.stopPropagation()">
       <div class="menu__cabecera" id="titulo-menu-movil">
-        <p class="menu__titulo">Secciones</p>
-        <p class="menu__ubicacion">
-          Ahora en
-          <strong>{{ etiquetaActiva() }}</strong>
-        </p>
+        <div class="menu__cabecera-texto">
+          <p class="menu__titulo">Secciones</p>
+          <p class="menu__ubicacion">
+            Ahora en
+            <strong>{{ etiquetaActiva() }}</strong>
+          </p>
+        </div>
+        <button type="button" class="menu__cerrar" (click)="cerrarMenu()">
+          Cerrar
+        </button>
       </div>
       <ul class="menu__lista" aria-labelledby="titulo-menu-movil">
         @for (seccion of secciones; track seccion.id) {
