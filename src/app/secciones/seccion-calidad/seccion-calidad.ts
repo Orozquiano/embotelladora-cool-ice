@@ -1,15 +1,9 @@
 import { Component } from '@angular/core';
-import {
-  camposPorCompletar,
-  conservacionBotella,
-  conservacionBotellon,
-  datosDeEtiqueta,
-  textoPublicado,
-} from '../../contenido/sitio';
+import { etapasProceso } from '../../contenido/sitio';
 
 /**
  * @class SeccionCalidad
- * @description Explica lo que las etiquetas declaran y cómo conservar el producto.
+ * @description Presenta el proceso de purificación en cuatro etapas.
  */
 @Component({
   selector: 'app-seccion-calidad',
@@ -17,22 +11,7 @@ import {
 })
 export class SeccionCalidad {
   /**
-   * @description Datos impresos en las etiquetas.
+   * @description Etapas numeradas del proceso.
    */
-  protected readonly datos = datosDeEtiqueta;
-
-  /**
-   * @description Conservación del botellón.
-   */
-  protected readonly conservacionBotellon = conservacionBotellon;
-
-  /**
-   * @description Conservación de la botella.
-   */
-  protected readonly conservacionBotella = conservacionBotella;
-
-  /**
-   * @description Etapas del tratamiento, si la empresa ya las redactó.
-   */
-  protected readonly etapas = textoPublicado(camposPorCompletar.etapasTratamiento);
+  protected readonly etapas = etapasProceso;
 }

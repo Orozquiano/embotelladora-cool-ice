@@ -5,7 +5,6 @@ import {
   correo,
   lineasTelefonicas,
   logo,
-  lugar,
   nombreEmpresa,
   secciones,
 } from '../../contenido/sitio';
@@ -24,11 +23,6 @@ export class Pie {
    * @description Nombre legal de la embotelladora.
    */
   protected readonly empresa = nombreEmpresa;
-
-  /**
-   * @description Lugar publicado en la etiqueta.
-   */
-  protected readonly lugar = lugar;
 
   /**
    * @description Secciones repetidas al final de la página.

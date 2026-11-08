@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import {
-  camposPorCompletar,
   correo,
-  lineasTelefonicas,
+  enlaceWhatsapp,
+  lineaPedidos,
   lugar,
-  textoPublicado,
+  nombreEmpresa,
 } from '../../contenido/sitio';
 
 /**
  * @class SeccionContacto
- * @description Muestra los canales reales de contacto, sin un formulario de envío.
+ * @description Canales de contacto y formulario que abre WhatsApp con el pedido.
  */
 @Component({
   selector: 'app-seccion-contacto',
@@ -17,9 +17,9 @@ import {
 })
 export class SeccionContacto {
   /**
-   * @description Teléfonos publicados.
+   * @description WhatsApp de pedidos.
    */
-  protected readonly lineas = lineasTelefonicas;
+  protected readonly whatsappBase = lineaPedidos;
 
   /**
    * @description Correo de la embotelladora.
@@ -27,22 +27,53 @@ export class SeccionContacto {
   protected readonly correo = correo;
 
   /**
-   * @description Lugar que ya figura en la etiqueta.
+   * @description Lugar publicado.
    */
   protected readonly lugar = lugar;
 
   /**
-   * @description Dirección exacta, si ya fue diligenciada.
+   * @description Nombre legal.
    */
-  protected readonly direccion = textoPublicado(camposPorCompletar.direccionExacta);
+  protected readonly empresa = nombreEmpresa;
 
   /**
-   * @description Horario, si ya fue diligenciado.
+   * @description Nombre del solicitante.
    */
-  protected readonly horario = textoPublicado(camposPorCompletar.horario);
+  protected readonly nombre = signal('');
 
   /**
-   * @description Cobertura del domicilio, si ya fue diligenciada.
+   * @description Teléfono del solicitante.
    */
-  protected readonly cobertura = textoPublicado(camposPorCompletar.cobertura);
+  protected readonly telefono = signal('');
+
+  /**
+   * @description Dirección de entrega.
+   */
+  protected readonly direccion = signal('');
+
+  /**
+   * @description Cantidad de bidones.
+   */
+  protected readonly cantidad = signal('1');
+
+  /**
+   * @description Mensaje opcional.
+   */
+  protected readonly mensaje = signal('');
+
+  /**
+   * @description Enlace de WhatsApp armado con los datos del formulario.
+   */
+  protected readonly enlacePedido = computed(() => {
+    const partes = [
+      'Hola, quiero solicitar un pedido Cool Ice.',
+      this.nombre().trim() ? `Nombre: ${this.nombre().trim()}` : null,
+      this.telefono().trim() ? `WhatsApp/Teléfono: ${this.telefono().trim()}` : null,
+      this.direccion().trim() ? `Dirección: ${this.direccion().trim()}` : null,
+      `Cantidad de bidones 18,9 L: ${this.cantidad().trim() || '1'}`,
+      this.mensaje().trim() ? `Mensaje: ${this.mensaje().trim()}` : null,
+    ].filter((parte): parte is string => !!parte);
+
+    return enlaceWhatsapp('3216820822', partes.join('\n'));
+  });
 }

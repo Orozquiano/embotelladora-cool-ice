@@ -1,12 +1,17 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { beneficios, imagenHero, lineaPedidos, nombreEmpresa } from '../../contenido/sitio';
+import {
+  estadisticasHero,
+  imagenHero,
+  lineaPedidos,
+  nombreEmpresa,
+} from '../../contenido/sitio';
 import { ImagenEsqueleto } from '../../directivas/imagen-esqueleto';
 
 /**
  * @class SeccionInicio
- * @description Apertura de la página: propuesta de la empresa y producto principal.
+ * @description Apertura de la página según el layout del Figma.
  */
 @Component({
   selector: 'app-seccion-inicio',
@@ -20,7 +25,7 @@ export class SeccionInicio {
   protected readonly empresa = nombreEmpresa;
 
   /**
-   * @description Fotografía principal del botellón.
+   * @description Marca visual del hero.
    */
   protected readonly imagen = imagenHero;
 
@@ -30,7 +35,12 @@ export class SeccionInicio {
   protected readonly whatsapp = lineaPedidos.whatsapp;
 
   /**
-   * @description Tres mensajes de valor de la propuesta visual.
+   * @description Teléfono visible en el CTA principal.
    */
-  protected readonly beneficios = beneficios;
+  protected readonly telefono = lineaPedidos.visible;
+
+  /**
+   * @description Estadísticas bajo los botones del hero.
+   */
+  protected readonly estadisticas = estadisticasHero;
 }

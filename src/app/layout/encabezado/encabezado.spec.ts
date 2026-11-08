@@ -37,7 +37,7 @@ describe('Encabezado', () => {
       (enlace: HTMLAnchorElement) => enlace.getAttribute('href') ?? '',
     );
 
-    expect(enlaces.some((href) => href.includes('productos'))).toBe(true);
+    expect(enlaces.some((href) => href.includes('producto'))).toBe(true);
     expect(enlaces.some((href) => href.includes('contacto'))).toBe(true);
     expect(enlaces.some((href) => href.startsWith('https://wa.me/573216820822'))).toBe(true);
   });
@@ -58,5 +58,28 @@ describe('Encabezado', () => {
     fixture.detectChanges();
     expect(menu.abierto()).toBe(false);
     expect(boton.getAttribute('aria-expanded')).toBe('false');
+  });
+
+  it('cierra el menú con el botón Cerrar del panel', async () => {
+    const fixture = TestBed.createComponent(Encabezado);
+    await fixture.whenStable();
+    const botonAbrir = fixture.nativeElement.querySelector(
+      '.encabezado__abrir',
+    ) as HTMLButtonElement;
+    const menu = TestBed.inject(MenuMovil);
+
+    botonAbrir.click();
+    fixture.detectChanges();
+    expect(menu.abierto()).toBe(true);
+
+    const botonCerrar = fixture.nativeElement.querySelector(
+      '.menu__cerrar',
+    ) as HTMLButtonElement;
+    expect(botonCerrar).toBeTruthy();
+    expect(botonCerrar.textContent?.trim()).toBe('Cerrar');
+
+    botonCerrar.click();
+    fixture.detectChanges();
+    expect(menu.abierto()).toBe(false);
   });
 });

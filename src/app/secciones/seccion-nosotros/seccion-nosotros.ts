@@ -1,68 +1,22 @@
-import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
-import {
-  camposPorCompletar,
-  imagenReparto,
-  lineaDispensadores,
-  lineaPedidos,
-  lugar,
-  nombreEmpresa,
-  textoPublicado,
-} from '../../contenido/sitio';
-import { ImagenEsqueleto } from '../../directivas/imagen-esqueleto';
+import { datosOrigen, datosServicio } from '../../contenido/sitio';
 
 /**
  * @class SeccionNosotros
- * @description Presenta la embotelladora con los datos que ya están publicados en sus piezas.
+ * @description Servicio a domicilio y cobertura de origen.
  */
 @Component({
   selector: 'app-seccion-nosotros',
-  imports: [NgOptimizedImage, ImagenEsqueleto],
   templateUrl: './seccion-nosotros.html',
 })
 export class SeccionNosotros {
   /**
-   * @description Nombre legal.
+   * @description Celdas del panel de servicio.
    */
-  protected readonly empresa = nombreEmpresa;
+  protected readonly servicio = datosServicio;
 
   /**
-   * @description Municipio y departamento.
+   * @description Filas de cobertura y origen.
    */
-  protected readonly lugar = lugar;
-
-  /**
-   * @description Ilustración del reparto.
-   */
-  protected readonly imagen = imagenReparto;
-
-  /**
-   * @description Número de pedidos visible.
-   */
-  protected readonly telefonoPedidos = lineaPedidos.visible;
-
-  /**
-   * @description Número de dispensadores visible.
-   */
-  protected readonly telefonoDispensadores = lineaDispensadores.visible;
-
-  /**
-   * @description Cobertura, si ya fue redactada.
-   */
-  protected readonly cobertura = textoPublicado(camposPorCompletar.cobertura);
-
-  /**
-   * @description Historia redactada por la empresa, si ya existe.
-   */
-  protected readonly historia = textoPublicado(camposPorCompletar.historia);
-
-  /**
-   * @description Valores redactados por la empresa, si ya existen.
-   */
-  protected readonly valores = textoPublicado(camposPorCompletar.valores);
-
-  /**
-   * @description NIT, si ya fue diligenciado.
-   */
-  protected readonly nit = textoPublicado(camposPorCompletar.nit);
+  protected readonly origen = datosOrigen;
 }

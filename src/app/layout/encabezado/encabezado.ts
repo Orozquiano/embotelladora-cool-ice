@@ -2,6 +2,7 @@ import { NgOptimizedImage } from '@angular/common';
 import {
   afterNextRender,
   Component,
+  computed,
   DestroyRef,
   DOCUMENT,
   effect,
@@ -61,6 +62,17 @@ export class Encabezado {
   protected readonly seccionActiva = signal('inicio');
 
   /**
+   * @description Etiqueta legible de la sección activa, para el título del menú móvil.
+   */
+  protected readonly etiquetaActiva = computed(() => {
+    const id = this.seccionActiva();
+    if (id === 'inicio') {
+      return 'Inicio';
+    }
+    return this.secciones.find((seccion) => seccion.id === id)?.etiqueta ?? 'Secciones';
+  });
+
+  /**
    * @description Botón que abre el menú, para devolverle el foco al cerrarlo.
    */
   private readonly botonMenu = viewChild<ElementRef<HTMLButtonElement>>('botonMenu');
@@ -100,9 +112,24 @@ export class Encabezado {
    */
   private temporizadorSincronizacion: ReturnType<typeof setTimeout> | null = null;
 
+  /**
+   * @description Posición de scroll guardada al bloquear el fondo con el menú abierto.
+   */
+  private desplazamientoBloqueado = 0;
+
+  /**
+   * @description Indica si el fondo ya quedó bloqueado con position fixed.
+   */
+  private fondoBloqueado = false;
+
+  /**
+   * @description Si es true, al cerrar el menú no se restaura el scroll previo (el router irá al ancla).
+   */
+  private omitirRestaurarScroll = false;
+
   constructor() {
     effect(() => {
-      this.documento.body.style.overflow = this.menuAbierto() ? 'hidden' : '';
+      this.bloquearDesplazamientoFondo(this.menuAbierto());
     });
 
     this.enrutador.events
@@ -126,7 +153,7 @@ export class Encabezado {
       if (this.temporizadorSincronizacion) {
         clearTimeout(this.temporizadorSincronizacion);
       }
-      this.documento.body.style.overflow = '';
+      this.bloquearDesplazamientoFondo(false);
     });
   }
 
@@ -144,9 +171,14 @@ export class Encabezado {
 
   /**
    * @function cerrarMenu
-   * @description Cierra el menú después de elegir una sección.
+   * @description Cierra el menú. Si se navega a una sección, no restaura el scroll previo.
+   * @param haciaAncla Indica que el clic irá a un fragmento de la página.
    */
-  protected cerrarMenu(): void {
+  protected cerrarMenu(haciaAncla = false): void {
+    if (haciaAncla && this.fondoBloqueado) {
+      this.omitirRestaurarScroll = true;
+      this.bloquearDesplazamientoFondo(false);
+    }
     this.menuMovil.cerrar();
   }
 
@@ -324,6 +356,75 @@ export class Encabezado {
   }
 
   /**
+   * @function bloquearDesplazamientoFondo
+   * @description Congela el scroll de la página detrás del menú móvil, también en iOS.
+   * @param abierto Indica si el menú quedó abierto.
+   */
+  private bloquearDesplazamientoFondo(abierto: boolean): void {
+    const html = this.documento.documentElement;
+    const cuerpo = this.documento.body;
+    const vista = this.documento.defaultView;
+
+    if (abierto) {
+      if (this.fondoBloqueado) {
+        return;
+      }
+
+      this.desplazamientoBloqueado = vista?.scrollY ?? 0;
+      this.fondoBloqueado = true;
+      html.classList.add('menu-movil-abierto');
+      cuerpo.classList.add('menu-movil-abierto');
+      cuerpo.style.position = 'fixed';
+      cuerpo.style.top = `-${this.desplazamientoBloqueado}px`;
+      cuerpo.style.left = '0';
+      cuerpo.style.right = '0';
+      cuerpo.style.width = '100%';
+      cuerpo.style.overflow = 'hidden';
+      html.style.overflow = 'hidden';
+      this.documento.addEventListener('touchmove', this.impedirToqueFondo, {
+        passive: false,
+      });
+      return;
+    }
+
+    if (!this.fondoBloqueado) {
+      return;
+    }
+
+    this.documento.removeEventListener('touchmove', this.impedirToqueFondo);
+    html.classList.remove('menu-movil-abierto');
+    cuerpo.classList.remove('menu-movil-abierto');
+    cuerpo.style.position = '';
+    cuerpo.style.top = '';
+    cuerpo.style.left = '';
+    cuerpo.style.right = '';
+    cuerpo.style.width = '';
+    cuerpo.style.overflow = '';
+    html.style.overflow = '';
+    this.fondoBloqueado = false;
+
+    const restaurar = !this.omitirRestaurarScroll;
+    this.omitirRestaurarScroll = false;
+    if (restaurar) {
+      vista?.scrollTo({ top: this.desplazamientoBloqueado, behavior: 'instant' });
+    }
+  }
+
+  /**
+   * @function impedirToqueFondo
+   * @description Evita que el gesto táctil mueva la página fuera del panel del menú.
+   * @param evento Evento táctil del documento.
+   */
+  private readonly impedirToqueFondo = (evento: TouchEvent): void => {
+    const objetivo = evento.target as Node | null;
+    const panel = this.anfitrion.nativeElement.querySelector('.menu__panel');
+    if (panel && objetivo && panel.contains(objetivo)) {
+      return;
+    }
+    evento.preventDefault();
+  };
+
+  /**
    * @function escucharAncho
    * @description Cierra el menú cuando la barra horizontal vuelve a caber.
    */
@@ -352,7 +453,7 @@ export class Encabezado {
     const raiz = this.anfitrion.nativeElement as HTMLElement;
     return [
       ...(raiz.querySelectorAll(
-        '.encabezado__abrir, .menu a[href], .menu button:not([disabled])',
+        '.encabezado__abrir, .menu--abierto .menu__cerrar, .menu--abierto a[href], .menu--abierto button:not([disabled])',
       ) as NodeListOf<HTMLElement>),
     ].filter((elemento) => {
       if (elemento.getAttribute('aria-hidden') === 'true') {
