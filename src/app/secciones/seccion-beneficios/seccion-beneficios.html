@@ -1,0 +1,22 @@
+<section id="beneficios" class="seccion" aria-labelledby="titulo-beneficios" tabindex="-1">
+  <div class="contenido">
+    <header class="seccion__cabecera seccion__cabecera--centrada">
+      <p class="seccion__marca">Por qué Cool ICE</p>
+      <h2 id="titulo-beneficios">Pureza que se siente en cada vaso</h2>
+      <p class="prosa">
+        Diseñamos nuestro proceso para familias que valoran el sabor limpio, la seguridad y la
+        practicidad del servicio a domicilio.
+      </p>
+    </header>
+
+    <div class="rejilla rejilla--tres">
+      @for (beneficio of beneficios; track beneficio.id) {
+        <article class="tarjeta tarjeta--beneficio">
+          <span class="tarjeta__marca" aria-hidden="true">{{ beneficio.marca }}</span>
+          <h3 class="tarjeta__titulo">{{ beneficio.titulo }}</h3>
+          <p>{{ beneficio.texto }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>

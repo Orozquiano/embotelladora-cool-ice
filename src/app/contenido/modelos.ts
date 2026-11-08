@@ -25,52 +25,6 @@ export interface ImagenPublica {
 }
 
 /**
- * @interface Producto
- * @description Presentación comercial que se muestra en la página.
- */
-export interface Producto {
-  /**
-   * @description Identificador estable para la lista.
-   */
-  id: string;
-
-  /**
-   * @description Nombre corto de la presentación.
-   */
-  nombre: string;
-
-  /**
-   * @description Formato o capacidad visible junto al nombre.
-   */
-  presentacion: string;
-
-  /**
-   * @description Descripción breve, basada en el material de la marca.
-   */
-  descripcion: string;
-
-  /**
-   * @description Datos puntuales de esa presentación.
-   */
-  detalles: readonly string[];
-
-  /**
-   * @description Fotografía o etiqueta de la presentación.
-   */
-  imagen: ImagenPublica;
-
-  /**
-   * @description Orientación de la imagen para acomodar el texto.
-   */
-  orientacion: 'vertical' | 'horizontal';
-
-  /**
-   * @description Mensaje inicial de WhatsApp para consultar esta presentación.
-   */
-  mensajeWhatsapp: string;
-}
-
-/**
  * @interface LineaTelefonica
  * @description Teléfono comercial con acceso a llamada y WhatsApp.
  */
@@ -128,22 +82,6 @@ export interface SeccionNavegacion {
 }
 
 /**
- * @interface DatoEtiqueta
- * @description Dato declarado en las etiquetas de Cool Ice.
- */
-export interface DatoEtiqueta {
-  /**
-   * @description Nombre del dato.
-   */
-  titulo: string;
-
-  /**
-   * @description Texto que se puede afirmar con el material disponible.
-   */
-  texto: string;
-}
-
-/**
  * @interface Beneficio
  * @description Mensaje breve de valor, alineado con la propuesta visual.
  */
@@ -154,6 +92,11 @@ export interface Beneficio {
   id: string;
 
   /**
+   * @description Marca corta para el ícono del beneficio.
+   */
+  marca: string;
+
+  /**
    * @description Título corto del beneficio.
    */
   titulo: string;
@@ -162,4 +105,88 @@ export interface Beneficio {
    * @description Texto respaldado por el material disponible.
    */
   texto: string;
+}
+
+/**
+ * @interface EtapaProceso
+ * @description Etapa numerada del proceso de tratamiento.
+ */
+export interface EtapaProceso {
+  /**
+   * @description Número visible de la etapa.
+   */
+  numero: string;
+
+  /**
+   * @description Nombre de la etapa.
+   */
+  titulo: string;
+
+  /**
+   * @description Descripción breve de la etapa.
+   */
+  texto: string;
+}
+
+/**
+ * @interface PilarConfianza
+ * @description Argumento de confianza mostrado en la sección correspondiente.
+ */
+export interface PilarConfianza {
+  /**
+   * @description Identificador estable.
+   */
+  id: string;
+
+  /**
+   * @description Marca corta para el ícono.
+   */
+  marca: string;
+
+  /**
+   * @description Título del pilar.
+   */
+  titulo: string;
+
+  /**
+   * @description Texto de apoyo.
+   */
+  texto: string;
+}
+
+/**
+ * @interface DatoServicio
+ * @description Celda del panel de servicio a domicilio.
+ */
+export interface DatoServicio {
+  /**
+   * @description Título de la celda.
+   */
+  titulo: string;
+
+  /**
+   * @description Detalle visible bajo el título.
+   */
+  detalle: string;
+}
+
+/**
+ * @interface DatoOrigen
+ * @description Fila de cobertura u origen.
+ */
+export interface DatoOrigen {
+  /**
+   * @description Marca corta para el ícono.
+   */
+  marca: string;
+
+  /**
+   * @description Título de la fila.
+   */
+  titulo: string;
+
+  /**
+   * @description Detalle de la fila.
+   */
+  detalle: string;
 }

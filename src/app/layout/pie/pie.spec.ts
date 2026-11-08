@@ -17,6 +17,6 @@ describe('Pie', () => {
 
     expect(compiled.textContent).toContain('Embotelladora Cool Ice SAS');
     expect(compiled.querySelector('a[href^="mailto:embotelladoracoolicesas@gmail.com"]')).toBeTruthy();
-    expect(compiled.querySelector('a[href*="calidad"]')).toBeTruthy();
+    expect(compiled.querySelector('a[href*="proceso"]')).toBeTruthy();
   });
 });

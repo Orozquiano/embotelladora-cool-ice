@@ -1,22 +1,36 @@
 <section id="inicio" class="seccion seccion--apertura" aria-labelledby="titulo-inicio" tabindex="-1">
   <div class="contenido hero">
     <div class="hero__texto">
-      <h1 id="titulo-inicio">Agua tratada, fresca y confiable para tu familia</h1>
+      <p class="hero__badge">Industria colombiana · Miranda, Cauca</p>
+      <h1 id="titulo-inicio">
+        Agua pura,
+        <span class="hero__acento">fresca y confiable</span>
+        para tu familia
+      </h1>
       <p class="prosa">
-        {{ empresa }} envasa botellones de 18,9 litros y botellas de 5 litros en Miranda, Cauca. Pide
-        por WhatsApp y coordina el domicilio.
+        En {{ empresa }} tratamos y purificamos cada gota con un proceso estricto para ofrecerte
+        máxima pureza, gran sabor y calidad que se nota en casa.
       </p>
       <div class="acciones">
         <a class="boton boton--whatsapp" [href]="whatsapp" target="_blank" rel="noopener noreferrer">
-          Pedir por WhatsApp
+          Pedir ahora — {{ telefono }}
           <span class="solo-lectores">, se abre en una pestaña nueva</span>
         </a>
-        <a class="boton boton--secundario" routerLink="/" fragment="productos">Ver presentaciones</a>
+        <a class="boton boton--secundario" routerLink="/" fragment="producto">Ver producto 18,9 L</a>
       </div>
+      <dl class="hero__stats">
+        @for (dato of estadisticas; track dato.valor) {
+          <div>
+            <dt>{{ dato.valor }}</dt>
+            <dd>{{ dato.detalle }}</dd>
+          </div>
+        }
+      </dl>
     </div>
 
     <figure class="hero__figura">
-      <div class="hero__marco">
+      <div class="hero__tarjeta">
+        <p class="hero__chip">Marca Cool ICE</p>
         <img
           appImagenEsqueleto
           [ngSrc]="imagen.ruta"
@@ -25,16 +39,8 @@
           [alt]="imagen.textoAlternativo"
           priority
         />
+        <p class="hero__nota">Osito polar · Agua pura</p>
       </div>
     </figure>
-  </div>
-
-  <div class="contenido beneficios">
-    @for (beneficio of beneficios; track beneficio.id) {
-      <article class="tarjeta">
-        <h2 class="tarjeta__titulo">{{ beneficio.titulo }}</h2>
-        <p>{{ beneficio.texto }}</p>
-      </article>
-    }
   </div>
 </section>

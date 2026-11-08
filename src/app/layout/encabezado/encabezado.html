@@ -1,4 +1,4 @@
-<header class="encabezado">
+<header class="encabezado" [class.encabezado--menu-abierto]="menuAbierto()">
   <div class="encabezado__barra">
     <a
       class="encabezado__marca"
@@ -7,7 +7,7 @@
       aria-label="Cool Ice, ir al inicio"
       [attr.tabindex]="menuAbierto() ? -1 : null"
       [attr.aria-hidden]="menuAbierto() ? 'true' : null"
-      (click)="cerrarMenu()"
+      (click)="cerrarMenu(true)"
     >
       <img
         class="encabezado__logo"
@@ -34,9 +34,26 @@
     </button>
   </div>
 
-  <nav id="menu-principal" class="menu" [class.menu--abierto]="menuAbierto()" aria-label="Secciones">
-    <div class="menu__panel">
-      <p class="menu__titulo" id="titulo-menu-movil">Secciones</p>
+  <nav
+    id="menu-principal"
+    class="menu"
+    [class.menu--abierto]="menuAbierto()"
+    aria-label="Secciones"
+    (click)="cerrarMenu()"
+  >
+    <div class="menu__panel" (click)="$event.stopPropagation()">
+      <div class="menu__cabecera" id="titulo-menu-movil">
+        <div class="menu__cabecera-texto">
+          <p class="menu__titulo">Secciones</p>
+          <p class="menu__ubicacion">
+            Ahora en
+            <strong>{{ etiquetaActiva() }}</strong>
+          </p>
+        </div>
+        <button type="button" class="menu__cerrar" (click)="cerrarMenu()">
+          Cerrar
+        </button>
+      </div>
       <ul class="menu__lista" aria-labelledby="titulo-menu-movil">
         @for (seccion of secciones; track seccion.id) {
           <li>
@@ -45,9 +62,12 @@
               routerLink="/"
               [fragment]="seccion.id"
               [attr.aria-current]="seccionActiva() === seccion.id ? 'location' : null"
-              (click)="cerrarMenu()"
+              (click)="cerrarMenu(true)"
             >
-              {{ seccion.etiqueta }}
+              <span>{{ seccion.etiqueta }}</span>
+              @if (seccionActiva() === seccion.id) {
+                <span class="menu__estado">Aquí</span>
+              }
             </a>
           </li>
         }
