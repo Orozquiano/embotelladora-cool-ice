@@ -47,7 +47,7 @@ body.menu-movil-abierto .encabezado,
   padding-block: var(--espacio-seccion);
   /* Compensa el padding-top para que el ancla deje el título bajo el header, no un hueco vacío. */
   scroll-margin-top: calc(
-    var(--alto-encabezado) + env(safe-area-inset-top, 0px) + 1rem -
+    var(--alto-encabezado) + env(safe-area-inset-top, 0px) + 0.75rem -
       var(--espacio-seccion)
   );
 }
@@ -67,6 +67,8 @@ main:focus-visible {
   background: linear-gradient(180deg, #f5fbff 0%, #e8f4fc 55%, #d6eeff 100%);
   padding-top: clamp(1.1rem, 2.8vh, 2rem);
   padding-bottom: clamp(2.5rem, 7vh, 4.5rem);
+  /* El hero es el tope de la página: no desplazar bajo el header al cargar /#inicio. */
+  scroll-margin-top: 0;
 }
 
 .seccion__cabecera {
