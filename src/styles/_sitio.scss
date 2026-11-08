@@ -65,7 +65,8 @@ main:focus-visible {
 
 .seccion--apertura {
   background: linear-gradient(180deg, #f5fbff 0%, #e8f4fc 55%, #d6eeff 100%);
-  padding-block: clamp(3rem, 7vh, 4.5rem);
+  padding-top: clamp(1.1rem, 2.8vh, 2rem);
+  padding-bottom: clamp(2.5rem, 7vh, 4.5rem);
 }
 
 .seccion__cabecera {
@@ -1016,6 +1017,11 @@ main:focus-visible {
 @media (max-width: 59.99rem) {
   :root {
     --alto-encabezado: 4rem;
+  }
+
+  .seccion--apertura {
+    padding-top: 0.85rem;
+    padding-bottom: clamp(2rem, 6vh, 3.25rem);
   }
 
   .encabezado__barra {
