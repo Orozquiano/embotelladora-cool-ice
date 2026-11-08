@@ -1,10 +1,12 @@
 import { Component, computed, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import {
   correo,
   enlaceWhatsapp,
   lineaPedidos,
   lugar,
   nombreEmpresa,
+  registroInvima,
 } from '../../contenido/sitio';
 
 /**
@@ -13,6 +15,7 @@ import {
  */
 @Component({
   selector: 'app-seccion-contacto',
+  imports: [RouterLink],
   templateUrl: './seccion-contacto.html',
 })
 export class SeccionContacto {
@@ -35,6 +38,11 @@ export class SeccionContacto {
    * @description Nombre legal.
    */
   protected readonly empresa = nombreEmpresa;
+
+  /**
+   * @description Registro sanitario INVIMA publicado en etiqueta.
+   */
+  protected readonly registroInvima = registroInvima;
 
   /**
    * @description Nombre del solicitante.

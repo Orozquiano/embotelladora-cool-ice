@@ -58,6 +58,7 @@ Los campos de `camposPorCompletar` aceptan texto. Si están vacíos, la interfaz
 No están confirmados en las etiquetas ni en las piezas revisadas, así que no se inventaron en la web:
 
 - Dirección exacta en Miranda, Cauca.
+- Perfil de negocio en Google Maps (la web muestra “Próximamente en Google Maps”).
 - Horario de atención.
 - Municipios o zona de cobertura del domicilio.
 - Etapas reales del tratamiento del agua (la propuesta de Figma sugiere cuatro pasos; no se publican hasta confirmarlos).

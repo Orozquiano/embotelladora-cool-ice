@@ -127,9 +127,38 @@ export class Encabezado {
    */
   private omitirRestaurarScroll = false;
 
+  /**
+   * @description Espera a que termine la animación de cierre antes de devolver el scroll.
+   */
+  private temporizadorDesbloqueo: ReturnType<typeof setTimeout> | null = null;
+
+  /**
+   * @description Duración de la animación de cierre del menú, alineada con el CSS.
+   */
+  private readonly duracionCierreMenu = 780;
+
   constructor() {
     effect(() => {
-      this.bloquearDesplazamientoFondo(this.menuAbierto());
+      const abierto = this.menuAbierto();
+      if (this.temporizadorDesbloqueo) {
+        clearTimeout(this.temporizadorDesbloqueo);
+        this.temporizadorDesbloqueo = null;
+      }
+
+      if (abierto) {
+        this.bloquearDesplazamientoFondo(true);
+        return;
+      }
+
+      if (!this.fondoBloqueado) {
+        return;
+      }
+
+      // Espera la animación en reversa antes de devolver el scrollbar.
+      this.temporizadorDesbloqueo = setTimeout(() => {
+        this.bloquearDesplazamientoFondo(false);
+        this.temporizadorDesbloqueo = null;
+      }, this.duracionCierreMenu);
     });
 
     this.enrutador.events
@@ -153,6 +182,9 @@ export class Encabezado {
       if (this.temporizadorSincronizacion) {
         clearTimeout(this.temporizadorSincronizacion);
       }
+      if (this.temporizadorDesbloqueo) {
+        clearTimeout(this.temporizadorDesbloqueo);
+      }
       this.bloquearDesplazamientoFondo(false);
     });
   }
@@ -175,8 +207,12 @@ export class Encabezado {
    * @param haciaAncla Indica que el clic irá a un fragmento de la página.
    */
   protected cerrarMenu(haciaAncla = false): void {
-    if (haciaAncla && this.fondoBloqueado) {
+    if (haciaAncla) {
       this.omitirRestaurarScroll = true;
+      if (this.temporizadorDesbloqueo) {
+        clearTimeout(this.temporizadorDesbloqueo);
+        this.temporizadorDesbloqueo = null;
+      }
       this.bloquearDesplazamientoFondo(false);
     }
     this.menuMovil.cerrar();
@@ -358,6 +394,7 @@ export class Encabezado {
   /**
    * @function bloquearDesplazamientoFondo
    * @description Congela el scroll de la página detrás del menú móvil, también en iOS.
+   * Compensa el ancho del scrollbar para que no se muevan iconos fijos en escritorio.
    * @param abierto Indica si el menú quedó abierto.
    */
   private bloquearDesplazamientoFondo(abierto: boolean): void {
@@ -372,6 +409,7 @@ export class Encabezado {
 
       this.desplazamientoBloqueado = vista?.scrollY ?? 0;
       this.fondoBloqueado = true;
+      const compensacion = Math.max(0, (vista?.innerWidth ?? 0) - html.clientWidth);
       html.classList.add('menu-movil-abierto');
       cuerpo.classList.add('menu-movil-abierto');
       cuerpo.style.position = 'fixed';
@@ -381,6 +419,10 @@ export class Encabezado {
       cuerpo.style.width = '100%';
       cuerpo.style.overflow = 'hidden';
       html.style.overflow = 'hidden';
+      if (compensacion > 0) {
+        cuerpo.style.paddingRight = `${compensacion}px`;
+        html.style.setProperty('--compensacion-scrollbar', `${compensacion}px`);
+      }
       this.documento.addEventListener('touchmove', this.impedirToqueFondo, {
         passive: false,
       });
@@ -400,7 +442,9 @@ export class Encabezado {
     cuerpo.style.right = '';
     cuerpo.style.width = '';
     cuerpo.style.overflow = '';
+    cuerpo.style.paddingRight = '';
     html.style.overflow = '';
+    html.style.removeProperty('--compensacion-scrollbar');
     this.fondoBloqueado = false;
 
     const restaurar = !this.omitirRestaurarScroll;

@@ -101,7 +101,7 @@ export const lineasTelefonicas: readonly LineaTelefonica[] = [lineaPedidos, line
  */
 export const correo = {
   visible: 'embotelladoracoolicesas@gmail.com',
-  href: 'mailto:embotelladoracoolicesas@gmail.com?subject=Pedido%20Cool%20Ice',
+  href: 'mailto:embotelladoracoolicesas@gmail.com?subject=Pedido%20Cool%20Ice&body=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Cool%20Ice.',
 };
 
 /**

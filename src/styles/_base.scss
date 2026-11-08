@@ -6,6 +6,8 @@
 
 html {
   color-scheme: light;
+  /* Reserva el espacio del scroll para que no salten iconos al abrir/cerrar el menú. */
+  scrollbar-gutter: stable;
 }
 
 @media (prefers-reduced-motion: no-preference) {
