@@ -7,16 +7,14 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: github-pages
   cancel-in-progress: true
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -35,20 +33,14 @@ jobs:
         run: npx ng build --configuration=github-pages
 
       - name: Prepare SPA fallback
-        run: cp dist/embotelladora-cool-ice/browser/index.html dist/embotelladora-cool-ice/browser/404.html
+        run: |
+          cp dist/embotelladora-cool-ice/browser/index.html dist/embotelladora-cool-ice/browser/404.html
+          touch dist/embotelladora-cool-ice/browser/.nojekyll
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: dist/embotelladora-cool-ice/browser
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist/embotelladora-cool-ice/browser
+          force_orphan: true
+          commit_message: 'Deploy site from master'
