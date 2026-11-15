@@ -1099,6 +1099,9 @@ main:focus-visible {
 .pie {
   background: var(--color-pie);
   color: #e7eef6;
+  /* Extiende el color del pie al overscroll inferior (evita franja blanca). */
+  box-shadow: 0 50vh 0 50vh var(--color-pie);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 .pie a {
@@ -1183,6 +1186,15 @@ main:focus-visible {
     padding-bottom: clamp(2rem, 6vh, 3.25rem);
   }
 
+  /* Fijo en móvil: el menú no desaparece al llegar al pie ni en el rebote de iOS. */
+  app-encabezado {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+  }
+
   .encabezado__barra {
     width: min(100% - 1.5rem, var(--ancho));
     padding-block: 0.35rem;
@@ -1196,6 +1208,7 @@ main:focus-visible {
   }
 
   main {
+    padding-top: calc(var(--alto-encabezado) + env(safe-area-inset-top, 0px));
     padding-bottom: 5.5rem;
   }
 
