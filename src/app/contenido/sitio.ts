@@ -257,7 +257,7 @@ export const datosServicio: readonly DatoServicio[] = [
  */
 export const datosOrigen: readonly DatoOrigen[] = [
   { marca: 'Sitio', titulo: 'Miranda, Cauca', detalle: 'Planta embotelladora' },
-  { marca: 'Origen', titulo: 'Industria colombiana', detalle: 'Hecho en Colombia' },
+  { marca: 'Origen', titulo: 'Industria Colombiana', detalle: 'Hecho en Colombia' },
   {
     marca: 'Ruta',
     titulo: 'Entrega local',
@@ -278,7 +278,7 @@ export const pilaresConfianza: readonly PilarConfianza[] = [
   {
     id: 'colombia',
     marca: 'CO',
-    titulo: 'Industria colombiana',
+    titulo: 'Industria Colombiana',
     texto: 'Producido en Miranda, Cauca, con orgullo local.',
   },
   {
