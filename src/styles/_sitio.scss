@@ -13,6 +13,10 @@ app-no-encontrada {
   display: block;
 }
 
+app-pie {
+  background: var(--color-pie);
+}
+
 app-encabezado {
   position: sticky;
   top: 0;
@@ -1099,8 +1103,8 @@ main:focus-visible {
 .pie {
   background: var(--color-pie);
   color: #e7eef6;
-  /* Extiende el color del pie al overscroll inferior (evita franja blanca). */
-  box-shadow: 0 50vh 0 50vh var(--color-pie);
+  /* Extiende el color del pie mucho más allá del documento (rebote iOS). */
+  box-shadow: 0 100vh 0 100vh var(--color-pie);
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
@@ -1192,7 +1196,11 @@ main:focus-visible {
     top: 0;
     right: 0;
     left: 0;
+    z-index: 40;
     width: 100%;
+    /* Mantiene el header en capa propia durante el rubber-band de Safari. */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
 
   .encabezado__barra {

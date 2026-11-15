@@ -8,6 +8,11 @@ html {
   color-scheme: light;
   /* Reserva el espacio del scroll para que no salten iconos al abrir/cerrar el menú. */
   scrollbar-gutter: stable;
+  /*
+   * iOS pinta el rebote con el fondo de html. Usamos el color del pie para que
+   * el overscroll inferior no salga blanco; el body tapa el resto en blanco.
+   */
+  background-color: var(--color-pie);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -29,7 +34,7 @@ body.menu-movil-abierto {
 }
 
 body {
-  min-height: 100%;
+  min-height: 100dvh;
   overflow-x: hidden;
   background: var(--color-fondo);
   color: var(--color-texto);
