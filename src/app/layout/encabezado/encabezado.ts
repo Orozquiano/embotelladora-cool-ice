@@ -169,6 +169,10 @@ export class Encabezado {
       .subscribe(() => {
         this.actualizarDesdeFragmento();
         this.programarObservador();
+        if (this.forzarTopeAlInicio) {
+          this.llevarAlTope();
+          setTimeout(() => this.llevarAlTope(true), 50);
+        }
       });
 
     afterNextRender(() => {
@@ -216,6 +220,41 @@ export class Encabezado {
       this.bloquearDesplazamientoFondo(false);
     }
     this.menuMovil.cerrar();
+  }
+
+  /**
+   * @description Tras ir al logo, fuerza scroll al tope cuando Angular restaura otra posición.
+   */
+  private forzarTopeAlInicio = false;
+
+  /**
+   * @function irAlInicio
+   * @description Vuelve al tope de la página sin ancla #inicio (evita tapar la etiqueta del hero).
+   * @param evento Clic en el logo.
+   */
+  protected irAlInicio(evento: Event): void {
+    evento.preventDefault();
+    this.cerrarMenu(true);
+    this.seccionActiva.set('inicio');
+    this.forzarTopeAlInicio = true;
+    void this.enrutador.navigateByUrl('/').finally(() => {
+      this.llevarAlTope();
+      // La restauración de scroll de Angular puede correr justo después del navigate.
+      setTimeout(() => this.llevarAlTope(true), 50);
+    });
+  }
+
+  /**
+   * @function llevarAlTope
+   * @description Coloca el scroll en 0 después de la navegación al inicio.
+   * @param forzar Ejecuta aunque el flag ya se haya consumido (reintento corto).
+   */
+  private llevarAlTope(forzar = false): void {
+    if (!forzar && !this.forzarTopeAlInicio) {
+      return;
+    }
+    this.forzarTopeAlInicio = false;
+    this.documento.defaultView?.scrollTo({ top: 0, behavior: 'instant' });
   }
 
   /**

@@ -82,8 +82,10 @@ export class App {
   private readonly alRedimensionar = () => this.actualizarOffsetAnclas();
 
   constructor() {
+    this.desplazamiento.setOffset(() => this.calcularOffsetAncla());
+
     afterNextRender(() => {
-      this.actualizarOffsetAnclas();
+      this.corregirAnclaInicio();
       this.programarObservacionCta();
       window.addEventListener('resize', this.alRedimensionar, { passive: true });
     });
@@ -94,7 +96,7 @@ export class App {
         takeUntilDestroyed(),
       )
       .subscribe(() => {
-        this.actualizarOffsetAnclas();
+        this.corregirAnclaInicio();
         this.programarObservacionCta();
       });
 
@@ -106,25 +108,60 @@ export class App {
   }
 
   /**
-   * @function actualizarOffsetAnclas
-   * @description Alinea el salto a secciones con el encabezado, descontando el padding de la sección.
+   * @function calcularOffsetAncla
+   * @description Offset por fragmento: inicio va al tope; el resto compensa padding bajo el header.
    */
-  private actualizarOffsetAnclas(): void {
+  private calcularOffsetAncla(): [number, number] {
     if (typeof document === 'undefined' || typeof window === 'undefined') {
-      return;
+      return [0, 0];
+    }
+
+    const fragmento = this.enrutador.parseUrl(this.enrutador.url).fragment;
+    if (!fragmento || fragmento === 'inicio') {
+      const inicio = document.getElementById('inicio');
+      if (!inicio) {
+        return [0, 0];
+      }
+      const arriba = inicio.getBoundingClientRect().top + window.pageYOffset;
+      return [0, Math.round(arriba)];
     }
 
     const encabezado =
       document.querySelector<HTMLElement>('app-encabezado') ??
       document.querySelector<HTMLElement>('.encabezado');
-    const seccion = document.querySelector<HTMLElement>('main .seccion');
+    const seccion = document.getElementById(fragmento);
     const altoEncabezado = encabezado?.getBoundingClientRect().height ?? 56;
     const rellenoSuperior = seccion
       ? Number.parseFloat(getComputedStyle(seccion).paddingTop) || 0
       : 56;
-    const holgura = 16;
 
-    this.desplazamiento.setOffset([0, Math.round(altoEncabezado + holgura - rellenoSuperior)]);
+    return [0, Math.round(altoEncabezado + 12 - rellenoSuperior)];
+  }
+
+  /**
+   * @function corregirAnclaInicio
+   * @description Evita que /#inicio oculte la etiqueta del hero bajo el encabezado sticky.
+   */
+  private corregirAnclaInicio(): void {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const fragmento = this.enrutador.parseUrl(this.enrutador.url).fragment;
+    if (fragmento !== 'inicio') {
+      return;
+    }
+
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    void this.enrutador.navigateByUrl('/', { replaceUrl: true });
+  }
+
+  /**
+   * @function actualizarOffsetAnclas
+   * @description Mantiene el cálculo de offset al cambiar el ancho (p. ej. rotación).
+   */
+  private actualizarOffsetAnclas(): void {
+    this.desplazamiento.setOffset(() => this.calcularOffsetAncla());
   }
 
   /**
