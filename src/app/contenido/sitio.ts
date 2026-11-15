@@ -195,13 +195,13 @@ export const etapasProceso: readonly EtapaProceso[] = [
     icono: 'ozono',
     titulo: 'Ozono',
     texto:
-      'El ozono oxida y desinfecta sin dejar el sabor típico de otros tratamientos, aportando pureza al agua de proceso.',
+      'El ozono oxida y desinfecta sin dejar el sabor típico de otros tratamientos, aportando pureza al agua tratada.',
     beneficio: 'Desinfección efectiva con mejor percepción de frescura.',
   },
   {
     numero: '6',
     icono: 'uv',
-    titulo: 'Ultravioleta',
+    titulo: 'Luz ultravioleta',
     texto:
       'La luz ultravioleta actúa como barrera final sobre microorganismos, sin añadir químicos al producto.',
     beneficio: 'Cierre del tratamiento antes del envasado.',
@@ -228,12 +228,12 @@ export const hitosProceso: readonly HitoProceso[] = [
   {
     id: 'retrolavado',
     dato: 'Menos agua',
-    detalle: 'Medios de lecho eficiente: retrolavados más cortos y menos desperdicio.',
+    detalle: 'Medios de lecho eficientes: retrolavados más cortos y menos desperdicio.',
   },
   {
     id: 'barreras',
     dato: '5 barreras',
-    detalle: 'Zeolita, carbón, plata, ozono y UV además de captación y envasado.',
+    detalle: 'Zeolita, carbón, plata, ozono y UV, además de captación y envasado.',
   },
   {
     id: 'invima',
