@@ -3,6 +3,7 @@ import {
   DatoOrigen,
   DatoServicio,
   EtapaProceso,
+  HitoProceso,
   ImagenPublica,
   LineaTelefonica,
   PilarConfianza,
@@ -125,14 +126,14 @@ export const beneficios: readonly Beneficio[] = [
     marca: 'Agua',
     titulo: 'Máxima pureza',
     texto:
-      'Agua potable tratada y purificada mediante un proceso estricto que garantiza calidad constante en cada bidón.',
+      'Varias barreras de tratamiento —zeolita, carbón, plata, ozono y UV— para un agua clara, segura y constante en cada bidón.',
   },
   {
     id: 'sabor',
     marca: 'Fresco',
     titulo: 'Sabor fresco',
     texto:
-      'Un perfil limpio y refrescante, ideal para beber, cocinar y acompañar el día a día de tu hogar o negocio.',
+      'El carbón activado y el proceso completo ayudan a un perfil limpio y refrescante para beber, cocinar y el día a día.',
   },
   {
     id: 'domicilio',
@@ -155,28 +156,89 @@ export const detallesProducto: readonly string[] = [
 ];
 
 /**
- * @description Etapas del proceso de purificación según la propuesta visual.
+ * @description Etapas reales del proceso de purificación en planta.
  */
 export const etapasProceso: readonly EtapaProceso[] = [
   {
     numero: '1',
+    icono: 'captacion',
     titulo: 'Captación',
     texto: 'Seleccionamos agua de fuente apta y controlamos su calidad desde el origen.',
+    beneficio: 'Partimos de una base segura antes de tratar cada gota.',
   },
   {
     numero: '2',
-    titulo: 'Filtración',
-    texto: 'Retenemos partículas e impurezas con filtración en múltiples etapas.',
+    icono: 'zeolita',
+    titulo: 'Zeolita y lecho profundo',
+    texto:
+      'Filtramos en lecho profundo con zeolita y medios de alta uniformidad para retener sólidos y turbidez en todo el lecho, no solo en la superficie.',
+    beneficio: 'Agua más clara, con retención fina orientada a 3–5 micras.',
   },
   {
     numero: '3',
-    titulo: 'Tratamiento',
-    texto: 'Aplicamos procesos de potabilización y purificación bajo parámetros estrictos.',
+    icono: 'carbon',
+    titulo: 'Carbón activado',
+    texto:
+      'El carbón activado ayuda a mejorar el sabor y el olor al adsorber compuestos que afectan la experiencia de beber.',
+    beneficio: 'Un vaso con sabor limpio y fresco.',
   },
   {
     numero: '4',
+    icono: 'plata',
+    titulo: 'Iones de plata',
+    texto:
+      'Incorporamos iones de plata como apoyo bacteriostático en el proceso, para reforzar la higiene del agua tratada.',
+    beneficio: 'Una barrera extra pensada en la seguridad cotidiana.',
+  },
+  {
+    numero: '5',
+    icono: 'ozono',
+    titulo: 'Ozono',
+    texto:
+      'El ozono oxida y desinfecta sin dejar el sabor típico de otros tratamientos, aportando pureza al agua de proceso.',
+    beneficio: 'Desinfección efectiva con mejor percepción de frescura.',
+  },
+  {
+    numero: '6',
+    icono: 'uv',
+    titulo: 'Ultravioleta',
+    texto:
+      'La luz ultravioleta actúa como barrera final sobre microorganismos, sin añadir químicos al producto.',
+    beneficio: 'Cierre del tratamiento antes del envasado.',
+  },
+  {
+    numero: '7',
+    icono: 'embotellado',
     titulo: 'Embotellado',
-    texto: 'Envasamos en condiciones higiénicas y sellamos cada bidón listo para entregar.',
+    texto:
+      'Envasamos en condiciones higiénicas, sellamos cada bidón y lo dejamos listo para la ruta a domicilio.',
+    beneficio: 'Del proceso a tu casa, listo para servir.',
+  },
+];
+
+/**
+ * @description Hitos de valor del proceso para familias y negocios.
+ */
+export const hitosProceso: readonly HitoProceso[] = [
+  {
+    id: 'micras',
+    dato: '3–5 µm',
+    detalle: 'Filtración fina orientada a claridad y retención de partículas.',
+  },
+  {
+    id: 'retrolavado',
+    dato: 'Menos agua',
+    detalle: 'Medios de lecho eficiente: retrolavados más cortos y menos desperdicio.',
+  },
+  {
+    id: 'barreras',
+    dato: '5 barreras',
+    detalle: 'Zeolita, carbón, plata, ozono y UV además de captación y envasado.',
+  },
+  {
+    id: 'invima',
+    dato: 'INVIMA',
+    detalle: `Registro sanitario ${registroInvima}.`,
   },
 ];
 
@@ -229,7 +291,15 @@ export const pilaresConfianza: readonly PilarConfianza[] = [
     id: 'ambiente',
     marca: 'Eco',
     titulo: 'Cuidado ambiental',
-    texto: 'Envase reciclable. Mantén tu ciudad limpia.',
+    texto:
+      'Envase reciclable y proceso con retrolavados más eficientes para cuidar el agua también en planta.',
+  },
+  {
+    id: 'barreras',
+    marca: '5+',
+    titulo: 'Varias barreras',
+    texto:
+      'Zeolita, carbón activado, iones de plata, ozono y ultravioleta antes de embotellar.',
   },
 ];
 

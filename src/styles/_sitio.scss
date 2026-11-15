@@ -594,6 +594,159 @@ main:focus-visible {
   line-height: 1.45;
 }
 
+.hitos-proceso {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0 0 clamp(2rem, 4vw, 2.75rem);
+  padding: 0;
+  list-style: none;
+}
+
+.hitos-proceso__item {
+  display: grid;
+  gap: 0.25rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--color-linea);
+  border-radius: 1rem;
+  background: linear-gradient(180deg, #fff, var(--color-fondo-suave));
+}
+
+.hitos-proceso__item strong {
+  color: var(--color-marca);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.hitos-proceso__item span {
+  color: var(--color-texto-suave);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.flujo-proceso {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flujo-proceso__paso {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: stretch;
+}
+
+.flujo-proceso__eje {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding-top: 1.15rem;
+}
+
+.flujo-proceso__eje::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: linear-gradient(180deg, var(--color-acento), var(--color-linea));
+  content: '';
+  transform: translateX(-50%);
+}
+
+.flujo-proceso__paso:first-child .flujo-proceso__eje::before {
+  top: 1.35rem;
+}
+
+.flujo-proceso__paso:last-child .flujo-proceso__eje::before {
+  bottom: calc(100% - 2.5rem);
+}
+
+.flujo-proceso__numero {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: var(--color-marca);
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  box-shadow: 0 0 0 4px #fff;
+}
+
+.flujo-proceso__tarjeta {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.9rem;
+  align-items: start;
+  margin-bottom: 0.85rem;
+  padding: 1.1rem 1.15rem;
+  border: 1px solid var(--color-linea);
+  border-radius: 1.15rem;
+  background: #fff;
+  box-shadow: var(--sombra-suave);
+}
+
+.flujo-proceso__paso:last-child .flujo-proceso__tarjeta {
+  margin-bottom: 0;
+}
+
+.flujo-proceso__icono {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.9rem;
+  background: var(--color-hielo);
+  color: var(--color-marca);
+}
+
+.flujo-proceso__icono svg {
+  display: block;
+  width: 1.85rem;
+  height: 1.85rem;
+}
+
+.flujo-proceso__texto {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.flujo-proceso__titulo {
+  margin: 0;
+  color: var(--color-marca);
+  font-size: 1.0625rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.flujo-proceso__texto p {
+  margin: 0;
+  color: var(--color-texto-suave);
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+
+.flujo-proceso__beneficio {
+  color: var(--color-texto) !important;
+  font-size: 0.875rem !important;
+}
+
+.flujo-proceso__beneficio span {
+  color: var(--color-acento);
+  font-weight: 700;
+}
+
+.rejilla--confianza {
+  grid-template-columns: 1fr;
+}
+
 .producto {
   display: grid;
   gap: 2.5rem;
@@ -1385,8 +1538,34 @@ main:focus-visible {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .rejilla--cuatro {
+  .rejilla--cuatro,
+  .rejilla--confianza {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hitos-proceso {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .flujo-proceso__paso {
+    grid-template-columns: 3rem minmax(0, 1fr);
+    gap: 1.15rem;
+  }
+
+  .flujo-proceso__tarjeta {
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+    gap: 1.1rem;
+    padding: 1.25rem 1.35rem;
+  }
+
+  .flujo-proceso__icono {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .flujo-proceso__icono svg {
+    width: 2.1rem;
+    height: 2.1rem;
   }
 
   .servicio__rejilla {
@@ -1535,6 +1714,18 @@ main:focus-visible {
 
   .rejilla--cuatro {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .rejilla--confianza {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .hitos-proceso {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .flujo-proceso__titulo {
+    font-size: 1.2rem;
   }
 
   .contacto {

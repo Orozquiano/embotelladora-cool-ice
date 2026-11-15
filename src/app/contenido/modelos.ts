@@ -118,6 +118,11 @@ export interface EtapaProceso {
   numero: string;
 
   /**
+   * @description Clave del icono ilustrativo de la etapa.
+   */
+  icono: 'captacion' | 'zeolita' | 'carbon' | 'plata' | 'ozono' | 'uv' | 'embotellado';
+
+  /**
    * @description Nombre de la etapa.
    */
   titulo: string;
@@ -126,6 +131,32 @@ export interface EtapaProceso {
    * @description Descripción breve de la etapa.
    */
   texto: string;
+
+  /**
+   * @description Beneficio concreto para quien consume el agua.
+   */
+  beneficio: string;
+}
+
+/**
+ * @interface HitoProceso
+ * @description Dato de valor del proceso (pureza, eficiencia, respaldo).
+ */
+export interface HitoProceso {
+  /**
+   * @description Identificador estable.
+   */
+  id: string;
+
+  /**
+   * @description Cifra o etiqueta corta.
+   */
+  dato: string;
+
+  /**
+   * @description Explicación corta del dato.
+   */
+  detalle: string;
 }
 
 /**

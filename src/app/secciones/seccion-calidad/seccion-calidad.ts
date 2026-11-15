@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { etapasProceso } from '../../contenido/sitio';
+import { etapasProceso, hitosProceso } from '../../contenido/sitio';
 
 /**
  * @class SeccionCalidad
- * @description Presenta el proceso de purificación en cuatro etapas.
+ * @description Explica el proceso real de purificación con flujo visual por etapas.
  */
 @Component({
   selector: 'app-seccion-calidad',
@@ -11,7 +11,12 @@ import { etapasProceso } from '../../contenido/sitio';
 })
 export class SeccionCalidad {
   /**
-   * @description Etapas numeradas del proceso.
+   * @description Etapas numeradas del tratamiento en planta.
    */
   protected readonly etapas = etapasProceso;
+
+  /**
+   * @description Hitos de valor del proceso.
+   */
+  protected readonly hitos = hitosProceso;
 }
