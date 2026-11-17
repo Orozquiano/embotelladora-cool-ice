@@ -1009,30 +1009,54 @@ main:focus-visible {
   align-items: center;
   justify-content: space-between;
   margin-top: 2.25rem;
-  padding: 1.25rem 1.5rem;
-  border: 1px dashed var(--color-acento);
-  border-radius: 0.9rem;
-  background: var(--color-hielo);
+  padding: 1.25rem 1.35rem;
+  border: 1px solid var(--color-linea);
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: var(--sombra-suave);
 }
 
 .banda-confianza strong {
+  display: block;
   color: var(--color-marca);
+  font-size: 1.05rem;
+  line-height: 1.3;
 }
 
-.banda-confianza p {
-  margin: 0.2rem 0 0;
+.banda-confianza > div p {
+  margin: 0.35rem 0 0;
   color: var(--color-texto-suave);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
 }
 
-.banda-confianza__registro {
+.banda-confianza .banda-confianza__registro {
   margin: 0;
-  padding: 0.6rem 0.9rem;
-  border-radius: 0.65rem;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
   background: var(--color-marca);
   color: #fff;
   font-size: 0.8125rem;
   font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+@media (max-width: 47.99rem) {
+  .banda-confianza {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.95rem;
+    padding: 1.15rem 1.1rem;
+  }
+
+  .banda-confianza .banda-confianza__registro {
+    width: 100%;
+    box-sizing: border-box;
+  }
 }
 
 .contacto {
