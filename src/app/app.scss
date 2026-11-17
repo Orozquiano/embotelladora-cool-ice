@@ -1,3 +1,25 @@
 :host {
   display: block;
+  position: relative;
+}
+
+:host ::ng-deep app-lluvia-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.lluvia-canvas__placeholder {
+  display: none;
+}
+
+:host ::ng-deep app-encabezado,
+:host ::ng-deep main,
+:host ::ng-deep app-pie,
+:host ::ng-deep .cta-flotante,
+:host ::ng-deep .saltar {
+  position: relative;
+  z-index: 1;
 }

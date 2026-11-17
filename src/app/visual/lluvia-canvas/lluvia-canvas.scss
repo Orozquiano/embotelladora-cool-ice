@@ -1,0 +1,20 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.lluvia-canvas__lienzo,
+.lluvia-canvas__fallback {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.lluvia-canvas__fallback {
+  background:
+    linear-gradient(180deg, rgb(126 200 240 / 10%), transparent 55%),
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgb(30 144 255 / 12%), transparent 70%);
+}
