@@ -135,7 +135,7 @@ export class Encabezado {
   /**
    * @description Duración de la animación de cierre del menú, alineada con el CSS.
    */
-  private readonly duracionCierreMenu = 780;
+  private readonly duracionCierreMenu = 300;
 
   constructor() {
     effect(() => {

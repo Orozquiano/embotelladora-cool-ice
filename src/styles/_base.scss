@@ -15,6 +15,13 @@ html {
   background-color: var(--color-pie);
 }
 
+@media (max-width: 59.99rem) {
+  html {
+    /* En móvil el gutter estable deja una franja del color del pie a la derecha. */
+    scrollbar-gutter: auto;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
