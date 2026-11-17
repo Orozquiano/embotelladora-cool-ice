@@ -900,8 +900,15 @@ main:focus-visible {
   color: #fff;
 }
 
+.servicio__panel--marca h2 {
+  margin: 0;
+  text-wrap: balance;
+}
+
 .servicio__panel--marca p {
+  margin: 0.7rem 0 0;
   color: rgb(255 255 255 / 90%);
+  max-width: 36rem;
 }
 
 .servicio__rejilla {
@@ -917,11 +924,45 @@ main:focus-visible {
   border: 1px solid rgb(255 255 255 / 20%);
   border-radius: 0.9rem;
   background: rgb(255 255 255 / 12%);
+  text-align: start;
+}
+
+.servicio__celda strong {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.25;
 }
 
 .servicio__celda span {
   color: rgb(255 255 255 / 85%);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
+  line-height: 1.35;
+}
+
+/* Móvil: filas alineadas con el título (sin cajas anidadas que desalinen el texto). */
+@media (max-width: 47.99rem) {
+  .servicio__panel {
+    padding: 1.25rem 1.15rem;
+  }
+
+  .servicio__panel--marca .servicio__rejilla {
+    gap: 0;
+    margin-top: 1.15rem;
+    border-top: 1px solid rgb(255 255 255 / 22%);
+  }
+
+  .servicio__panel--marca .servicio__celda {
+    padding: 0.9rem 0;
+    border: 0;
+    border-bottom: 1px solid rgb(255 255 255 / 18%);
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .servicio__panel--marca .servicio__celda:last-child {
+    border-bottom: 0;
+    padding-bottom: 0.15rem;
+  }
 }
 
 .origen-lista {
