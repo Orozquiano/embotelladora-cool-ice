@@ -28,16 +28,23 @@
     <div class="proceso-agua">
       <div class="proceso-agua__cascada" aria-hidden="true">
         @defer (on viewport) {
-          <app-cascada-agua />
+          <app-cascada-agua [fase]="faseActiva()" />
         } @placeholder {
           <div class="cascada-agua__fallback"></div>
         }
-        <p class="proceso-agua__leyenda">Del manantial a tu mesa</p>
+        <p class="proceso-agua__leyenda">
+          Del manantial a tu mesa · fase {{ faseActiva() + 1 }}
+        </p>
       </div>
 
-      <ol class="flujo-proceso">
-      @for (etapa of etapas; track etapa.numero) {
-        <li class="flujo-proceso__paso">
+      <ol class="flujo-proceso flujo-proceso--centrado">
+      @for (etapa of etapas; track etapa.numero; let i = $index) {
+        <li
+          class="flujo-proceso__paso"
+          [appFaseAlScroll]="i"
+          (faseActiva)="onFase($event)"
+          [style.--fase-atras]="i"
+        >
           <div class="flujo-proceso__eje" aria-hidden="true">
             <span class="flujo-proceso__numero">{{ etapa.numero }}</span>
           </div>

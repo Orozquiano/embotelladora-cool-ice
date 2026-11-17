@@ -2,7 +2,7 @@
   display: block;
   width: 100%;
   height: 100%;
-  min-height: 18rem;
+  min-height: 8rem;
   pointer-events: none;
 }
 
@@ -11,17 +11,18 @@
   display: block;
   width: 100%;
   height: 100%;
-  border-radius: 1.5rem;
+  min-height: 8rem;
+  border-radius: 1.15rem;
 }
 
 .cascada-agua__fallback {
   background:
-    linear-gradient(180deg, rgb(255 255 255 / 55%), transparent 30%),
+    linear-gradient(90deg, rgb(255 255 255 / 55%), transparent 30%, rgb(255 255 255 / 35%)),
     repeating-linear-gradient(
-      180deg,
-      #9fd4f5 0 8px,
-      #1e90ff88 8px 16px,
-      #0b4f8c66 16px 22px
+      90deg,
+      #9fd4f5 0 10px,
+      #1e90ff88 10px 20px,
+      #0b4f8c55 20px 28px
     );
-  opacity: 0.55;
+  opacity: 0.65;
 }

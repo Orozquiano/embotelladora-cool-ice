@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { etapasProceso, hitosProceso } from '../../contenido/sitio';
+import { FaseAlScroll } from '../../directivas/fase-al-scroll';
 import { RevelarAlScroll } from '../../directivas/revelar-al-scroll';
 import { CascadaAgua } from '../../visual/cascada-agua/cascada-agua';
 import { OndasAgua } from '../../visual/ondas-agua/ondas-agua';
@@ -10,7 +11,7 @@ import { OndasAgua } from '../../visual/ondas-agua/ondas-agua';
  */
 @Component({
   selector: 'app-seccion-calidad',
-  imports: [RevelarAlScroll, OndasAgua, CascadaAgua],
+  imports: [RevelarAlScroll, FaseAlScroll, OndasAgua, CascadaAgua],
   templateUrl: './seccion-calidad.html',
 })
 export class SeccionCalidad {
@@ -23,4 +24,16 @@ export class SeccionCalidad {
    * @description Hitos de valor del proceso.
    */
   protected readonly hitos = hitosProceso;
+
+  /**
+   * @description Fase visible actual (para sincronizar la cascada).
+   */
+  protected readonly faseActiva = signal(0);
+
+  /**
+   * @description Actualiza la fase activa al hacer scroll por cada paso.
+   */
+  protected onFase(indice: number): void {
+    this.faseActiva.set(indice);
+  }
 }
