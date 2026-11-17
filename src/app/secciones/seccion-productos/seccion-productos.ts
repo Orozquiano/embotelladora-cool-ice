@@ -2,6 +2,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import {
   detallesProducto,
+  imagenBotellon,
   imagenProducto,
   lineaPedidos,
 } from '../../contenido/sitio';
@@ -10,7 +11,7 @@ import { RevelarAlScroll } from '../../directivas/revelar-al-scroll';
 
 /**
  * @class SeccionProductos
- * @description Destaca el bidón familiar de 18,9 L según el Figma.
+ * @description Destaca el bidón familiar de 18,9 L con recursos oficiales.
  */
 @Component({
   selector: 'app-seccion-productos',
@@ -19,7 +20,12 @@ import { RevelarAlScroll } from '../../directivas/revelar-al-scroll';
 })
 export class SeccionProductos {
   /**
-   * @description Imagen de la etiqueta del producto estrella.
+   * @description Fotografía del botellón completo.
+   */
+  protected readonly botellon = imagenBotellon;
+
+  /**
+   * @description Etiqueta oficial del producto estrella.
    */
   protected readonly imagen = imagenProducto;
 

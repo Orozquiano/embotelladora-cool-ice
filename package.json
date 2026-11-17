@@ -5,8 +5,11 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:pages": "ng build --configuration=github-pages",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "e2e": "playwright test",
+    "e2e:pages": "E2E_BASE_URL=http://127.0.0.1:4173/embotelladora-cool-ice/ playwright test"
   },
   "private": true,
   "packageManager": "npm@12.2.1",
@@ -25,6 +28,7 @@
     "@angular/build": "^22.2.7",
     "@angular/cli": "^22.2.7",
     "@angular/compiler-cli": "^22.2.6",
+    "@playwright/test": "^1.65.1",
     "@types/three": "^0.187.0",
     "jsdom": "^30.0.0",
     "prettier": "^3.8.1",

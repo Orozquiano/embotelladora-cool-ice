@@ -57,8 +57,11 @@ body.menu-movil-abierto .encabezado,
 }
 
 .contenido {
-  width: min(var(--ancho), calc(100% - 2rem));
+  width: min(var(--ancho), 100%);
+  max-width: 100%;
   margin-inline: auto;
+  padding-inline: max(1rem, env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
+  box-sizing: border-box;
 }
 
 .seccion {
@@ -139,16 +142,32 @@ main:focus-visible {
 
 .motivo-porron {
   position: absolute;
-  inset: auto -4rem 10% auto;
-  width: min(18rem, 42vw);
-  height: min(18rem, 42vw);
+  inset: auto max(-2rem, -6vw) 10% auto;
+  width: min(18rem, 38vw);
+  height: min(18rem, 38vw);
+  max-width: 40%;
   pointer-events: none;
   opacity: 0.35;
+  contain: strict;
 }
 
 .motivo-porron--suave {
-  inset: 8% auto auto -5rem;
+  inset: 8% auto auto max(-2rem, -6vw);
   opacity: 0.28;
+}
+
+@media (max-width: 24.99rem) {
+  .motivo-porron,
+  .motivo-porron--suave {
+    inset: auto 0.25rem 8% auto;
+    width: min(7.5rem, 28vw);
+    height: min(7.5rem, 28vw);
+    max-width: 30%;
+  }
+
+  .motivo-porron--suave {
+    inset: 6% auto auto 0.25rem;
+  }
 }
 
 .motivo-porron__anillo {
@@ -262,10 +281,10 @@ main:focus-visible {
 .producto__marco--botellon {
   display: grid;
   place-items: center;
-  padding: 1rem;
+  padding: 1rem 1rem 1.25rem;
   background:
-    radial-gradient(circle at 50% 20%, rgb(255 255 255 / 85%), transparent 55%),
-    linear-gradient(180deg, #f7fbff, #d7eef9);
+    radial-gradient(ellipse 70% 55% at 50% 28%, rgb(255 255 255 / 55%), transparent 60%),
+    linear-gradient(165deg, #0b4f8c 0%, #1a7ec8 48%, #7ec8f0 100%);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -457,6 +476,12 @@ main:focus-visible {
   text-align: center;
 }
 
+.prosa--nota {
+  margin-top: 0.75rem;
+  color: var(--color-texto-suave);
+  font-size: 0.875rem;
+}
+
 .seccion__cabecera--centrada .prosa {
   margin-inline: auto;
 }
@@ -536,8 +561,11 @@ main:focus-visible {
 
 .encabezado__barra,
 .pie__contenido {
-  width: min(var(--ancho), calc(100% - 2rem));
+  width: min(var(--ancho), 100%);
+  max-width: 100%;
   margin-inline: auto;
+  padding-inline: max(1rem, env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
+  box-sizing: border-box;
 }
 
 .encabezado__barra {
@@ -776,15 +804,17 @@ main:focus-visible {
   left: 50%;
   bottom: 0.85rem;
   z-index: 1;
+  max-width: calc(100% - 1.5rem);
   margin: 0;
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
   background: rgb(255 255 255 / 90%);
   color: var(--color-texto);
-  font-size: 0.75rem;
+  font-size: clamp(0.65rem, 2.8vw, 0.75rem);
   font-weight: 700;
+  text-align: center;
   transform: translateX(-50%);
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 
 .proceso-agua .cascada-agua__fallback,
@@ -1359,7 +1389,30 @@ main:focus-visible {
   max-height: 14rem;
   object-fit: contain;
   border-radius: 1rem;
-  background: #fff;
+  background: transparent;
+}
+
+.producto__marco--botellon img {
+  max-height: min(22rem, 58vw);
+  filter: drop-shadow(0 18px 28px rgb(7 47 84 / 35%));
+}
+
+.producto__etiqueta {
+  width: min(100%, 22rem);
+  margin: 0;
+  border-radius: 0.85rem;
+  overflow: hidden;
+  background: rgb(255 255 255 / 12%);
+  border: 1px solid rgb(255 255 255 / 28%);
+}
+
+.producto__etiqueta img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 5.5rem;
+  object-fit: contain;
+  background: rgb(255 255 255 / 92%);
 }
 
 .producto__pill {
@@ -1408,14 +1461,19 @@ main:focus-visible {
 .servicio {
   display: grid;
   gap: 1.5rem;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .servicio__panel {
-  padding: clamp(1.5rem, 4vw, 2.5rem);
+  min-width: 0;
+  max-width: 100%;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
   border: 1px solid var(--color-linea);
   border-radius: 1.75rem;
   background: #fff;
   box-shadow: var(--sombra-suave);
+  overflow-wrap: anywhere;
 }
 
 .servicio__panel--marca {
@@ -1636,12 +1694,23 @@ main:focus-visible {
   font-size: 0.8125rem;
 }
 
+.formulario__alerta {
+  margin: 0;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid #c45c5c;
+  border-radius: 0.75rem;
+  background: #fff1f1;
+  color: #7a1f1f;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
 .campo {
   display: grid;
   gap: 0.35rem;
 }
 
-.campo span {
+.campo > span:first-child {
   color: var(--color-texto);
   font-size: 0.75rem;
   font-weight: 600;
@@ -1650,6 +1719,7 @@ main:focus-visible {
 .campo input,
 .campo textarea {
   width: 100%;
+  max-width: 100%;
   min-height: 2.85rem;
   padding: 0.75rem 0.9rem;
   border: 1px solid var(--color-linea);
@@ -1657,6 +1727,18 @@ main:focus-visible {
   background: var(--color-fondo-suave);
   color: var(--color-texto);
   font: inherit;
+}
+
+.campo input[aria-invalid='true'],
+.campo textarea[aria-invalid='true'] {
+  border-color: #c45c5c;
+  background: #fff8f8;
+}
+
+.campo__error {
+  color: #8a1f1f;
+  font-size: 0.75rem;
+  font-weight: 600;
 }
 
 .campo textarea {
@@ -1801,6 +1883,16 @@ main:focus-visible {
     left: max(1rem, env(safe-area-inset-left));
     min-height: 3rem;
     box-shadow: 0 10px 28px rgb(15 138 69 / 28%);
+    transition: opacity 220ms ease, visibility 220ms ease, transform 220ms ease;
+  }
+
+  /* Evita tapar campos del formulario de pedidos y el teclado virtual. */
+  body.teclado-virtual .cta-flotante,
+  body:has(#contacto:focus-within) .cta-flotante {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(0.65rem);
   }
 
   .cta-flotante--oculto,
@@ -1846,7 +1938,7 @@ main:focus-visible {
   }
 
   .menu {
-    --menu-duracion: 800ms;
+    --menu-duracion: 300ms;
     --menu-easing: cubic-bezier(0.22, 1, 0.36, 1);
     position: fixed;
     z-index: 35;

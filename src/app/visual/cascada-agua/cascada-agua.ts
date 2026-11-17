@@ -83,7 +83,12 @@ export class CascadaAgua {
       return;
     }
 
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.6));
+    const topePixel =
+      window.matchMedia('(max-width: 48rem)').matches ||
+      window.matchMedia('(pointer: coarse)').matches
+        ? 1.15
+        : 1.6;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, topePixel));
     renderer.setClearColor(0x000000, 0);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
 

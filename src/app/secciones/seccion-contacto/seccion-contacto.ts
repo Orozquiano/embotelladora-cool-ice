@@ -2,17 +2,22 @@ import { Component, computed, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
   correo,
-  enlaceWhatsapp,
   lineaPedidos,
   lugar,
   nombreEmpresa,
   registroInvima,
 } from '../../contenido/sitio';
+import {
+  ErroresPedido,
+  enlacePedidoWhatsapp,
+  formularioVacioErrores,
+  validarPedido,
+} from '../../contenido/pedido-whatsapp';
 import { OndasAgua } from '../../visual/ondas-agua/ondas-agua';
 
 /**
  * @class SeccionContacto
- * @description Canales de contacto y formulario que abre WhatsApp con el pedido.
+ * @description Canales de contacto y formulario que abre WhatsApp solo con datos válidos.
  */
 @Component({
   selector: 'app-seccion-contacto',
@@ -71,18 +76,86 @@ export class SeccionContacto {
   protected readonly mensaje = signal('');
 
   /**
-   * @description Enlace de WhatsApp armado con los datos del formulario.
+   * @description Errores visibles tras un intento de envío o al corregir campos.
+   */
+  protected readonly errores = signal<ErroresPedido>(formularioVacioErrores());
+
+  /**
+   * @description Indica si ya se intentó enviar con el formulario incompleto.
+   */
+  protected readonly intentoEnvio = signal(false);
+
+  /**
+   * @description Resultado de validación reactivo sobre los campos actuales.
+   */
+  private readonly validacion = computed(() =>
+    validarPedido({
+      nombre: this.nombre(),
+      telefono: this.telefono(),
+      direccion: this.direccion(),
+      cantidad: this.cantidad(),
+      mensaje: this.mensaje(),
+    }),
+  );
+
+  /**
+   * @description True cuando el pedido cumple todas las reglas.
+   */
+  protected readonly pedidoValido = computed(() => this.validacion().ok);
+
+  /**
+   * @description Enlace de WhatsApp solo si el pedido es válido; si no, ancla inerte.
    */
   protected readonly enlacePedido = computed(() => {
-    const partes = [
-      'Hola, quiero solicitar un pedido Cool Ice.',
-      this.nombre().trim() ? `Nombre: ${this.nombre().trim()}` : null,
-      this.telefono().trim() ? `WhatsApp/Teléfono: ${this.telefono().trim()}` : null,
-      this.direccion().trim() ? `Dirección: ${this.direccion().trim()}` : null,
-      `Cantidad de bidones 18,9 L: ${this.cantidad().trim() || '1'}`,
-      this.mensaje().trim() ? `Mensaje: ${this.mensaje().trim()}` : null,
-    ].filter((parte): parte is string => !!parte);
-
-    return enlaceWhatsapp('3216820822', partes.join('\n'));
+    const resultado = this.validacion();
+    if (!resultado.ok) {
+      return '#contacto';
+    }
+    return enlacePedidoWhatsapp('3216820822', resultado.pedido);
   });
+
+  /**
+   * @function actualizarCampo
+   * @description Actualiza un campo y refresca errores si ya hubo un intento de envío.
+   */
+  protected actualizarCampo(
+    campo: 'nombre' | 'telefono' | 'direccion' | 'cantidad' | 'mensaje',
+    valor: string,
+  ): void {
+    this[campo].set(valor);
+    if (this.intentoEnvio()) {
+      this.sincronizarErrores();
+    }
+  }
+
+  /**
+   * @function enviarPedido
+   * @description Valida el formulario; solo deja abrir WhatsApp cuando es válido.
+   */
+  protected enviarPedido(evento: Event): void {
+    evento.preventDefault();
+    this.intentoEnvio.set(true);
+    this.sincronizarErrores();
+
+    const resultado = this.validacion();
+    if (!resultado.ok) {
+      return;
+    }
+
+    const url = enlacePedidoWhatsapp('3216820822', resultado.pedido);
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
+
+  /**
+   * @function sincronizarErrores
+   * @description Copia los errores de la validación actual al estado visible.
+   */
+  private sincronizarErrores(): void {
+    const resultado = this.validacion();
+    if (resultado.ok) {
+      this.errores.set(formularioVacioErrores());
+      return;
+    }
+    this.errores.set(resultado.errores);
+  }
 }

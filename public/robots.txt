@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://orozquiano.github.io/embotelladora-cool-ice/sitemap.xml

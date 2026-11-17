@@ -6,15 +6,24 @@
 
   <div class="contenido producto">
     <div class="producto__visual" appRevelarAlScroll>
-      <div class="producto__marco">
+      <div class="producto__marco producto__marco--botellon">
         <img
           appImagenEsqueleto
-          [ngSrc]="imagen.ruta"
-          [width]="imagen.ancho"
-          [height]="imagen.alto"
-          [alt]="imagen.textoAlternativo"
+          [ngSrc]="botellon.ruta"
+          [width]="botellon.ancho"
+          [height]="botellon.alto"
+          [alt]="botellon.textoAlternativo"
           priority
         />
+        <figure class="producto__etiqueta">
+          <img
+            appImagenEsqueleto
+            [ngSrc]="imagen.ruta"
+            [width]="imagen.ancho"
+            [height]="imagen.alto"
+            [alt]="imagen.textoAlternativo"
+          />
+        </figure>
         <p class="producto__pill">18,9 L · 5 galones</p>
       </div>
     </div>

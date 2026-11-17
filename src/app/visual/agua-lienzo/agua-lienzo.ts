@@ -71,7 +71,12 @@ export class AguaLienzo {
       return;
     }
 
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
+    const topePixel =
+      window.matchMedia('(max-width: 48rem)').matches ||
+      window.matchMedia('(pointer: coarse)').matches
+        ? 1.25
+        : 1.75;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, topePixel));
     renderer.setClearColor(0x000000, 0);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
 

@@ -91,7 +91,7 @@
           <div class="canales__texto">
             <strong id="canal-ubicacion">Ubicación</strong>
             <p>{{ lugar }}</p>
-            <p class="canales__nota">Próximamente en Google Maps</p>
+            <p class="canales__nota">Planta de producción · Próximamente en Google Maps</p>
           </div>
         </li>
 
@@ -131,11 +131,17 @@
       </ul>
     </div>
 
-    <form class="formulario" (submit)="$event.preventDefault()">
+    <form class="formulario" (submit)="enviarPedido($event)" novalidate>
       <h3>Solicita tu pedido</h3>
-      <p class="formulario__ayuda">
-        Completa los datos y envíalos por WhatsApp para confirmar tu pedido.
+      <p class="formulario__ayuda" id="ayuda-formulario">
+        Completa los datos obligatorios. Solo entonces se abrirá WhatsApp con tu pedido.
       </p>
+
+      @if (intentoEnvio() && !pedidoValido()) {
+        <p class="formulario__alerta" role="alert" id="alerta-formulario">
+          Revisa los campos marcados antes de enviar el pedido.
+        </p>
+      }
 
       <label class="campo">
         <span>Nombre completo</span>
@@ -144,9 +150,16 @@
           name="nombre"
           autocomplete="name"
           placeholder="Ej. María Gómez"
+          maxlength="80"
           [value]="nombre()"
-          (input)="nombre.set(($any($event.target).value))"
+          (input)="actualizarCampo('nombre', $any($event.target).value)"
+          [attr.aria-invalid]="errores().nombre ? 'true' : 'false'"
+          [attr.aria-describedby]="errores().nombre ? 'error-nombre' : null"
+          required
         />
+        @if (errores().nombre) {
+          <span class="campo__error" id="error-nombre">{{ errores().nombre }}</span>
+        }
       </label>
 
       <label class="campo">
@@ -155,10 +168,18 @@
           type="tel"
           name="telefono"
           autocomplete="tel"
+          inputmode="tel"
           placeholder="300 000 0000"
+          maxlength="20"
           [value]="telefono()"
-          (input)="telefono.set(($any($event.target).value))"
+          (input)="actualizarCampo('telefono', $any($event.target).value)"
+          [attr.aria-invalid]="errores().telefono ? 'true' : 'false'"
+          [attr.aria-describedby]="errores().telefono ? 'error-telefono' : null"
+          required
         />
+        @if (errores().telefono) {
+          <span class="campo__error" id="error-telefono">{{ errores().telefono }}</span>
+        }
       </label>
 
       <label class="campo">
@@ -168,9 +189,16 @@
           name="direccion"
           autocomplete="street-address"
           placeholder="Barrio, municipio…"
+          maxlength="160"
           [value]="direccion()"
-          (input)="direccion.set(($any($event.target).value))"
+          (input)="actualizarCampo('direccion', $any($event.target).value)"
+          [attr.aria-invalid]="errores().direccion ? 'true' : 'false'"
+          [attr.aria-describedby]="errores().direccion ? 'error-direccion' : null"
+          required
         />
+        @if (errores().direccion) {
+          <span class="campo__error" id="error-direccion">{{ errores().direccion }}</span>
+        }
       </label>
 
       <label class="campo">
@@ -180,9 +208,16 @@
           name="cantidad"
           inputmode="numeric"
           placeholder="1 · 18,9 L"
+          maxlength="3"
           [value]="cantidad()"
-          (input)="cantidad.set(($any($event.target).value))"
+          (input)="actualizarCampo('cantidad', $any($event.target).value)"
+          [attr.aria-invalid]="errores().cantidad ? 'true' : 'false'"
+          [attr.aria-describedby]="errores().cantidad ? 'error-cantidad' : null"
+          required
         />
+        @if (errores().cantidad) {
+          <span class="campo__error" id="error-cantidad">{{ errores().cantidad }}</span>
+        }
       </label>
 
       <label class="campo">
@@ -190,21 +225,26 @@
         <textarea
           name="mensaje"
           rows="3"
+          maxlength="400"
           placeholder="Horario preferido, observaciones…"
           [value]="mensaje()"
-          (input)="mensaje.set(($any($event.target).value))"
+          (input)="actualizarCampo('mensaje', $any($event.target).value)"
+          [attr.aria-invalid]="errores().mensaje ? 'true' : 'false'"
+          [attr.aria-describedby]="errores().mensaje ? 'error-mensaje' : null"
         ></textarea>
+        @if (errores().mensaje) {
+          <span class="campo__error" id="error-mensaje">{{ errores().mensaje }}</span>
+        }
       </label>
 
-      <a
+      <button
+        type="submit"
         class="boton boton--whatsapp boton--bloque"
-        [href]="enlacePedido()"
-        target="_blank"
-        rel="noopener noreferrer"
+        [attr.aria-describedby]="intentoEnvio() && !pedidoValido() ? 'alerta-formulario' : 'ayuda-formulario'"
       >
         Enviar pedido por WhatsApp
-        <span class="solo-lectores">, se abre en una pestaña nueva</span>
-      </a>
+        <span class="solo-lectores">, se abre en una pestaña nueva si el formulario es válido</span>
+      </button>
     </form>
   </div>
 </section>

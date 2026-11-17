@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { etapasProceso, hitosProceso } from '../../contenido/sitio';
+import { etapasProceso, hitosProceso, notaProceso } from '../../contenido/sitio';
 import { FaseAlScroll } from '../../directivas/fase-al-scroll';
 import { RevelarAlScroll } from '../../directivas/revelar-al-scroll';
 import { CascadaAgua } from '../../visual/cascada-agua/cascada-agua';
@@ -7,7 +7,7 @@ import { OndasAgua } from '../../visual/ondas-agua/ondas-agua';
 
 /**
  * @class SeccionCalidad
- * @description Explica el proceso real de purificación con flujo visual por etapas.
+ * @description Explica el proceso de purificación con flujo visual por etapas.
  */
 @Component({
   selector: 'app-seccion-calidad',
@@ -24,6 +24,11 @@ export class SeccionCalidad {
    * @description Hitos de valor del proceso.
    */
   protected readonly hitos = hitosProceso;
+
+  /**
+   * @description Aviso de alcance comercial del contenido técnico.
+   */
+  protected readonly nota = notaProceso;
 
   /**
    * @description Fase visible actual (para sincronizar la cascada).

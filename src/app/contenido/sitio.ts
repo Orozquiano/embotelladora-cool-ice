@@ -156,23 +156,25 @@ export const detallesProducto: readonly string[] = [
 ];
 
 /**
- * @description Etapas reales del proceso de purificación en planta.
+ * @description Etapas del proceso de purificación comunicadas comercialmente.
+ * El detalle técnico exacto de planta puede requerir confirmación operativa;
+ * se presenta como resumen orientativo del tratamiento, no como ficha técnica certificada.
  */
 export const etapasProceso: readonly EtapaProceso[] = [
   {
     numero: '1',
     icono: 'captacion',
     titulo: 'Captación',
-    texto: 'Seleccionamos agua de fuente apta y controlamos su calidad desde el origen.',
-    beneficio: 'Partimos de una base segura antes de tratar cada gota.',
+    texto: 'Partimos de agua de fuente apta y controlamos su calidad desde el origen.',
+    beneficio: 'Base segura antes de tratar cada gota.',
   },
   {
     numero: '2',
     icono: 'zeolita',
     titulo: 'Zeolita y lecho profundo',
     texto:
-      'Filtramos en lecho profundo con zeolita y medios de alta uniformidad para retener sólidos y turbidez en todo el lecho, no solo en la superficie.',
-    beneficio: 'Agua más clara, con retención fina orientada a 3–5 micras.',
+      'Filtración en lecho profundo con zeolita y medios de alta uniformidad para retener sólidos y turbidez.',
+    beneficio: 'Mayor claridad orientada a retención fina.',
   },
   {
     numero: '3',
@@ -187,23 +189,23 @@ export const etapasProceso: readonly EtapaProceso[] = [
     icono: 'plata',
     titulo: 'Iones de plata',
     texto:
-      'Incorporamos iones de plata como apoyo bacteriostático en el proceso, para reforzar la higiene del agua tratada.',
-    beneficio: 'Una barrera extra pensada en la seguridad cotidiana.',
+      'Apoyo bacteriostático con iones de plata dentro del proceso de tratamiento.',
+    beneficio: 'Una barrera extra pensada en la higiene cotidiana.',
   },
   {
     numero: '5',
     icono: 'ozono',
     titulo: 'Ozono',
     texto:
-      'El ozono oxida y desinfecta sin dejar el sabor típico de otros tratamientos, aportando pureza al agua tratada.',
-    beneficio: 'Desinfección efectiva con mejor percepción de frescura.',
+      'El ozono aporta desinfección oxidativa sin el sabor típico de otros tratamientos.',
+    beneficio: 'Frescura con desinfección efectiva.',
   },
   {
     numero: '6',
     icono: 'uv',
     titulo: 'Luz ultravioleta',
     texto:
-      'La luz ultravioleta actúa como barrera final sobre microorganismos, sin añadir químicos al producto.',
+      'La luz ultravioleta actúa como barrera adicional sobre microorganismos, sin añadir químicos al producto.',
     beneficio: 'Cierre del tratamiento antes del envasado.',
   },
   {
@@ -211,10 +213,16 @@ export const etapasProceso: readonly EtapaProceso[] = [
     icono: 'embotellado',
     titulo: 'Embotellado',
     texto:
-      'Envasamos en condiciones higiénicas, sellamos cada bidón y lo dejamos listo para la ruta a domicilio.',
-    beneficio: 'Del proceso a tu casa, listo para servir.',
+      'Envasamos en condiciones higiénicas, sellamos cada bidón y lo preparamos para la ruta a domicilio.',
+    beneficio: 'Listo para servir en casa u oficina.',
   },
 ];
+
+/**
+ * @description Nota visible sobre el alcance comercial del proceso publicado.
+ */
+export const notaProceso =
+  'Resumen orientativo del tratamiento en planta. Para detalle técnico o sanitario, consulta el registro INVIMA y nuestros canales oficiales.';
 
 /**
  * @description Hitos de valor del proceso para familias y negocios.
@@ -330,14 +338,26 @@ export const imagenProducto: ImagenPublica = {
   ruta: 'assets/imagenes/etiqueta-producto-18-9l.jpg',
   ancho: 440,
   alto: 147,
-  textoAlternativo: 'Etiqueta del bidón Cool Ice de 18,9 litros.',
+  textoAlternativo: 'Etiqueta oficial del bidón Cool Ice de 18,9 litros.',
+};
+
+/**
+ * @description Fotografía del botellón real (recurso oficial del repositorio).
+ * Sustituir por toma comercial de mayor resolución cuando esté disponible.
+ */
+export const imagenBotellon: ImagenPublica = {
+  ruta: 'assets/imagenes/botellon-dispensador.webp',
+  ancho: 640,
+  alto: 960,
+  textoAlternativo: 'Botellón Cool Ice de 18,9 litros sobre dispensador.',
 };
 
 /**
  * @description Estadísticas del hero.
+ * No se afirma atención 24/7: el horario exacto requiere confirmación comercial.
  */
 export const estadisticasHero = [
   { valor: '18,9 L', detalle: 'Bidón familiar (5 Gal)' },
   { valor: 'INVIMA', detalle: registroInvima },
-  { valor: '24/7', detalle: 'Pedidos por WhatsApp' },
+  { valor: 'WhatsApp', detalle: 'Pedidos y domicilio' },
 ] as const;
