@@ -3,6 +3,7 @@
   position: relative;
 }
 
+/* La lluvia va detrás; no forzar position en el header/main (rompe el fixed móvil). */
 :host ::ng-deep app-lluvia-canvas {
   position: fixed;
   inset: 0;
@@ -15,11 +16,17 @@
   display: none;
 }
 
-:host ::ng-deep app-encabezado,
+:host ::ng-deep app-encabezado {
+  z-index: 40;
+}
+
 :host ::ng-deep main,
-:host ::ng-deep app-pie,
-:host ::ng-deep .cta-flotante,
-:host ::ng-deep .saltar {
+:host ::ng-deep app-pie {
   position: relative;
   z-index: 1;
+}
+
+:host ::ng-deep .cta-flotante,
+:host ::ng-deep .saltar {
+  z-index: 35;
 }
