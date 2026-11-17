@@ -1,19 +1,20 @@
 $color-fondo: #ffffff;
-$color-fondo-suave: #f5fbff;
-$color-hielo: #e8f4fc;
-$color-linea: #d6e6f2;
-$color-texto: #3d4f5f;
-$color-texto-suave: #6b7c8a;
-$color-marca: #0b4f8c;
-$color-marca-profundo: #0b4f8c;
-$color-marca-activo: #083a68;
-$color-acento: #1e90ff;
+$color-fondo-suave: #eaf5fc;
+$color-hielo: #d7eef9;
+$color-linea: #b9d3e6;
+/* Texto más oscuro para contraste AA sobre fondos azules claros. */
+$color-texto: #1f3344;
+$color-texto-suave: #3a5163;
+$color-marca: #0a457c;
+$color-marca-profundo: #083a68;
+$color-marca-activo: #062c50;
+$color-acento: #0b6fbf;
 /* Verde suficientemente oscuro para texto blanco ≥ 4,5:1 (WCAG AA). */
 $color-whatsapp: #0f8a45;
 $color-whatsapp-hover: #0c7339;
 $color-whatsapp-activo: #0a5f2f;
-$color-exito: #1fa97a;
-$color-exito-fondo: #e6f7f0;
+$color-exito: #1a8f68;
+$color-exito-fondo: #e3f5ee;
 $color-foco: #0b5cab;
 $fuente: 'Segoe UI', 'Helvetica Neue', arial, sans-serif;
 $ancho: 80rem;
@@ -46,7 +47,7 @@ $alto-encabezado: 3.5rem;
   --transicion: #{$transicion};
   --alto-encabezado: #{$alto-encabezado};
   --espacio-seccion: clamp(3.5rem, 8vw, 5rem);
-  --sombra-suave: 0 8px 12px rgb(11 79 140 / 5%);
-  --sombra-tarjeta: 0 24px 30px rgb(11 79 140 / 14%);
-  --color-pie: #072f54;
+  --sombra-suave: 0 8px 12px rgb(8 58 104 / 7%);
+  --sombra-tarjeta: 0 22px 34px rgb(8 58 104 / 14%);
+  --color-pie: #062c44;
 }

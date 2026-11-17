@@ -37,15 +37,12 @@
 
     <figure class="hero__figura">
       <div class="hero__orbita" aria-hidden="true"></div>
-      <div class="hero__tarjeta hero__tarjeta--cristal">
-        <img
-          appImagenEsqueleto
-          [ngSrc]="imagen.ruta"
-          [width]="imagen.ancho"
-          [height]="imagen.alto"
-          [alt]="imagen.textoAlternativo"
-          priority
-        />
+      <div class="hero__tarjeta hero__tarjeta--cristal hero__tarjeta--botellon">
+        @defer (on idle) {
+          <app-botellon-3d etiqueta="Porrón Cool Ice de 18,9 litros. Arrástralo para girarlo." />
+        } @placeholder {
+          <div class="botellon-3d__fallback hero__botellon-placeholder" role="img" aria-label="Porrón Cool Ice"></div>
+        }
         <p class="hero__nota">Porrón 18,9 L · Agua potable tratada</p>
       </div>
     </figure>

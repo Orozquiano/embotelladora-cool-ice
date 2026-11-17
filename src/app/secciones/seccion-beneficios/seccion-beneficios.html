@@ -1,4 +1,9 @@
-<section id="beneficios" class="seccion" aria-labelledby="titulo-beneficios" tabindex="-1">
+<section id="beneficios" class="seccion seccion--con-motivo" aria-labelledby="titulo-beneficios" tabindex="-1">
+  <div class="motivo-porron motivo-porron--suave" aria-hidden="true">
+    <span class="motivo-porron__anillo"></span>
+    <span class="motivo-porron__gota"></span>
+  </div>
+
   <div class="contenido">
     <header class="seccion__cabecera seccion__cabecera--centrada" appRevelarAlScroll>
       <p class="seccion__marca">Por qué Cool ICE</p>
@@ -11,7 +16,7 @@
 
     <div class="rejilla rejilla--tres">
       @for (beneficio of beneficios; track beneficio.id) {
-        <article class="tarjeta tarjeta--beneficio">
+        <article class="tarjeta tarjeta--beneficio tarjeta--gota">
           <span class="tarjeta__marca" aria-hidden="true">{{ beneficio.marca }}</span>
           <h3 class="tarjeta__titulo">{{ beneficio.titulo }}</h3>
           <p>{{ beneficio.texto }}</p>

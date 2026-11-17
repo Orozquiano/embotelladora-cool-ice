@@ -1,0 +1,13 @@
+@if (usarFallback()) {
+  <div class="botellon-3d__fallback" role="img" [attr.aria-label]="etiqueta()"></div>
+} @else {
+  <canvas
+    #lienzo
+    class="botellon-3d__canvas"
+    tabindex="0"
+    role="img"
+    [attr.aria-label]="etiqueta() + '. Usa las flechas o arrastra para girarlo.'"
+    [class.botellon-3d__canvas--activo]="arrastrando()"
+  ></canvas>
+  <p class="botellon-3d__pista" aria-hidden="true">Arrastra para girar el porrón</p>
+}
