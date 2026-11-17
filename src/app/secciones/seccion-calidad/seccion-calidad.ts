@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { etapasProceso, hitosProceso } from '../../contenido/sitio';
+import { RevelarAlScroll } from '../../directivas/revelar-al-scroll';
 
 /**
  * @class SeccionCalidad
@@ -7,6 +8,7 @@ import { etapasProceso, hitosProceso } from '../../contenido/sitio';
  */
 @Component({
   selector: 'app-seccion-calidad',
+  imports: [RevelarAlScroll],
   templateUrl: './seccion-calidad.html',
 })
 export class SeccionCalidad {

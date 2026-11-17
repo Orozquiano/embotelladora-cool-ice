@@ -1,15 +1,30 @@
-<section id="inicio" class="seccion seccion--apertura" aria-labelledby="titulo-inicio" tabindex="-1">
+<section
+  id="inicio"
+  class="seccion seccion--apertura seccion--inmersion"
+  aria-labelledby="titulo-inicio"
+  tabindex="-1"
+>
+  <div class="hero-escena" aria-hidden="true">
+    @defer (on idle) {
+      <app-agua-lienzo />
+    } @placeholder {
+      <div class="hero-escena__placeholder"></div>
+    }
+    <span class="hero-escena__blob hero-escena__blob--a"></span>
+    <span class="hero-escena__blob hero-escena__blob--b"></span>
+    <span class="hero-escena__blob hero-escena__blob--c"></span>
+  </div>
+
   <div class="contenido hero">
     <div class="hero__texto">
-      <p class="hero__badge">Industria Colombiana · Miranda, Cauca</p>
+      <p class="hero__marca">Cool Ice</p>
       <h1 id="titulo-inicio">
-        Agua pura,
-        <span class="hero__acento">fresca y confiable</span>
-        para tu familia
+        Agua pura para tu casa,
+        <span class="hero__acento">en porrón familiar</span>
       </h1>
       <p class="prosa">
-        En {{ empresa }} tratamos y purificamos cada gota con un proceso estricto para ofrecerte
-        máxima pureza, gran sabor y calidad que se nota en casa.
+        Tratamos cada gota en Miranda, Cauca, y la llevamos a domicilio en bidón de 18,9 L:
+        sabor limpio, frescura y confianza de Industria Colombiana.
       </p>
       <div class="acciones">
         <a class="boton boton--whatsapp" [href]="whatsapp" target="_blank" rel="noopener noreferrer">
@@ -18,19 +33,11 @@
         </a>
         <a class="boton boton--secundario" routerLink="/" fragment="producto">Ver producto 18,9 L</a>
       </div>
-      <dl class="hero__stats">
-        @for (dato of estadisticas; track dato.valor) {
-          <div>
-            <dt>{{ dato.valor }}</dt>
-            <dd>{{ dato.detalle }}</dd>
-          </div>
-        }
-      </dl>
     </div>
 
     <figure class="hero__figura">
-      <div class="hero__tarjeta">
-        <p class="hero__chip">Marca Cool ICE</p>
+      <div class="hero__orbita" aria-hidden="true"></div>
+      <div class="hero__tarjeta hero__tarjeta--cristal">
         <img
           appImagenEsqueleto
           [ngSrc]="imagen.ruta"
@@ -39,8 +46,28 @@
           [alt]="imagen.textoAlternativo"
           priority
         />
-        <p class="hero__nota">Osito polar · Agua pura</p>
+        <p class="hero__nota">Porrón 18,9 L · Agua potable tratada</p>
       </div>
     </figure>
+  </div>
+
+  <div class="contenido hero__hitos" appRevelarAlScroll>
+    <dl class="hero__stats">
+      @for (dato of estadisticas; track dato.valor) {
+        <div>
+          <dt>{{ dato.valor }}</dt>
+          <dd>{{ dato.detalle }}</dd>
+        </div>
+      }
+    </dl>
+  </div>
+
+  <div class="ola-divisor" aria-hidden="true">
+    <svg viewBox="0 0 1440 72" preserveAspectRatio="none" focusable="false">
+      <path
+        class="ola-divisor__onda"
+        d="M0,36 C240,72 480,0 720,28 C960,56 1200,8 1440,36 L1440,72 L0,72 Z"
+      />
+    </svg>
   </div>
 </section>

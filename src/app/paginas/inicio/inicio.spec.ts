@@ -17,7 +17,7 @@ describe('Inicio', () => {
     const texto = compiled.textContent ?? '';
 
     expect(compiled.querySelectorAll('h1')).toHaveLength(1);
-    expect(compiled.querySelector('h1')?.textContent).toContain('fresca y confiable');
+    expect(compiled.querySelector('h1')?.textContent).toContain('porrón familiar');
     expect(texto).toContain('18,9 L');
     expect(texto).toContain('RSA-0024680-2023');
     expect(texto).toContain('Proceso de purificación');

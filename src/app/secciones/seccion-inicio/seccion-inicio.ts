@@ -1,29 +1,21 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import {
-  estadisticasHero,
-  imagenHero,
-  lineaPedidos,
-  nombreEmpresa,
-} from '../../contenido/sitio';
+import { estadisticasHero, imagenHero, lineaPedidos } from '../../contenido/sitio';
 import { ImagenEsqueleto } from '../../directivas/imagen-esqueleto';
+import { RevelarAlScroll } from '../../directivas/revelar-al-scroll';
+import { AguaLienzo } from '../../visual/agua-lienzo/agua-lienzo';
 
 /**
  * @class SeccionInicio
- * @description Apertura de la página según el layout del Figma.
+ * @description Apertura inmersiva con agua animada y marca Cool Ice.
  */
 @Component({
   selector: 'app-seccion-inicio',
-  imports: [RouterLink, NgOptimizedImage, ImagenEsqueleto],
+  imports: [RouterLink, NgOptimizedImage, ImagenEsqueleto, AguaLienzo, RevelarAlScroll],
   templateUrl: './seccion-inicio.html',
 })
 export class SeccionInicio {
-  /**
-   * @description Nombre legal incluido en el texto de apertura.
-   */
-  protected readonly empresa = nombreEmpresa;
-
   /**
    * @description Marca visual del hero.
    */
@@ -40,7 +32,7 @@ export class SeccionInicio {
   protected readonly telefono = lineaPedidos.visible;
 
   /**
-   * @description Estadísticas bajo los botones del hero.
+   * @description Estadísticas bajo la composición principal del hero.
    */
   protected readonly estadisticas = estadisticasHero;
 }

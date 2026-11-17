@@ -79,6 +79,158 @@ main:focus-visible {
   scroll-margin-top: 0;
 }
 
+.seccion--inmersion {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  padding-top: clamp(1.4rem, 3.2vh, 2.4rem);
+  padding-bottom: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 85% 18%, rgb(30 144 255 / 16%), transparent 58%),
+    linear-gradient(180deg, #f7fbff 0%, #e7f3fc 48%, #d4ebf8 100%);
+}
+
+.seccion--inmersion .prosa {
+  color: #355066;
+  max-width: 34rem;
+}
+
+.hero-escena {
+  position: absolute;
+  inset: 0 0 12% 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-escena__placeholder {
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(ellipse 70% 55% at 70% 35%, rgb(30 144 255 / 28%), transparent 70%),
+    radial-gradient(ellipse 55% 45% at 20% 70%, rgb(11 79 140 / 18%), transparent 65%),
+    linear-gradient(180deg, #eef8ff 0%, #d7ecfa 45%, #c5e4f8 100%);
+}
+
+.hero-escena__blob {
+  position: absolute;
+  z-index: 1;
+  border-radius: 42% 58% 56% 44% / 48% 42% 58% 52%;
+  filter: blur(8px);
+  opacity: 0.32;
+  mix-blend-mode: soft-light;
+}
+
+.hero-escena__blob--a {
+  top: 8%;
+  left: -6%;
+  width: min(28rem, 58vw);
+  height: min(28rem, 58vw);
+  background: radial-gradient(circle at 35% 35%, #b9e4ff, #7ec8f0 55%, transparent 70%);
+}
+
+.hero-escena__blob--b {
+  top: 28%;
+  right: -10%;
+  width: min(34rem, 70vw);
+  height: min(24rem, 52vw);
+  background: radial-gradient(circle at 40% 40%, #dff2ff, #1e90ff55 60%, transparent 72%);
+  border-radius: 58% 42% 46% 54% / 44% 58% 42% 56%;
+}
+
+.hero-escena__blob--c {
+  bottom: 6%;
+  left: 28%;
+  width: min(18rem, 42vw);
+  height: min(18rem, 42vw);
+  background: radial-gradient(circle at 50% 40%, #ffffffaa, #9fd4f5 62%, transparent 75%);
+  opacity: 0.35;
+}
+
+.ola-divisor {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-top: clamp(1.5rem, 4vh, 2.75rem);
+  line-height: 0;
+  color: var(--color-fondo);
+}
+
+.ola-divisor svg {
+  display: block;
+  width: 100%;
+  height: clamp(2.5rem, 8vw, 4.5rem);
+}
+
+.ola-divisor__onda {
+  fill: currentColor;
+}
+
+.revelar {
+  opacity: 0;
+  transform: translateY(1rem);
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.revelar.is-revelado {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-escena__blob--a {
+    animation: flotar-blob 11s ease-in-out infinite;
+  }
+
+  .hero-escena__blob--b {
+    animation: flotar-blob 14s ease-in-out infinite reverse;
+  }
+
+  .hero-escena__blob--c {
+    animation: flotar-blob 9s ease-in-out infinite 0.6s;
+  }
+
+  .hero__orbita {
+    animation: orbitar-suave 16s linear infinite;
+  }
+
+  .ola-divisor__onda {
+    animation: ola-morph 8s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes flotar-blob {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(2%, -3%, 0) scale(1.05);
+  }
+}
+
+@keyframes orbitar-suave {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ola-morph {
+  from {
+    d: path('M0,36 C240,72 480,0 720,28 C960,56 1200,8 1440,36 L1440,72 L0,72 Z');
+  }
+
+  to {
+    d: path('M0,28 C260,8 500,64 740,40 C980,16 1220,60 1440,32 L1440,72 L0,72 Z');
+  }
+}
+
 .seccion__cabecera {
   max-width: 45rem;
   margin-bottom: clamp(2rem, 4vw, 3rem);
@@ -332,9 +484,20 @@ main:focus-visible {
 }
 
 .hero {
+  position: relative;
+  z-index: 1;
   display: grid;
   gap: clamp(2rem, 5vw, 4rem);
   align-items: center;
+}
+
+.hero__marca {
+  margin: 0 0 0.85rem;
+  color: var(--color-marca);
+  font-size: clamp(1.65rem, 3.4vw, 2.35rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
 }
 
 .hero__badge {
@@ -350,24 +513,30 @@ main:focus-visible {
 }
 
 .hero__texto h1 {
-  max-width: 14ch;
+  max-width: 16ch;
   color: var(--color-marca);
-  font-size: clamp(2.4rem, 5.5vw, 3.25rem);
+  font-size: clamp(2.35rem, 5.2vw, 3.35rem);
   font-weight: 800;
   letter-spacing: -0.03em;
-  line-height: 1.08;
+  line-height: 1.06;
 }
 
 .hero__acento {
   color: var(--color-acento);
 }
 
+.hero__hitos {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(1.75rem, 4vh, 2.75rem);
+}
+
 .hero__stats {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
-  margin: 2rem 0 0;
-  padding: 1.5rem 0 0;
+  margin: 0;
+  padding: 1.25rem 0 0;
   border-top: 1px solid rgb(11 79 140 / 12%);
 }
 
@@ -384,9 +553,42 @@ main:focus-visible {
 }
 
 .hero__figura {
+  position: relative;
   display: grid;
   place-items: center;
   margin: 0;
+}
+
+.hero__orbita {
+  position: absolute;
+  width: min(108%, 30rem);
+  aspect-ratio: 1;
+  border: 1px dashed rgb(11 79 140 / 18%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero__orbita::before,
+.hero__orbita::after {
+  position: absolute;
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+  background: var(--color-acento);
+  content: '';
+}
+
+.hero__orbita::before {
+  top: 12%;
+  left: 50%;
+  box-shadow: 0 0 0 6px rgb(30 144 255 / 16%);
+}
+
+.hero__orbita::after {
+  right: 14%;
+  bottom: 22%;
+  background: #7ec8f0;
+  box-shadow: 0 0 0 6px rgb(126 200 240 / 22%);
 }
 
 .hero__tarjeta {
@@ -402,6 +604,15 @@ main:focus-visible {
   background: #fff;
   box-shadow: var(--sombra-tarjeta);
   isolation: isolate;
+}
+
+.hero__tarjeta--cristal {
+  border-color: rgb(255 255 255 / 55%);
+  background: rgb(255 255 255 / 58%);
+  box-shadow:
+    0 24px 48px rgb(11 79 140 / 14%),
+    inset 0 1px 0 rgb(255 255 255 / 70%);
+  backdrop-filter: blur(14px) saturate(140%);
 }
 
 .hero__tarjeta::before,
@@ -1185,9 +1396,13 @@ main:focus-visible {
     --alto-encabezado: 4rem;
   }
 
-  .seccion--apertura {
+  .seccion--apertura:not(.seccion--inmersion) {
     padding-top: 0.85rem;
     padding-bottom: clamp(2rem, 6vh, 3.25rem);
+  }
+
+  .seccion--inmersion {
+    padding-top: calc(0.5rem + env(safe-area-inset-top, 0px));
   }
 
   /* Fijo en móvil: el menú no desaparece al llegar al pie ni en el rebote de iOS. */
