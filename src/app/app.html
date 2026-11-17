@@ -6,6 +6,11 @@
 >
   Saltar al contenido
 </a>
+@defer (on idle) {
+  <app-lluvia-canvas />
+} @placeholder {
+  <div class="lluvia-canvas__placeholder" aria-hidden="true"></div>
+}
 <app-encabezado />
 <main id="contenido" tabindex="-1" [inert]="menuAbierto()">
   <router-outlet />

@@ -8,6 +8,7 @@ import {
   nombreEmpresa,
 } from '../../contenido/sitio';
 import { ImagenEsqueleto } from '../../directivas/imagen-esqueleto';
+import { OndasCanvas } from '../../visual/ondas-canvas/ondas-canvas';
 
 /**
  * @class SeccionInicio
@@ -15,7 +16,7 @@ import { ImagenEsqueleto } from '../../directivas/imagen-esqueleto';
  */
 @Component({
   selector: 'app-seccion-inicio',
-  imports: [RouterLink, NgOptimizedImage, ImagenEsqueleto],
+  imports: [RouterLink, NgOptimizedImage, ImagenEsqueleto, OndasCanvas],
   templateUrl: './seccion-inicio.html',
 })
 export class SeccionInicio {
