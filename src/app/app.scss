@@ -1,3 +1,27 @@
 :host {
   display: block;
+  position: relative;
+  isolation: isolate;
+}
+
+:host ::ng-deep app-encabezado,
+:host ::ng-deep main,
+:host ::ng-deep app-pie,
+:host ::ng-deep .cta-flotante,
+:host ::ng-deep .saltar {
+  position: relative;
+  z-index: 1;
+}
+
+:host ::ng-deep .lluvia-fondo__placeholder {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      -12deg,
+      transparent 0 14px,
+      rgb(11 79 140 / 4%) 14px 15px
+    );
 }

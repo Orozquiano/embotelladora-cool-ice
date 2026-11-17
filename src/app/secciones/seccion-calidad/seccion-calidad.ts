@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { etapasProceso, hitosProceso } from '../../contenido/sitio';
 import { RevelarAlScroll } from '../../directivas/revelar-al-scroll';
+import { CascadaAgua } from '../../visual/cascada-agua/cascada-agua';
 import { OndasAgua } from '../../visual/ondas-agua/ondas-agua';
 
 /**
@@ -9,7 +10,7 @@ import { OndasAgua } from '../../visual/ondas-agua/ondas-agua';
  */
 @Component({
   selector: 'app-seccion-calidad',
-  imports: [RevelarAlScroll, OndasAgua],
+  imports: [RevelarAlScroll, OndasAgua, CascadaAgua],
   templateUrl: './seccion-calidad.html',
 })
 export class SeccionCalidad {

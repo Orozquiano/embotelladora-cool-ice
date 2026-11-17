@@ -1,18 +1,28 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
-import { detallesProducto, lineaPedidos } from '../../contenido/sitio';
+import {
+  detallesProducto,
+  imagenProducto,
+  lineaPedidos,
+} from '../../contenido/sitio';
+import { ImagenEsqueleto } from '../../directivas/imagen-esqueleto';
 import { RevelarAlScroll } from '../../directivas/revelar-al-scroll';
-import { Botellon3d } from '../../visual/botellon-3d/botellon-3d';
 
 /**
  * @class SeccionProductos
- * @description Destaca el bidón familiar de 18,9 L con modelo 3D interactivo.
+ * @description Destaca el bidón familiar de 18,9 L según el Figma.
  */
 @Component({
   selector: 'app-seccion-productos',
-  imports: [Botellon3d, RevelarAlScroll],
+  imports: [NgOptimizedImage, ImagenEsqueleto, RevelarAlScroll],
   templateUrl: './seccion-productos.html',
 })
 export class SeccionProductos {
+  /**
+   * @description Imagen de la etiqueta del producto estrella.
+   */
+  protected readonly imagen = imagenProducto;
+
   /**
    * @description Lista de atributos del bidón.
    */

@@ -1,6 +1,6 @@
 <section
   id="inicio"
-  class="seccion seccion--apertura seccion--inmersion"
+  class="seccion seccion--apertura seccion--inmersion seccion--hero-texto"
   aria-labelledby="titulo-inicio"
   tabindex="-1"
 >
@@ -15,15 +15,15 @@
     <span class="hero-escena__blob hero-escena__blob--c"></span>
   </div>
 
-  <div class="contenido hero">
+  <div class="contenido hero hero--solo-texto">
     <div class="hero__texto">
       <p class="hero__marca">Cool Ice</p>
       <h1 id="titulo-inicio">
         Agua pura para tu casa,
-        <span class="hero__acento">en porrón familiar</span>
+        <span class="hero__acento">tratada con rigor</span>
       </h1>
       <p class="prosa">
-        Tratamos cada gota en Miranda, Cauca, y la llevamos a domicilio en bidón de 18,9 L:
+        En Miranda, Cauca, cada gota pasa por un proceso de purificación pensado para familias:
         sabor limpio, frescura y confianza de Industria Colombiana.
       </p>
       <div class="acciones">
@@ -31,21 +31,9 @@
           Pedir ahora — {{ telefono }}
           <span class="solo-lectores">, se abre en una pestaña nueva</span>
         </a>
-        <a class="boton boton--secundario" routerLink="/" fragment="producto">Ver producto 18,9 L</a>
+        <a class="boton boton--secundario" routerLink="/" fragment="proceso">Ver el proceso del agua</a>
       </div>
     </div>
-
-    <figure class="hero__figura">
-      <div class="hero__orbita" aria-hidden="true"></div>
-      <div class="hero__tarjeta hero__tarjeta--cristal hero__tarjeta--botellon">
-        @defer (on idle) {
-          <app-botellon-3d etiqueta="Porrón Cool Ice de 18,9 litros. Arrástralo para girarlo." />
-        } @placeholder {
-          <div class="botellon-3d__fallback hero__botellon-placeholder" role="img" aria-label="Porrón Cool Ice"></div>
-        }
-        <p class="hero__nota">Porrón 18,9 L · Agua potable tratada</p>
-      </div>
-    </figure>
   </div>
 
   <div class="contenido hero__hitos" appRevelarAlScroll>

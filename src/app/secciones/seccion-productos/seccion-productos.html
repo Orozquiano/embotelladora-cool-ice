@@ -6,13 +6,16 @@
 
   <div class="contenido producto">
     <div class="producto__visual" appRevelarAlScroll>
-      <div class="producto__marco producto__marco--botellon">
-        @defer (on viewport) {
-          <app-botellon-3d etiqueta="Porrón familiar Cool Ice de 18,9 litros. Arrástralo para girarlo." />
-        } @placeholder {
-          <div class="hero__botellon-placeholder" role="img" aria-label="Porrón Cool Ice"></div>
-        }
-        <p class="producto__pill">18,9 L · 5 galones · Gira el modelo</p>
+      <div class="producto__marco">
+        <img
+          appImagenEsqueleto
+          [ngSrc]="imagen.ruta"
+          [width]="imagen.ancho"
+          [height]="imagen.alto"
+          [alt]="imagen.textoAlternativo"
+          priority
+        />
+        <p class="producto__pill">18,9 L · 5 galones</p>
       </div>
     </div>
 

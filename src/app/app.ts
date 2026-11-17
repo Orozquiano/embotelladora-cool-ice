@@ -7,13 +7,14 @@ import { lineaPedidos } from './contenido/sitio';
 import { Encabezado } from './layout/encabezado/encabezado';
 import { Pie } from './layout/pie/pie';
 import { MenuMovil } from './servicios/menu-movil';
+import { LluviaFondo } from './visual/lluvia-fondo/lluvia-fondo';
 
 /**
  * @class App
  * @description Cascarón del sitio: salto al contenido, navegación, página y pie.
  */
 @Component({
-  imports: [RouterOutlet, Encabezado, Pie],
+  imports: [RouterOutlet, Encabezado, Pie, LluviaFondo],
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.scss',

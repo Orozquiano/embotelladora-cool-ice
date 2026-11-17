@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { Botellon3d } from './botellon-3d';
+import { LluviaFondo } from './lluvia-fondo';
 
-describe('Botellon3d', () => {
+describe('LluviaFondo', () => {
   beforeEach(() => {
     Object.defineProperty(window, 'matchMedia', {
       writable: true,
@@ -19,17 +19,17 @@ describe('Botellon3d', () => {
     });
   });
 
-  it('monta el lienzo interactivo del porrón', async () => {
+  it('monta el lienzo de lluvia', async () => {
     await TestBed.configureTestingModule({
-      imports: [Botellon3d],
+      imports: [LluviaFondo],
     }).compileComponents();
 
-    const fixture = TestBed.createComponent(Botellon3d);
+    const fixture = TestBed.createComponent(LluviaFondo);
     fixture.detectChanges();
     await fixture.whenStable();
 
     const canvas = fixture.nativeElement.querySelector('canvas');
-    const fallback = fixture.nativeElement.querySelector('.botellon-3d__fallback');
+    const fallback = fixture.nativeElement.querySelector('.lluvia-fondo__fallback');
     expect(canvas || fallback).toBeTruthy();
   });
 });
