@@ -8,6 +8,7 @@ import {
   nombreEmpresa,
   registroInvima,
 } from '../../contenido/sitio';
+import { OndasAgua } from '../../visual/ondas-agua/ondas-agua';
 
 /**
  * @class SeccionContacto
@@ -15,7 +16,7 @@ import {
  */
 @Component({
   selector: 'app-seccion-contacto',
-  imports: [RouterLink],
+  imports: [RouterLink, OndasAgua],
   templateUrl: './seccion-contacto.html',
 })
 export class SeccionContacto {

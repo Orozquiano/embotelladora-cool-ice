@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { beneficios } from '../../contenido/sitio';
 import { RevelarAlScroll } from '../../directivas/revelar-al-scroll';
+import { OndasAgua } from '../../visual/ondas-agua/ondas-agua';
 
 /**
  * @class SeccionBeneficios
@@ -8,7 +9,7 @@ import { RevelarAlScroll } from '../../directivas/revelar-al-scroll';
  */
 @Component({
   selector: 'app-seccion-beneficios',
-  imports: [RevelarAlScroll],
+  imports: [RevelarAlScroll, OndasAgua],
   templateUrl: './seccion-beneficios.html',
 })
 export class SeccionBeneficios {

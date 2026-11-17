@@ -1,0 +1,20 @@
+:host {
+  display: block;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ondas-agua__canvas,
+.ondas-agua__fallback {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.ondas-agua__fallback {
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 60%, rgb(30 144 255 / 12%), transparent 70%),
+    radial-gradient(ellipse 50% 35% at 80% 30%, rgb(126 200 240 / 18%), transparent 65%);
+}

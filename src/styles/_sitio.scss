@@ -100,6 +100,33 @@ main:focus-visible {
   overflow: clip;
 }
 
+.seccion--agua-viva {
+  position: relative;
+  isolation: isolate;
+}
+
+.seccion__ondas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.seccion__ondas .ondas-agua__fallback {
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 60%, rgb(30 144 255 / 12%), transparent 70%),
+    radial-gradient(ellipse 50% 35% at 80% 30%, rgb(126 200 240 / 18%), transparent 65%);
+}
+
+.seccion--agua-viva > .contenido,
+.seccion--agua-viva > .motivo-porron {
+  position: relative;
+  z-index: 1;
+}
+
 .motivo-porron {
   position: absolute;
   inset: auto -4rem 10% auto;
