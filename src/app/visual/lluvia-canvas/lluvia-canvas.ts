@@ -68,7 +68,7 @@ export class LluviaCanvas {
     const estrecho =
       window.matchMedia('(max-width: 48rem)').matches ||
       window.matchMedia('(pointer: coarse)').matches;
-    const cantidad = estrecho ? 42 : 72;
+    const cantidad = estrecho ? 58 : 96;
     let ancho = 0;
     let alto = 0;
     let dpr = 1;
@@ -165,10 +165,10 @@ export class LluviaCanvas {
     return {
       x: Math.random() * (ancho + 40) - 20,
       y: dispersar ? Math.random() * alto : -10 - Math.random() * 40,
-      largo: 8 + Math.random() * 14,
-      velocidad: 2.2 + Math.random() * 3.4,
-      grosor: 0.7 + Math.random() * 1.1,
-      alfa: 0.18 + Math.random() * 0.28,
+      largo: 10 + Math.random() * 18,
+      velocidad: 2.6 + Math.random() * 3.8,
+      grosor: 0.9 + Math.random() * 1.3,
+      alfa: 0.28 + Math.random() * 0.38,
     };
   }
 }
