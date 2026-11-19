@@ -16,6 +16,7 @@ import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs';
 import { lineaPedidos, logo, secciones } from '../../contenido/sitio';
 import { MenuMovil } from '../../servicios/menu-movil';
+import { Tema } from '../../servicios/tema';
 
 /**
  * @class Encabezado
@@ -50,6 +51,26 @@ export class Encabezado {
    * @description Estado compartido del menú estrecho.
    */
   private readonly menuMovil = inject(MenuMovil);
+
+  /**
+   * @description Preferencia de tema claro/oscuro/sistema.
+   */
+  private readonly tema = inject(Tema);
+
+  /**
+   * @description Etiqueta visible del control de tema.
+   */
+  protected readonly etiquetaTema = this.tema.etiqueta;
+
+  /**
+   * @description Preferencia actual para aria y clases.
+   */
+  protected readonly preferenciaTema = this.tema.preferencia;
+
+  /**
+   * @description Apariencia efectiva (claro u oscuro).
+   */
+  protected readonly aparienciaTema = this.tema.apariencia;
 
   /**
    * @description Indica si el menú estrecho está abierto.
@@ -203,6 +224,14 @@ export class Encabezado {
     if (quedaraAbierto) {
       requestAnimationFrame(() => this.enfocarPrimerEnlace());
     }
+  }
+
+  /**
+   * @function alternarTema
+   * @description Cicla la preferencia de apariencia: sistema → claro → oscuro.
+   */
+  protected alternarTema(): void {
+    this.tema.ciclar();
   }
 
   /**

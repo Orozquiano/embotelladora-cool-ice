@@ -7,6 +7,7 @@ import { lineaPedidos } from './contenido/sitio';
 import { Encabezado } from './layout/encabezado/encabezado';
 import { Pie } from './layout/pie/pie';
 import { MenuMovil } from './servicios/menu-movil';
+import { Tema } from './servicios/tema';
 import { LluviaCanvas } from './visual/lluvia-canvas/lluvia-canvas';
 
 /**
@@ -26,9 +27,14 @@ export class App {
   private readonly desplazamiento = inject(ViewportScroller);
 
   /**
-   * @description Estado del menú estrecho.
+   * @description Estado compartido del menú estrecho.
    */
   private readonly menuMovil = inject(MenuMovil);
+
+  /**
+   * @description Inicializa el tema (sistema por defecto) al arrancar la app.
+   */
+  private readonly tema = inject(Tema);
 
   /**
    * @description Limpia observadores al destruir el cascarón.
