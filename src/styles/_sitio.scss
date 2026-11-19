@@ -68,11 +68,12 @@ main:focus-visible {
 }
 
 .seccion--suave {
-  background: var(--color-fondo-suave);
+  /* Transparente: el ambiente + lluvia se ven a través de la sección. */
+  background: transparent;
 }
 
 .seccion--apertura {
-  background: linear-gradient(180deg, var(--color-hero-inicio) 0%, var(--color-hero-medio) 55%, var(--color-hero-fin) 100%);
+  background: transparent;
   padding-top: clamp(1.1rem, 2.8vh, 2rem);
   padding-bottom: clamp(2.5rem, 7vh, 4.5rem);
   /* El hero es el tope de la página: no desplazar bajo el header al cargar /#inicio. */
@@ -491,9 +492,10 @@ main:focus-visible {
   overflow: hidden;
   border: 1px solid var(--color-linea);
   border-radius: 1.75rem;
-  background: var(--color-superficie);
+  background: var(--color-superficie-glass);
   box-shadow: var(--sombra-tarjeta);
   isolation: isolate;
+  backdrop-filter: blur(10px);
 }
 
 .hero__tarjeta::before,
@@ -575,7 +577,7 @@ main:focus-visible {
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
   background: var(--color-marca);
-  color: #fff;
+  color: var(--color-sobre-marca);
   font-size: 0.6875rem;
   font-weight: 700;
 }
@@ -869,9 +871,12 @@ main:focus-visible {
   min-height: 12rem;
   padding: 1.75rem;
   overflow: hidden;
+  border: 1px solid var(--color-linea);
   border-radius: 1.75rem;
-  background: linear-gradient(161deg, #0b4f8c 6%, #1e90ff 54%, #7ec8ff 94%);
+  background: var(--color-superficie-glass);
   isolation: isolate;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--sombra-suave);
 }
 
 .producto__marco img {
@@ -883,7 +888,7 @@ main:focus-visible {
   max-height: 14rem;
   object-fit: contain;
   border-radius: 1rem;
-  background: var(--color-superficie);
+  background: transparent;
 }
 
 .producto__pill {
@@ -891,10 +896,10 @@ main:focus-visible {
   z-index: 1;
   margin: 0;
   padding: 0.6rem 1.1rem;
-  border: 1px solid rgb(255 255 255 / 40%);
+  border: 1px solid var(--color-linea);
   border-radius: 999px;
-  background: rgb(255 255 255 / 20%);
-  color: #fff;
+  background: var(--color-superficie);
+  color: var(--color-marca);
   font-size: 0.875rem;
   font-weight: 700;
 }

@@ -43,7 +43,7 @@ body.menu-movil-abierto {
 body {
   min-height: 100dvh;
   overflow-x: hidden;
-  background: var(--color-fondo);
+  background-color: var(--color-ambiente, var(--color-fondo));
   color: var(--color-texto);
   font-family: var(--fuente);
   font-size: 1.0625rem;
@@ -51,6 +51,13 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   overscroll-behavior-y: none;
+  transition: background-color 700ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    transition: none;
+  }
 }
 
 img {

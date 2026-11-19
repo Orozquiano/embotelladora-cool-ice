@@ -314,10 +314,10 @@ export const logo: ImagenPublica = {
 };
 
 /**
- * @description Marca del hero según el diseño de Figma.
+ * @description Marca del hero según el diseño de Figma (PNG con fondo transparente).
  */
 export const imagenHero: ImagenPublica = {
-  ruta: 'assets/imagenes/marca-cool-ice-hero.jpg',
+  ruta: 'assets/imagenes/marca-cool-ice-hero.png',
   ancho: 440,
   alto: 440,
   textoAlternativo: 'Logo Cool Ice con el osito polar y el agua.',
