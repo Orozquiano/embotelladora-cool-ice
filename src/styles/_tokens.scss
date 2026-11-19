@@ -22,9 +22,12 @@ $radio-tarjeta: 1.25rem;
 $transicion: 180ms ease;
 $alto-encabezado: 3.5rem;
 
-:root {
+@mixin tema-claro {
+  color-scheme: light;
   --color-fondo: #{$color-fondo};
   --color-fondo-suave: #{$color-fondo-suave};
+  --color-superficie: #ffffff;
+  --color-superficie-suave: #{$color-hielo};
   --color-hielo: #{$color-hielo};
   --color-linea: #{$color-linea};
   --color-texto: #{$color-texto};
@@ -39,6 +42,54 @@ $alto-encabezado: 3.5rem;
   --color-exito: #{$color-exito};
   --color-exito-fondo: #{$color-exito-fondo};
   --color-foco: #{$color-foco};
+  --color-sobre-marca: #ffffff;
+  --color-seleccion: #cfe6f6;
+  --color-hero-inicio: #f5fbff;
+  --color-hero-medio: #e8f4fc;
+  --color-hero-fin: #d6eeff;
+  --color-superficie-glass: rgb(255 255 255 / 72%);
+  --sombra-suave: 0 8px 12px rgb(11 79 140 / 5%);
+  --sombra-tarjeta: 0 24px 30px rgb(11 79 140 / 14%);
+  --color-pie: #072f54;
+  --color-pie-texto: #e7eef6;
+  --theme-color: #0b4f8c;
+}
+
+@mixin tema-oscuro {
+  color-scheme: dark;
+  --color-fondo: #0a1624;
+  --color-fondo-suave: #102033;
+  --color-superficie: #13263b;
+  --color-superficie-suave: #183049;
+  --color-hielo: #1a334d;
+  --color-linea: #2b4663;
+  --color-texto: #d7e4f0;
+  --color-texto-suave: #9db0c3;
+  --color-marca: #7ec8f0;
+  --color-marca-profundo: #a8daf7;
+  --color-marca-activo: #c5e8fb;
+  --color-acento: #4ea8ff;
+  --color-whatsapp: #1faa59;
+  --color-whatsapp-hover: #24c066;
+  --color-whatsapp-activo: #18964d;
+  --color-exito: #3dce95;
+  --color-exito-fondo: #143528;
+  --color-foco: #7ec8f0;
+  --color-sobre-marca: #061018;
+  --color-seleccion: #1e4a6e;
+  --color-hero-inicio: #0b1a2b;
+  --color-hero-medio: #102438;
+  --color-hero-fin: #14304a;
+  --color-superficie-glass: rgb(10 22 36 / 78%);
+  --sombra-suave: 0 10px 18px rgb(0 0 0 / 28%);
+  --sombra-tarjeta: 0 22px 36px rgb(0 0 0 / 35%);
+  --color-pie: #061018;
+  --color-pie-texto: #d7e4f0;
+  --theme-color: #0a1624;
+}
+
+:root {
+  @include tema-claro;
   --fuente: #{$fuente};
   --ancho: #{$ancho};
   --radio: #{$radio};
@@ -46,7 +97,21 @@ $alto-encabezado: 3.5rem;
   --transicion: #{$transicion};
   --alto-encabezado: #{$alto-encabezado};
   --espacio-seccion: clamp(3.5rem, 8vw, 5rem);
-  --sombra-suave: 0 8px 12px rgb(11 79 140 / 5%);
-  --sombra-tarjeta: 0 24px 30px rgb(11 79 140 / 14%);
-  --color-pie: #072f54;
+}
+
+/* Preferencia del sistema (por defecto). */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema='claro']) {
+    @include tema-oscuro;
+  }
+}
+
+/* Forzar oscuro aunque el sistema esté en claro. */
+:root[data-tema='oscuro'] {
+  @include tema-oscuro;
+}
+
+/* Forzar claro aunque el sistema esté en oscuro. */
+:root[data-tema='claro'] {
+  @include tema-claro;
 }

@@ -14,7 +14,9 @@ describe('Encabezado', () => {
   it('abre y cierra el menú con el botón', async () => {
     const fixture = TestBed.createComponent(Encabezado);
     await fixture.whenStable();
-    const boton = fixture.nativeElement.querySelector('button') as HTMLButtonElement;
+    const boton = fixture.nativeElement.querySelector(
+      '.encabezado__abrir',
+    ) as HTMLButtonElement;
     const menu = TestBed.inject(MenuMovil);
 
     expect(boton.getAttribute('aria-expanded')).toBe('false');
@@ -45,7 +47,9 @@ describe('Encabezado', () => {
   it('expone el botón de cierre mientras el menú está abierto', async () => {
     const fixture = TestBed.createComponent(Encabezado);
     await fixture.whenStable();
-    const boton = fixture.nativeElement.querySelector('button') as HTMLButtonElement;
+    const boton = fixture.nativeElement.querySelector(
+      '.encabezado__abrir',
+    ) as HTMLButtonElement;
     const menu = TestBed.inject(MenuMovil);
 
     boton.click();
@@ -58,6 +62,20 @@ describe('Encabezado', () => {
     fixture.detectChanges();
     expect(menu.abierto()).toBe(false);
     expect(boton.getAttribute('aria-expanded')).toBe('false');
+  });
+
+  it('cicla la preferencia de tema desde el control del encabezado', async () => {
+    const fixture = TestBed.createComponent(Encabezado);
+    await fixture.whenStable();
+    const botonTema = fixture.nativeElement.querySelector(
+      '.encabezado__tema',
+    ) as HTMLButtonElement;
+
+    expect(botonTema).toBeTruthy();
+    expect(botonTema.getAttribute('data-preferencia')).toBe('sistema');
+    botonTema.click();
+    fixture.detectChanges();
+    expect(botonTema.getAttribute('data-preferencia')).toBe('claro');
   });
 
   it('cierra el menú con el botón Cerrar del panel', async () => {

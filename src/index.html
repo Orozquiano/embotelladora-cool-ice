@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-tema="sistema">
 <head>
   <meta charset="utf-8">
   <title>Embotelladora Cool Ice | Agua potable tratada</title>
@@ -7,6 +7,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description" content="Agua potable tratada de Embotelladora Cool Ice SAS. Bidón familiar de 18,9 L y contacto por WhatsApp. Miranda, Cauca.">
   <meta name="theme-color" content="#0b4f8c">
+  <script>
+    (function () {
+      try {
+        var tema = localStorage.getItem('cool-ice-tema') || 'sistema';
+        if (tema !== 'claro' && tema !== 'oscuro' && tema !== 'sistema') {
+          tema = 'sistema';
+        }
+        document.documentElement.dataset.tema = tema;
+      } catch (e) {
+        document.documentElement.dataset.tema = 'sistema';
+      }
+    })();
+  </script>
   <meta property="og:title" content="Embotelladora Cool Ice">
   <meta property="og:description" content="Agua potable tratada de Embotelladora Cool Ice SAS. Bidón familiar de 18,9 L y contacto por WhatsApp. Miranda, Cauca.">
   <meta property="og:type" content="website">

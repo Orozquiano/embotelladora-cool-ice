@@ -5,7 +5,7 @@
 }
 
 html {
-  color-scheme: light;
+  /* color-scheme viene de los tokens (claro/oscuro). */
   /* Reserva el espacio del scroll para que no salten iconos al abrir/cerrar el menú. */
   scrollbar-gutter: stable;
   /*
@@ -101,7 +101,7 @@ a {
 }
 
 ::selection {
-  background: #cfe6f6;
+  background: var(--color-seleccion);
   color: var(--color-marca-profundo);
 }
 
@@ -127,7 +127,7 @@ a {
   clip-path: inset(50%);
   white-space: nowrap;
   background: var(--color-marca-profundo);
-  color: #fff;
+  color: var(--color-sobre-marca);
   text-decoration: none;
 }
 

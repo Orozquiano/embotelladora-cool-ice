@@ -23,14 +23,14 @@ app-encabezado {
   z-index: 30;
   /* El host sticky debe absorber el notch/Dynamic Island al hacer scroll. */
   padding-top: env(safe-area-inset-top, 0px);
-  background: #fff;
+  background: var(--color-superficie);
 }
 
 .encabezado {
   position: relative;
   z-index: 30;
   padding-top: 0;
-  background: #fff;
+  background: var(--color-superficie);
   border-bottom: 1px solid var(--color-linea);
 }
 
@@ -43,7 +43,7 @@ body.menu-movil-abierto .encabezado,
   z-index: 40;
   width: 100%;
   padding-top: env(safe-area-inset-top, 0px);
-  background: #fff;
+  background: var(--color-superficie);
 }
 
 .contenido {
@@ -72,7 +72,7 @@ main:focus-visible {
 }
 
 .seccion--apertura {
-  background: linear-gradient(180deg, #f5fbff 0%, #e8f4fc 55%, #d6eeff 100%);
+  background: linear-gradient(180deg, var(--color-hero-inicio) 0%, var(--color-hero-medio) 55%, var(--color-hero-fin) 100%);
   padding-top: clamp(1.1rem, 2.8vh, 2rem);
   padding-bottom: clamp(2.5rem, 7vh, 4.5rem);
   /* El hero es el tope de la página: no desplazar bajo el header al cargar /#inicio. */
@@ -184,7 +184,7 @@ main:focus-visible {
 
 .boton--primario {
   background: var(--color-marca);
-  color: #fff;
+  color: var(--color-sobre-marca);
 }
 
 .boton--primario:hover {
@@ -217,6 +217,56 @@ main:focus-visible {
   justify-content: space-between;
   min-height: var(--alto-encabezado);
   gap: 1rem;
+}
+
+.encabezado__acciones {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.encabezado__tema {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.4rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--color-linea);
+  border-radius: 999px;
+  background: var(--color-superficie-suave);
+  color: var(--color-marca);
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color var(--transicion),
+    border-color var(--transicion),
+    color var(--transicion);
+}
+
+.encabezado__tema:hover,
+.encabezado__tema:focus-visible {
+  background: var(--color-hielo);
+  border-color: var(--color-marca);
+}
+
+.encabezado__tema-icono {
+  display: grid;
+  place-items: center;
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.encabezado__tema-icono svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.encabezado__tema-texto {
+  line-height: 1;
 }
 
 .encabezado__marca {
@@ -382,7 +432,7 @@ main:focus-visible {
   padding: 0.5rem 0.9rem;
   border: 1px solid var(--color-linea);
   border-radius: 999px;
-  background: #fff;
+  background: var(--color-superficie);
   color: var(--color-marca);
   font-size: 0.8125rem;
   font-weight: 600;
@@ -438,7 +488,7 @@ main:focus-visible {
   overflow: hidden;
   border: 1px solid var(--color-linea);
   border-radius: 1.75rem;
-  background: #fff;
+  background: var(--color-superficie);
   box-shadow: var(--sombra-tarjeta);
   isolation: isolate;
 }
@@ -557,7 +607,7 @@ main:focus-visible {
   padding: 1.5rem 1.35rem;
   border: 1px solid var(--color-linea);
   border-radius: 1.25rem;
-  background: #fff;
+  background: var(--color-superficie);
   box-shadow: var(--sombra-suave);
 }
 
@@ -655,7 +705,7 @@ main:focus-visible {
   padding: 1rem 1.15rem;
   border: 1px solid var(--color-linea);
   border-radius: 1rem;
-  background: linear-gradient(180deg, #fff, var(--color-fondo-suave));
+  background: linear-gradient(180deg, var(--color-superficie), var(--color-fondo-suave));
 }
 
 .hitos-proceso__item strong {
@@ -736,7 +786,7 @@ main:focus-visible {
   padding: 1.1rem 1.15rem;
   border: 1px solid var(--color-linea);
   border-radius: 1.15rem;
-  background: #fff;
+  background: var(--color-superficie);
   box-shadow: var(--sombra-suave);
 }
 
@@ -830,7 +880,7 @@ main:focus-visible {
   max-height: 14rem;
   object-fit: contain;
   border-radius: 1rem;
-  background: #fff;
+  background: var(--color-superficie);
 }
 
 .producto__pill {
@@ -885,7 +935,7 @@ main:focus-visible {
   padding: clamp(1.5rem, 4vw, 2.5rem);
   border: 1px solid var(--color-linea);
   border-radius: 1.75rem;
-  background: #fff;
+  background: var(--color-superficie);
   box-shadow: var(--sombra-suave);
 }
 
@@ -1012,7 +1062,7 @@ main:focus-visible {
   padding: 1.25rem 1.35rem;
   border: 1px solid var(--color-linea);
   border-radius: 1rem;
-  background: #fff;
+  background: var(--color-superficie);
   box-shadow: var(--sombra-suave);
 }
 
@@ -1035,7 +1085,7 @@ main:focus-visible {
   padding: 0.7rem 1rem;
   border-radius: 999px;
   background: var(--color-marca);
-  color: #fff;
+  color: var(--color-sobre-marca);
   font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -1081,7 +1131,7 @@ main:focus-visible {
   padding: 0.9rem 1rem;
   border: 1px solid var(--color-linea);
   border-radius: 0.9rem;
-  background: #fff;
+  background: var(--color-superficie);
   color: inherit;
   text-decoration: none;
   text-align: left;
@@ -1157,7 +1207,7 @@ main:focus-visible {
   padding: 1.75rem 1.5rem;
   border: 1px solid var(--color-linea);
   border-radius: 1.35rem;
-  background: #fff;
+  background: var(--color-superficie);
   box-shadow: 0 16px 20px rgb(11 79 140 / 8%);
 }
 
@@ -1206,7 +1256,7 @@ main:focus-visible {
 
 .pie {
   background: var(--color-pie);
-  color: #e7eef6;
+  color: var(--color-pie-texto);
   /* Extiende el color del pie mucho más allá del documento (rebote iOS). */
   box-shadow: 0 100vh 0 100vh var(--color-pie);
   padding-bottom: env(safe-area-inset-bottom, 0px);
@@ -1230,7 +1280,7 @@ main:focus-visible {
   display: inline-flex;
   padding: 0.35rem;
   border-radius: 0.65rem;
-  background: #fff;
+  background: var(--color-superficie);
 }
 
 .pie__logo {
@@ -1328,6 +1378,17 @@ main:focus-visible {
     max-width: min(10.5rem, 56vw);
   }
 
+  .encabezado__tema {
+    width: 2.4rem;
+    min-height: 2.4rem;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .encabezado__tema-texto {
+    display: none;
+  }
+
   .encabezado__abrir {
     width: 2.4rem;
     height: 2.4rem;
@@ -1380,7 +1441,7 @@ main:focus-visible {
   body.menu-movil-abierto app-encabezado {
     /* El header fijo ya aplica safe-area; evita padding duplicado en el host. */
     padding-top: 0;
-    background: #fff;
+    background: var(--color-superficie);
   }
 
   body.menu-movil-abierto .encabezado,
@@ -1388,7 +1449,7 @@ main:focus-visible {
     min-height: 0;
     padding-top: env(safe-area-inset-top, 0px);
     padding-right: var(--compensacion-scrollbar, 0px);
-    background: #fff;
+    background: var(--color-superficie);
     border-bottom-color: rgb(7 47 84 / 12%);
   }
 
@@ -1403,7 +1464,7 @@ main:focus-visible {
     max-width: none;
     margin-inline: auto;
     padding-inline: 0;
-    background: #fff;
+    background: var(--color-superficie);
   }
 
   .menu {
@@ -1458,7 +1519,7 @@ main:focus-visible {
     touch-action: pan-y;
     border: 1px solid var(--color-linea);
     border-radius: 1.25rem;
-    background: #fff;
+    background: var(--color-superficie);
     box-shadow: 0 18px 40px rgb(7 47 84 / 28%);
     transform: translateY(-1rem) scale(0.96);
     opacity: 0;
@@ -1524,7 +1585,7 @@ main:focus-visible {
 
   .menu__cerrar:hover,
   .menu__cerrar:focus-visible {
-    background: #fff;
+    background: var(--color-superficie);
     border-color: rgb(11 79 140 / 28%);
   }
 
@@ -1627,7 +1688,7 @@ main:focus-visible {
   }
 
   .menu__enlace[aria-current='location'] {
-    background: #fff;
+    background: var(--color-superficie);
     border-color: rgb(11 79 140 / 28%);
     box-shadow:
       inset 0.28rem 0 0 var(--color-marca),
@@ -1748,7 +1809,7 @@ main:focus-visible {
   }
 
   app-encabezado {
-    background: rgb(255 255 255 / 72%);
+    background: var(--color-superficie-glass);
     border-bottom: 1px solid var(--color-linea);
     backdrop-filter: saturate(180%) blur(20px);
   }
@@ -1776,6 +1837,19 @@ main:focus-visible {
 
   .encabezado__abrir {
     display: none;
+  }
+
+  .encabezado__acciones {
+    order: 3;
+  }
+
+  .encabezado__tema {
+    min-height: 2.75rem;
+    padding-inline: 0.85rem;
+  }
+
+  .encabezado__tema-texto {
+    display: inline;
   }
 
   body.menu-movil-abierto .encabezado,
