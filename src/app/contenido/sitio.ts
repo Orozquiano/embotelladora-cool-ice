@@ -304,12 +304,12 @@ export const pilaresConfianza: readonly PilarConfianza[] = [
 ];
 
 /**
- * @description Logotipo horizontal usado en la barra.
+ * @description Logotipo horizontal usado en la barra (PNG con fondo transparente).
  */
 export const logo: ImagenPublica = {
-  ruta: 'assets/imagenes/logo-cool-ice-figma.jpg',
+  ruta: 'assets/imagenes/logo-cool-ice.png',
   ancho: 440,
-  alto: 254,
+  alto: 201,
   textoAlternativo: 'Cool Ice',
 };
 
