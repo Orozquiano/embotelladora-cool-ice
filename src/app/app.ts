@@ -6,6 +6,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { lineaPedidos } from './contenido/sitio';
 import { Encabezado } from './layout/encabezado/encabezado';
 import { Pie } from './layout/pie/pie';
+import { AmbienteFondo } from './servicios/ambiente-fondo';
 import { MenuMovil } from './servicios/menu-movil';
 import { Tema } from './servicios/tema';
 import { LluviaCanvas } from './visual/lluvia-canvas/lluvia-canvas';
@@ -35,6 +36,11 @@ export class App {
    * @description Inicializa el tema (sistema por defecto) al arrancar la app.
    */
   private readonly tema = inject(Tema);
+
+  /**
+   * @description Difumina el color de fondo según la sección visible.
+   */
+  private readonly ambiente = inject(AmbienteFondo);
 
   /**
    * @description Limpia observadores al destruir el cascarón.
@@ -94,6 +100,7 @@ export class App {
     afterNextRender(() => {
       this.corregirAnclaInicio();
       this.programarObservacionCta();
+      this.programarAmbiente();
       window.addEventListener('resize', this.alRedimensionar, { passive: true });
     });
 
@@ -105,13 +112,23 @@ export class App {
       .subscribe(() => {
         this.corregirAnclaInicio();
         this.programarObservacionCta();
+        this.programarAmbiente();
       });
 
     this.destruir.onDestroy(() => {
       window.removeEventListener('resize', this.alRedimensionar);
       this.observadorHero?.disconnect();
       this.observadorContacto?.disconnect();
+      this.ambiente.detener();
     });
+  }
+
+  /**
+   * @function programarAmbiente
+   * @description Espera el DOM de la home antes de enlazar el tinte de fondo.
+   */
+  private programarAmbiente(): void {
+    queueMicrotask(() => this.ambiente.iniciar());
   }
 
   /**
